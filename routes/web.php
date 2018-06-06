@@ -12,6 +12,17 @@
 */
 
 
-Route::get('/', function () {
-    return view('front.home');
+Route::group(['middleware' => 'Maintenance'], function () {
+
+    Route::get('/', function () {
+        return view('front.home');
+    });
+
 });
+
+Route::get('maintenance', function () {
+
+    return 'maintenance';
+});
+
+
