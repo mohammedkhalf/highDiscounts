@@ -13,12 +13,12 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
 
     <!-- Bootstrap -->
-{{Html::style('front/css/bootstrap.min.css') }}
+    {{Html::style('front/css/bootstrap.min.css') }}
 
-<!-- Font Awesome -->
-{{Html::style('front/css/font-awesome.min.css') }}
+    <!-- Font Awesome -->
+    {{Html::style('front/css/font-awesome.min.css') }}
 
-<!-- Custom CSS -->
+    <!-- Custom CSS -->
 
 
     {{Html::style('front/css/owl.carousel.css') }}
@@ -28,7 +28,7 @@
         {{Html::style('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css') }}
     @endif
 
-    <link rel="icon" href="{{Storage::url(sett()->icon)}}">
+    <link rel="icon" href="{{Storage::url(sett()->icon)}}"/>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
