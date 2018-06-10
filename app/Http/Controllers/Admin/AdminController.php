@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    public function admin()
+    {
+        return view('admin.home');
+    }
+
     public function index()
     {
         $admins = Admin::all();
@@ -59,14 +64,14 @@ class AdminController extends Controller
         $data = $this->validate(request(),
             [
                 'name' => 'required',
-                'email' => 'required|email|unique:admins,email,'.$id,
+                'email' => 'required|email|unique:admins,email,' . $id,
                 'password' => 'sometimes|nullable|min:6'
             ]);
         $data['password'] = bcrypt(request('password'));
 
         DB::table('admins')->where('id', $id)
             ->update($data);
-/*        Admin::where('id', $id)->updated($data);*/
+        /*        Admin::where('id', $id)->updated($data);*/
         session()->flash('success', 'Admin has been Updated');
         return redirect(aurl('admins'));
     }

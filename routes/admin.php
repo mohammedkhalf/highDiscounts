@@ -17,6 +17,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('/recovery/password', 'AdminAuthController@send_password');
     Route::post('login', 'AdminAuthController@dologin');
     Route::group(['middleware' => 'admin:admin'], function () {
+        Route::get('/', 'AdminController@admin');
 
         /*        Route::resource('admins','AdminController');*/
 
