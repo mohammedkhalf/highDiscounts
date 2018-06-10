@@ -71,6 +71,17 @@
 
                             </li>
 
+                            <li>
+                                <a href="#"><i class="icon-flag3"></i> <span>{{trans('admin.countries')}}</span></a>
+                                <ul>
+                                    <li {{{ (Request::is('admin/countries') ? ' class=active' : '') }}}><a
+                                                href="{{aurl('countries')}}">{{trans('admin.allcountries')}}</a></li>
+                                    <li {{{ (Request::is('admin/countries/create') ? ' class=active' : '') }}}><a
+                                                href="{{aurl('countries/create')}}">{{trans('admin.addcountries')}}</a></li>
+                                </ul>
+
+                            </li>
+
                         </ul>
                     </div>
                 </div>

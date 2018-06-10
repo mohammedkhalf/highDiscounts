@@ -14,6 +14,9 @@ return [
     'allusers' => 'All Users',
     'addusers' => 'Add Users',
     'settings' => 'Settings',
+    'countries' => 'Countries',
+    'allcountries' => 'All Countries',
+    'addcountries' => 'Add Countries',
     /*
      *
      *
