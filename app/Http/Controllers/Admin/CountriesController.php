@@ -7,14 +7,14 @@ use App\Model\Country;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use up;
+use Up;
 
 
 class CountriesController extends Controller
 {
     public function index()
     {
-        $countries = Country::all()->where('parent','=' , null);
+        $countries = Country::all()->where('parent', '=', null);
         return view('admin.countries.index')
             ->with('countries', $countries);
     }
@@ -24,7 +24,8 @@ class CountriesController extends Controller
     {
         $id = request('id');
         $countryId = Country::find($id);
-        return view('admin.countries.create');
+        $countryAll = Country::all()->where('parent', '=', null);
+        return view('admin.countries.create')->with('countryAll', $countryAll);
     }
 
     public function store(Request $request)
@@ -34,8 +35,9 @@ class CountriesController extends Controller
                 'country_name_ar' => 'required',
                 'country_name_en' => 'required',
                 'mob' => 'required',
-                'code' => 'required',
-                'logo' => 'required|'.v_image(),
+                'code' => 'sometimes|nullable',
+                'logo' => 'sometimes|nullable|' . v_image(),
+                'parent' => 'sometimes|nullable|integer',
             ], [], [
                 'country_name_ar' => trans('admin.country_name_ar'),
                 'country_name_en' => trans('admin.country_name_en'),
@@ -45,7 +47,7 @@ class CountriesController extends Controller
             ]);
         if (request()->hasFile('logo')) {
 
-            $data['logo'] = up::upload([
+            $data['logo'] = Up::upload([
                 // 'new_name'=>'',
                 'file' => 'logo',
                 'path' => 'countries',
@@ -61,14 +63,16 @@ class CountriesController extends Controller
 
     public function show($id)
     {
-        //
+        $cities = Country::all()->where('parent', '=', $id);
+        return view('.admin.countries.cities')->with('cities', $cities);
     }
 
 
     public function edit($id)
     {
         $countryId = Country::find($id);
-        return view('admin.countries.create', compact('countryId'));
+        $countryAll = Country::all()->where('parent', '=', null);
+        return view('admin.countries.create', compact('countryId'))->with('countryAll', $countryAll);
     }
 
 
@@ -80,7 +84,7 @@ class CountriesController extends Controller
                 'country_name_en' => 'required',
                 'mob' => 'required',
                 'code' => 'required',
-                'logo' => 'sometimes|nullable|'.v_image(),
+                'logo' => 'sometimes|nullable|' . v_image(),
             ], [], [
                 'country_name_ar' => trans('admin.country_name_ar'),
                 'country_name_en' => trans('admin.country_name_en'),
@@ -99,9 +103,9 @@ class CountriesController extends Controller
             ]);
         }
 
-      DB::table('countries')->where('id', $id)
+        DB::table('countries')->where('id', $id)
             ->update($data);
-      /*  Country::where('id', $id)->updated($data);*/
+        /*  Country::where('id', $id)->updated($data);*/
         session()->flash('success', trans('admin.update'));
         return redirect(aurl('countries'));
     }

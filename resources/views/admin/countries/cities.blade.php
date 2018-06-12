@@ -4,7 +4,7 @@
     All Users
 @endsection--}}
 @section('up')
-    {{trans('admin.allcountries')}}
+    {{trans('admin.all_city')}}
 @endsection
 @section('content')
 
@@ -12,10 +12,10 @@
     <!-- Column selectors -->
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title">All Countries</h5>
+            <h5 class="panel-title">{{trans('admin.all_city')}}</h5>
             <div class="heading-elements">
                 <ul class="icons-list">
-                    <li><a href="{{aurl('countries/create')}}"><span class="label border-left-primary label-striped">Add Country</span></a>
+                    <li><a href="{{aurl('countries/create')}}"><span class="label border-left-primary label-striped">Add Cities</span></a>
                     </li>
                     <li><a data-action="collapse"></a></li>
                     <li><a data-action="reload"></a></li>
@@ -36,26 +36,21 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>{{trans('admin.country_name_ar')}}</th>
-                <th>{{trans('admin.country_name_en')}}</th>
-                <th>{{trans('admin.country_mob')}}</th>
-                <th>{{trans('admin.country_logo')}}</th>
-                <th>{{trans('admin.country_city')}}</th>
+                <th>{{trans('admin.city_name_ar')}}</th>
+                <th>{{trans('admin.city_name_en')}}</th>
+                <th>{{trans('admin.city_mob')}}</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($countries as $country)
+            @foreach($cities as $city)
                 <tr>
-                    <td>{{$country->id}}</td>
-                    <td>{{$country->country_name_ar}}</td>
-                    <td>{{$country->country_name_en}}</td>
-                    <td>{{$country->mob}}</td>
-                    <td><img src="{{Storage::url($country->logo)}}"></td>
-                    <td><a href="{{'countries/cities/'.$country->id}}">
-                            <i class="icon-pen6"></i> <span>{{trans('admin.all_city')}}</span></a></td>
-                    <td><a href="{{'countries/edit/'.$country->id}}"><i class="icon-pen6"></i> <span>edit</span></a>
+                    <td>{{$city->id}}</td>
+                    <td>{{$city->country_name_ar}}</td>
+                    <td>{{$city->country_name_en}}</td>
+                    <td>{{$city->mob}}</td>
+                    <td><a href="{{aurl('countries/edit/'.$city->id)}}"><i class="icon-pen6"></i> <span>edit</span></a>
                     </td>
                     <td><a href><i class="icon-trash"></i> <span>delete</span></a></td>
                 </tr>

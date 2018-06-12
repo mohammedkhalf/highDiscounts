@@ -40,6 +40,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/countries/edit/{id}', 'CountriesController@edit');
         Route::post('/countries/update/{id}', 'CountriesController@update');
 
+        Route::get('/countries/cities/{id}', 'CountriesController@show');
+
         Route::get('/setting', 'SettingsController@index');
         Route::post('/setting', 'SettingsController@setting_save');
         Route::post('/users', 'UserController@store');
