@@ -76,4 +76,7 @@ return [
     'country_logo'=>'Logo',
     'country_city'=>'Countries City',
     'all_city'=>'All Cities',
+    'city_name_ar'=>'Name In Arabic',
+    'city_name_en'=>'Name In English',
+    'city_mob'=>'Phone Key',
 ];
