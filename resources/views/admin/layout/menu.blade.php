@@ -77,7 +77,20 @@
                                     <li {{{ (Request::is('admin/countries') ? ' class=active' : '') }}}><a
                                                 href="{{aurl('countries')}}">{{trans('admin.allcountries')}}</a></li>
                                     <li {{{ (Request::is('admin/countries/create') ? ' class=active' : '') }}}><a
-                                                href="{{aurl('countries/create')}}">{{trans('admin.addcountries')}}</a></li>
+                                                href="{{aurl('countries/create')}}">{{trans('admin.addcountries')}}</a>
+                                    </li>
+                                </ul>
+
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="icon-flag3"></i> <span>{{trans('admin.categories')}}</span></a>
+                                <ul>
+                                    <li {{{ (Request::is('admin/categories') ? ' class=active' : '') }}}><a
+                                                href="{{aurl('categories')}}">{{trans('admin.allcategories')}}</a></li>
+                                    <li {{{ (Request::is('admin/categories/create') ? ' class=active' : '') }}}><a
+                                                href="{{aurl('categories/create')}}">{{trans('admin.addcategories')}}</a>
+                                    </li>
                                 </ul>
 
                             </li>

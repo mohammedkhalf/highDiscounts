@@ -42,6 +42,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::get('/countries/cities/{id}', 'CountriesController@show');
 
+
+        Route::get('/categories/create', 'CategoriesController@create');
+        Route::get('/categories', 'CategoriesController@index');
+        Route::post('/categories', 'CategoriesController@store');
+        Route::get('/categories/edit/{id}', 'CategoriesController@edit');
+        Route::post('/categories/update/{id}', 'CategoriesController@update');
+
+        Route::get('/categories/cities/{id}', 'CategoriesController@show');
+
         Route::get('/setting', 'SettingsController@index');
         Route::post('/setting', 'SettingsController@setting_save');
         Route::post('/users', 'UserController@store');
