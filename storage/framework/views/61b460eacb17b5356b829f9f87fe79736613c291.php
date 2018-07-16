@@ -18,3 +18,14 @@
 
 </body>
 </html>
+<script>
+
+    $('.addInput').click(function(){
+
+        $(this).parent().next('.inputDiv').clone().appendTo(".imageUpload");
+
+    });
+    $('body').on('click', '.removeInput', function() {
+        $(this).parent().parent().remove();
+    });
+</script>

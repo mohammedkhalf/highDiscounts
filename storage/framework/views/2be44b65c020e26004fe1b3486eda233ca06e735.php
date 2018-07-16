@@ -72,7 +72,7 @@
                             </li>
 
                             <li>
-                                <a href="#"><i class="icon-flag3"></i> <span><?php echo e(trans('admin.countries')); ?></span></a>
+                                <a href="#"><i class=" icon-station"></i> <span><?php echo e(trans('admin.countries')); ?></span></a>
                                 <ul>
                                     <li <?php echo e((Request::is('admin/countries') ? ' class=active' : '')); ?>><a
                                                 href="<?php echo e(aurl('countries')); ?>"><?php echo e(trans('admin.allcountries')); ?></a></li>
@@ -84,12 +84,24 @@
                             </li>
 
                             <li>
-                                <a href="#"><i class="icon-flag3"></i> <span><?php echo e(trans('admin.categories')); ?></span></a>
+                                <a href="#"><i class="icon-stack2"></i> <span><?php echo e(trans('admin.categories')); ?></span></a>
                                 <ul>
-                                    <li <?php echo e((Request::is('admin/categories') ? ' class=active' : '')); ?>><a
-                                                href="<?php echo e(aurl('categories')); ?>"><?php echo e(trans('admin.allcategories')); ?></a></li>
-                                    <li <?php echo e((Request::is('admin/categories/create') ? ' class=active' : '')); ?>><a
-                                                href="<?php echo e(aurl('categories/create')); ?>"><?php echo e(trans('admin.addcategories')); ?></a>
+                                    <li <?php echo e((Request::is('admin/product/department') ? ' class=active' : '')); ?>><a
+                                                href="<?php echo e(aurl('department_product')); ?>"><?php echo e(trans('admin.allcategories')); ?></a></li>
+                                    <li <?php echo e((Request::is('admin/product/department') ? ' class=active' : '')); ?>><a
+                                                href="<?php echo e(aurl('department_product/create')); ?>"><?php echo e(trans('admin.addcategories')); ?></a>
+                                    </li>
+                                </ul>
+
+                            </li>
+
+                                   <li>
+                                <a href="#"><i class="icon-cart2"></i> <span><?php echo e(trans('admin.products')); ?></span></a>
+                                <ul>
+                                    <li <?php echo e((Request::is('admin/product/department') ? ' class=active' : '')); ?>><a
+                                                href="<?php echo e(aurl('products')); ?>"><?php echo e(trans('admin.allproducts')); ?></a></li>
+                                    <li <?php echo e((Request::is('admin/product/department') ? ' class=active' : '')); ?>><a
+                                                href="<?php echo e(aurl('products/create')); ?>"><?php echo e(trans('admin.addproducts')); ?></a>
                                     </li>
                                 </ul>
 
