@@ -27,6 +27,10 @@ class AdminAuthController extends  Controller
     {
         return view('admin.recovery');
     }
+    public function asasd()
+    {
+        return view('admin.recovery');
+    }
 
     public function send_password()
     {
