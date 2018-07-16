@@ -3,7 +3,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Category;
+use App\Model\Category as Dep;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -61,8 +61,8 @@ class CategoriesController extends Controller
 
     public function show($id)
     {
-        $cities = Category::all()->where('parent', '=', $id);
-        return view('.admin.categories.cities')->with('cities', $cities);
+        $type = Category::all()->where('parent', '=', $id);
+        return view('.admin.categories.type')->with('type', $type);
     }
 
 
