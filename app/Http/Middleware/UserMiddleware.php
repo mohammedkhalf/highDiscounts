@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 
 
-class VendorMiddleware
+class UserMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class VendorMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() && Auth::user()->level == 'vendor') {
+        if (Auth::user() && Auth::user()->level == 'user') {
             return $next($request);
         } else {
             return redirect('/');

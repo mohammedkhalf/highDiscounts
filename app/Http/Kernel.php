@@ -37,6 +37,29 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
+
+        'VendorMiddleware' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\VendorMiddleware::class,
+        ],
+
+        'UserMiddleware' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\UserMiddleware::class,
+        ],
+
         'api' => [
             'throttle:60,1',
             'bindings',
@@ -52,6 +75,8 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'Maintenance' => \App\Http\Middleware\Maintenance::class,
+        'VendorMiddleware' => \App\Http\Middleware\VendorMiddleware::class,
+        'UserMiddleware' => \App\Http\Middleware\UserMiddleware::class,
         'Lang' => \App\Http\Middleware\Lang::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,

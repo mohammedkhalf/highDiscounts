@@ -12,15 +12,35 @@
 
 /*
     Auth::routes();*/
+
+/*
+Mohamed Ragab
+Logout
+7/17/2018
+*/
 Route::POST('/logout', 'SessionController@destroy');
 
+/*
+Mohamed Ragab
+
+7/17/2018
+*/
 Route::get('/login', function () {
     if (isset(Auth::user()->id)) {
         return redirect('/');
-    }else{
+    } else {
         return view('auth.login');
     }
 });
+
+/*
+   Mohamed Ragab
+
+   middleware Middleware
+
+    to check site statues
+   7/17/2018
+   */
 
 Route::group(['middleware' => 'Maintenance'], function () {
 
@@ -28,7 +48,25 @@ Route::group(['middleware' => 'Maintenance'], function () {
         return view('front.home');
     });
 
+    /*
+    Mohamed Ragab
+
+    to login and logout controller
+
+    7/17/2018
+    */
+
     Route::post('sessionstore', 'SessionController@sessionStore');
+
+    /*
+   Mohamed Ragab
+
+   check login
+
+   7/17/2018
+   */
+
+
     Route::get('checklogin', array('as' => 'checklogin', function () {
         if (isset(Auth::user()->id) && Auth::user()->status == 1) {
             if (Auth::user()->level == 'vendor') {
@@ -46,9 +84,34 @@ Route::group(['middleware' => 'Maintenance'], function () {
     }));
 
     /*
-        Route::get('/login' , function (){
-            return view('front.home');
-        });*/
+   Mohamed Ragab
+
+   vendor Middleware
+
+   7/17/2018
+   */
+
+    Route::group(['middleware' => ['VendorMiddleware', 'auth']], function () {
+
+        Route::get('vendor', function () {
+            return 'welcome vendor';
+        });
+
+    });
+    /*
+    Mohamed Ragab
+
+    User Middleware
+
+    7/17/2018
+    */
+    Route::group(['middleware' => ['UserMiddleware', 'auth']], function () {
+
+        Route::get('user', function () {
+            return 'welcome user';
+        });
+
+    });
 
 });
 
