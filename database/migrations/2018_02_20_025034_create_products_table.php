@@ -20,6 +20,9 @@ class CreateProductsTable extends Migration
             $table->string('en_title');
             $table->longtext('en_content');
             $table->longtext('ar_content');
+             $table->string('price');
+            $table->string('size')->nullable();
+            $table->string('color')->nullable();
             $table->string('photo');
             $table->timestamps();
         });

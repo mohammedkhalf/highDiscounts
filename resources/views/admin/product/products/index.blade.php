@@ -31,6 +31,8 @@
 		 						<td>{{ trans('admin.en_name') }}</td>
 		 						<td>{{ trans('admin.ar_name') }}</td>
 								<td>{{ trans('admin.department') }}</td>
+								<td>{{ trans('admin.maincolor') }}</td>
+								<td>{{ trans('admin.mainsize') }}</td>
 								<td>{{ trans('admin.photo') }}</td>
 		 						<td>{{trans('admin.action')}}</td>
 		 					</tr>	
@@ -44,7 +46,8 @@
 										{!!	$dep!!}
 									@endforeach
 								</td>
-
+                          <td>{{ $products->color }}</td>
+                          <td>{{ $products->size }}</td>
 								<td><img src="{{url('/upload/products/'.$products->photo)}}" style="width: 150px;height: 100px;" /></td>
 								<td>
 		 							<a href="{{url(app('aurl').'/products/'.$products->id.'/edit')}}" class="btn btn-info">{{trans('admin.edit')}}</a>

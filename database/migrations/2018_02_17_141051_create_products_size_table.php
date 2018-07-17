@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsGallaryTable extends Migration
+class CreateProductsSizeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateProductsGallaryTable extends Migration
      */
     public function up()
     {
-        Schema::create('products_gallary', function (Blueprint $table){
+        Schema::create('products_size', function (Blueprint $table){
             $table->increments('id');
             $table->integer('product_id');
-            $table->string('media')->nullable();
+            $table->string('size')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateProductsGallaryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('products_gallary');
+        Schema::drop('products_size');
     }
 }

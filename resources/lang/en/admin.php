@@ -103,9 +103,9 @@ return [
 
 
      /* debartments */
-
-     'depatments'         =>'Departments',
-     'department'         =>'Department',
+     'categories'         => 'Product Categories',
+     'depatments'         => 'Departments',
+     'department'         => 'Department',
      'department_product' => 'Product Departments',
      'en_name'            => 'English Name',
      'ar_name'            => 'Arabic Name',
@@ -114,7 +114,6 @@ return [
      'move_department'    => 'Move Department To',
      'allcategories'      => 'View Product Categories',
      'addcategories'      => 'Add Product Category',
-     'categories'      => 'Categories',
 
   /* products */   
     'ar_title'            =>'Arabic Title',
@@ -127,6 +126,6 @@ return [
     'products'            =>'Products',
     'photo'               =>'Master Photo',
     'media'               =>'Gallery Photos',
-    'allproducts'         => 'View Products',
-    'addproducts'         => 'Add Product',
+    'allproducts'         =>'View Products',
+    'addproducts'         =>'Add Product',
 ];

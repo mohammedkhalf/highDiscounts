@@ -70,7 +70,7 @@ class DepProductController extends Controller
         ];
 
         $Validator   = Validator::make($request->all(),$rules);
-                $Validator->SetAttributeNames ([
+        $Validator->SetAttributeNames ([
             'en_name' => trans('admin.en_name'),
             'ar_name' => trans('admin.ar_name'),
         ]);

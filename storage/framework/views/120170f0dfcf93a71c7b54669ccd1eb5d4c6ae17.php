@@ -9,40 +9,21 @@
             </div>
 
             <div class="heading-elements">
-              
+                <div class="heading-btn-group">
+                    <a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
+                </div>
             </div>
         </div>
- <!-- breadcrumb -->
+
         <div class="breadcrumb-line">
             <ul class="breadcrumb">
-              
-                 <li><a href="<?php echo e(aurl('')); ?>"><i class="icon-home2 position-left"></i> <?php echo e(trans('admin.dashboard')); ?> </a></li>
-          <?php
-          $path_segment = 10;
-          $sublink = '';
-          ?>
-        <?php for($i=2;$i < $path_segment; $i++): ?>
-          <?php if(!empty(Request::segment($i)) and !is_numeric(Request::segment($i))): ?>
-
-            <?php if($i != 2): ?>
-                      <?php $sublink .= '/'; ?>
-            <?php endif; ?>
-
-                  <?php $sublink .= Request::segment($i); ?>
-            <li> <a href="<?php echo e(aurl( ).'/'.$sublink); ?>"><?php echo e(trans('admin.'.Request::segment($i))); ?></a></li>
-          <?php endif; ?>
-        <?php endfor; ?>
-        <?php if(!empty($master)): ?>
-          <li>   <?php echo $master; ?></li>
-        <?php endif; ?>
+                <li><a><i class="icon-home2 position-left"></i> Home</a></li>
+                <li class="active">Dashboard</li>
             </ul>
         </div>
-              <!-- end breadcrumb -->
     </div>
     <!-- /page header -->
 
 
     <!-- Content area -->
     <div class="content">
-
-    

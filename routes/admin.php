@@ -39,7 +39,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::group(['middleware' => 'admin:admin'], function () {
         Route::get('/', 'AdminController@admin');
 
-        /*        Rdepartment_productoute::resource('admins','AdminController');*/
+        /*        Route::resource('admins','AdminController');*/
 
         Route::any('logout', 'AdminAuthController@logout');
         Route::get('/admins', 'AdminController@index');

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Model\Products ;
 use App\Model\ProductsGallary ;
+use App\Model\ProductsColor ;
+use App\Model\ProductsSize ;
 use App\Model\DepartmentProducts as Dep;
 use Validator;
 
@@ -50,7 +52,7 @@ class ProductsController extends Controller
             'en_content' => 'required',
             'ar_content' => 'required',
             'photo' => 'required|image|mimes:gif,jpeg,jpg,png',
-
+            'color' => 'required',
         ];
    $Validator   = Validator::make($request->all(),$rules);
         $Validator->SetAttributeNames ([
@@ -60,6 +62,7 @@ class ProductsController extends Controller
             'ar_content' => trans('admin.ar_content'),
             'parent' => trans('admin.department'),
             'photo' => trans('admin.photo'),
+            'color' => trans('admin.color'),
 
         ]);
         if($Validator->fails())
@@ -81,21 +84,44 @@ class ProductsController extends Controller
             $add->ar_title            = $request->input('ar_name');
             $add->en_content          = $request->input('en_content');
             $add->ar_content          = $request->input('ar_content');
+            $add->color               = $request->input('color');
+            $add->size                = $request->input('size');
             $add->save();
 
              $lastid = $add->id;
-            $multifile     = $request->file('media');
-            foreach ($multifile as $files) {
+
+         //multiupload photos to table product_gallary
+         $multifile     = $request->file('media');
+          foreach ($multifile as $files)
+           {
                 $multiadd = new ProductsGallary;
                 $fileName = str_random(5)."-".time()."-".str_random(3).".".$files->getClientOriginalExtension();
-            if($files->move($path,$fileName))
-            {
-                $multiadd->product_id = $lastid;
-                $multiadd->media = $fileName;
-                $multiadd->save();
-                }
+                if($files->move($path,$fileName))
+                {
+                    $multiadd->product_id = $lastid;
+                    $multiadd->media = $fileName;
+                    $multiadd->save();
+                 }
 
-            }
+           }
+     //multiadd color to table product_color
+            $multicolor    = $request->input('colorx');
+             foreach ($multicolor as $colors) 
+              {
+                $multiaddcolors = new ProductsColor;
+                $multiaddcolors->product_id = $lastid;
+                $multiaddcolors->color = $colors;
+                $multiaddcolors->save();
+              }
+      //multiadd size to table product_size
+            $multisize    = $request->input('sizex');
+             foreach ($multisize as $sizes)
+              {
+                $multiaddsize = new ProductsSize;
+                $multiaddsize->product_id = $lastid;
+                $multiaddsize->size = $sizes;
+                $multiaddsize->save();
+              }
             session()->flash('success',trans('admin.added'));
         }
         return back();

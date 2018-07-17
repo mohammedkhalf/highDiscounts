@@ -52,6 +52,33 @@
           </div>
       </div>
 
+
+      <div class="colorUpload col-sm-12 form-group ">
+          <div class="col-sm-1 pull-right" style="margin-top: 25px">
+              <a class="btn btn-info addcolor"><i class="fa fa-plus" ></i></a>
+          </div>
+          <div class="colorDiv">
+              <div class="col-sm-10">
+                   {!! Form::label('colorx[]',trans('admin.colorx')) !!}
+                      <input class="form-control" type="color" name="colorx[]" value="">
+                      <p class="help-block">{{$errors->first('colorx')}}</p>
+              </div>
+              <div class="col-sm-1 pull-right" style="margin-top: 25px">
+                  <a class="btn btn-danger removecolor"><i class="fa fa-minus" ></i></a>
+              </div>
+          </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
       <div class="form-group col-sm-12">
           {!! Form::label('en_content',trans('admin.en_content')) !!}
           {!! Form::text('en_content',old('en_content'),['class'=>'form-control']) !!}
