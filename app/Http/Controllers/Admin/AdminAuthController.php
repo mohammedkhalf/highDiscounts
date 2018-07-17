@@ -27,6 +27,10 @@ class AdminAuthController extends  Controller
     {
         return view('admin.recovery');
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 87a70e24ff9b3b758d0f2b66e18dbb09485aa49a
 
     public function send_password()
     {
