@@ -18,3 +18,25 @@
 
 </body>
 </html>
+<script>
+
+    $('.addInput').click(function(){
+
+        $(this).parent().next('.inputDiv').clone().appendTo(".imageUpload");
+
+    });
+    $('body').on('click', '.removeInput', function() {
+        $(this).parent().parent().remove();
+    });
+
+
+
+        $('.addcolor').click(function(){
+
+        $(this).parent().next('.colorDiv').clone().appendTo(".colorUpload");
+
+    });
+    $('body').on('click', '.removecolor', function() {
+        $(this).parent().parent().remove();
+    });
+</script>

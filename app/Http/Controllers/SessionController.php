@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Hash;
 use Auth;
+use App\User;
 class SessionController extends Controller
 {
-	//front
 
     public function sessionStore()
     {
@@ -25,6 +25,32 @@ class SessionController extends Controller
     	return redirect('/');
     }
 
+    public function store(Request $request){
+
+        $this->validate(request(),
+            [
+                'name' => 'required',
+                'email' => 'required|email|unique:Users',
+                'level' => 'required|',
+                'password' => 'required|min:6'
+            ]);
+        $data = new User();
+
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->password = Hash::make(request('password'));
+        $data->level = $request->level;
+        if($request->level == 'vendor'){
+            $data->status= 0;
+        }else{
+            $data->status= 1;
+        }
+
+        $data->save();
+        session()->flash('success', 'User has been added');
+        return redirect(url('login'));
+
+    }
 
     //back
     // public function adminSessionStore()

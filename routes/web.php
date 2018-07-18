@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -9,29 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-/*
-    Auth::routes();*/
-
-/*
-Mohamed Ragab
-Logout
-7/17/2018
-*/
-Route::POST('/logout', 'SessionController@destroy');
-
-/*
-Mohamed Ragab
-
-7/17/2018
-*/
-Route::get('/login', function () {
-    if (isset(Auth::user()->id)) {
-        return redirect('/');
-    } else {
-        return view('auth.login');
-    }
-});
 
 /*
    Mohamed Ragab
@@ -47,6 +25,35 @@ Route::group(['middleware' => 'Maintenance'], function () {
     Route::get('/', function () {
         return view('front.home');
     });
+
+    /*
+    Auth::routes();*/
+
+    /*
+    Mohamed Ragab
+    Logout
+    7/17/2018
+    */
+    Route::POST('/logout', 'SessionController@destroy');
+
+    /*
+    Mohamed Ragab
+
+    7/17/2018
+    */
+    Route::get('/login', function () {
+        if (isset(Auth::user()->id)) {
+            return redirect('/');
+        } else {
+            return view('auth.login');
+        }
+    });
+    Route::get('/register', function () {
+
+        return view('auth.register');
+    });
+
+    Route::post('/register', 'SessionController@store');
 
     /*
     Mohamed Ragab
