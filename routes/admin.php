@@ -68,7 +68,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
        
         Route::resource('products','ProductsController');
         Route::delete('products/destroyimage/{id}', 'ProductsController@destroyimage');
-
+        Route::delete('products/destroysize/{id}', 'ProductsController@destroysize');
+        Route::delete('products/destroycolor/{id}', 'ProductsController@destroycolor');
         Route::get('/setting', 'SettingsController@index');
         Route::post('/setting', 'SettingsController@setting_save');
         Route::post('/users', 'UserController@store');

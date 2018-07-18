@@ -6,36 +6,37 @@
     {{trans('admin.products')}}
 @endsection
 @section('content')
-	<div class="box box-info">
-		<div class="box-header">
-			<div class="col-md-2">
-				<h3 class="box-title">
-					<a href="{{url(app('aurl').'/products/create')}}" class="btn text-green btn-success btn-app">
-						<i class="fa fa-plus"></i>	{{trans('admin.add')}}
-					</a>
-				</h3>
-			</div>
-			<div class="col-md-4 col-md-offset-2">
-				<h3>
-				
-				</h3>
-			</div>
-		</div>
-	</div>
 
-	<section class="content">
-		<!-- widget content -->
-		<div class="widget-body no-padding">
-						 	<table class="table table-striped table-bordered table-hovered">
+
+	
+		   <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title">{{$title}}</h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a href="{{url(app('aurl').'/products/create')}}"><span class="label border-left-primary label-striped">{{trans('admin.add')}}</span></a>
+                    </li>
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="close"></a></li>
+                </ul>
+            </div>
+        </div>
+	
+						 <table class="table datatable-button-html5-columns">
+						 	<thead>
 		 					<tr>
 		 						<td>{{ trans('admin.en_name') }}</td>
 		 						<td>{{ trans('admin.ar_name') }}</td>
 								<td>{{ trans('admin.department') }}</td>
-								<td>{{ trans('admin.maincolor') }}</td>
-								<td>{{ trans('admin.mainsize') }}</td>
+								<td>{{ trans('admin.color') }}</td>
+								<td>{{ trans('admin.size') }}</td>
+								<td>{{ trans('admin.price') }}</td>
 								<td>{{ trans('admin.photo') }}</td>
-		 						<td>{{trans('admin.action')}}</td>
+		 						<td>{{trans('admin.edit')}}</td>
+		 						<td>{{trans('admin.delete')}}</td>
 		 					</tr>	
+		 					</thead>
 		 					@foreach($allproducts as $products)
 		 					<tr>
 								<td>{{ $products->en_title }}</td>
@@ -48,13 +49,17 @@
 								</td>
                           <td>{{ $products->color }}</td>
                           <td>{{ $products->size }}</td>
+                          <td>{{ $products->price }}</td>
 								<td><img src="{{url('/upload/products/'.$products->photo)}}" style="width: 150px;height: 100px;" /></td>
 								<td>
 		 							<a href="{{url(app('aurl').'/products/'.$products->id.'/edit')}}" class="btn btn-info">{{trans('admin.edit')}}</a>
-		 							{!! Form::open(['method'=>'delete','url'=>app('aurl').'/products/'.$products->id,'style'=>'display:inline','class'=>'form'.$products->id]) !!}
+		 							{!! Form::open(['method'=>'delete','url'=>app('aurl').'/products/'.$products->id,'style'=>'display:inline','class'=>'form'.$products->id]) !!} 
+		 						</td>
+		 						<td>
 									<a type="button" href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
 										{{trans('admin.delete')}}
 									</a>
+
 									<div class="modal modal-danger fade" id="modal-danger">
 										<div class="modal-dialog">
 											<div class="modal-content">
@@ -86,8 +91,6 @@
 
 		</div>
 		<!-- end widget div -->
-	</section>
-	</div>
-	<!-- end widget -->
+
 
 @stop

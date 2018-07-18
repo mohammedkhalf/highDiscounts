@@ -128,4 +128,9 @@ return [
     'media'               =>'Gallery Photos',
     'allproducts'         =>'View Products',
     'addproducts'         =>'Add Product',
+    'color'               =>'Main Color',
+    'size'                =>'Main Size',
+    'colorx'              =>'Other Colors',
+    'sizex'               =>'Other Sizes',
+    'price'               =>'Price',
 ];

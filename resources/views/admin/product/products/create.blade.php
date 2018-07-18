@@ -38,7 +38,7 @@
 
       <div class="imageUpload col-sm-12 form-group">
           <div class="col-sm-1 pull-right" style="margin-top: 25px">
-              <a class="btn btn-info addInput"><i class="fa fa-plus" ></i></a>
+              <a class="btn btn-info btn-rounded  addInput">Add</a>
           </div>
           <div class="inputDiv">
               <div class="col-sm-10">
@@ -47,34 +47,61 @@
                       <p class="help-block">{{$errors->first('media')}}</p>
               </div>
               <div class="col-sm-1 pull-right" style="margin-top: 25px">
-                  <a class="btn btn-danger removeInput"><i class="fa fa-minus" ></i></a>
+                  <a class="btn btn-danger btn-rounded removeInput">Remove</a>
               </div>
           </div>
       </div>
-
+   <div class="form-group col-sm-12">
+        {!! Form::label('color',trans('admin.color')) !!}
+        {!! Form::text('color',old('color'),['class'=>'form-control']) !!}
+         <p class="help-block">{{$errors->first('color')}}</p>
+     </div>
 
       <div class="colorUpload col-sm-12 form-group ">
           <div class="col-sm-1 pull-right" style="margin-top: 25px">
-              <a class="btn btn-info addcolor"><i class="fa fa-plus" ></i></a>
+              <a class="btn btn-info btn-rounded addcolor">Add</a>
           </div>
           <div class="colorDiv">
               <div class="col-sm-10">
-                   {!! Form::label('colorx[]',trans('admin.colorx')) !!}
-                      <input class="form-control" type="color" name="colorx[]" value="">
-                      <p class="help-block">{{$errors->first('colorx')}}</p>
+         
+                            {!! Form::label('colorx[]',trans('admin.colorx')) !!}
+        {!! Form::text('colorx[]',old('colorx'),['class'=>'form-control']) !!}
+         <p class="help-block">{{$errors->first('colorx')}}</p>
               </div>
               <div class="col-sm-1 pull-right" style="margin-top: 25px">
-                  <a class="btn btn-danger removecolor"><i class="fa fa-minus" ></i></a>
+                  <a class="btn btn-danger btn-rounded removecolor">Remove</a>
+              </div>
+          </div>
+      </div>
+
+   <div class="form-group col-sm-12">
+        {!! Form::label('size',trans('admin.size')) !!}
+        {!! Form::text('size',old('size'),['class'=>'form-control']) !!}
+         <p class="help-block">{{$errors->first('size')}}</p>
+     </div>
+    <div class="sizeUpload col-sm-12 form-group ">
+          <div class="col-sm-1 pull-right" style="margin-top: 25px">
+              <a class="btn btn-info btn-rounded addsize">Add</a>
+          </div>
+          <div class="sizeDiv">
+              <div class="col-sm-10">
+               {!! Form::label('sizex[]',trans('admin.sizex')) !!}
+        {!! Form::text('sizex[]',old('sizex'),['class'=>'form-control']) !!}
+         <p class="help-block">{{$errors->first('sizex')}}</p>
+              </div>
+              <div class="col-sm-1 pull-right" style="margin-top: 25px">
+                  <a class="btn btn-danger btn-rounded removesize ">Remove</a>
               </div>
           </div>
       </div>
 
 
 
-
-
-
-
+<div class="form-group col-sm-12">
+        {!! Form::label('price',trans('admin.price')) !!}
+        {!! Form::text('price',old('price'),['class'=>'form-control']) !!}
+         <p class="help-block">{{$errors->first('price')}}</p>
+     </div>
 
 
 

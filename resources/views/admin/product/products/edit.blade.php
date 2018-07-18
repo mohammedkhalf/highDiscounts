@@ -67,6 +67,78 @@
               </div>
           </div>
       </div>
+      <div class="col-sm-12">
+         <div class="col-md-1"  style="background-color: {{$products->color}};height: 100px;margin-right: 25px"> </div></div>
+ <div class="form-group col-sm-12">
+ 
+        {!! Form::label('color',trans('admin.color')) !!}
+        {!! Form::text('color',$products->color,['class'=>'form-control']) !!}
+         <p class="help-block">{{$errors->first('color')}}</p>
+     </div>
+   @if(!empty($products->products_color()->get()))
+      <div class="col-sm-12">
+          @foreach($products->products_color()->get() as $color)
+            <div class="col-md-1"  style="background-color: {{$color->color}};height: 100px;margin-right: 25px">     <button type="button" class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#del_color{{$color->id}}">Delete</button></div>
+        
+              <!-- Modal -->
+          @endforeach
+      </div>
+      @endif
+      <div class="colorUpload col-sm-12 form-group ">
+          <div class="col-sm-1 pull-right" style="margin-top: 25px">
+              <a class="btn btn-info btn-rounded addcolor">Add</a>
+          </div>
+          <div class="colorDiv">
+              <div class="col-sm-10">
+         
+        {!! Form::label('colorx[]',trans('admin.colorx')) !!}
+        {!! Form::text('colorx[]',null,['class'=>'form-control']) !!}
+         <p class="help-block">{{$errors->first('colorx')}}</p>
+              </div>
+              <div class="col-sm-1 pull-right" style="margin-top: 25px">
+                  <a class="btn btn-danger btn-rounded removecolor">Remove</a>
+              </div>
+          </div>
+      </div>
+
+   <div class="form-group col-sm-12">
+        {!! Form::label('size',trans('admin.size')) !!}
+        {!! Form::text('size',$products->size,['class'=>'form-control']) !!}
+         <p class="help-block">{{$errors->first('size')}}</p>
+     </div>
+       @if(!empty($products->products_size()->get()))
+      <div class="col-sm-12">
+          @foreach($products->products_size()->get() as $size)
+            <div class="col-md-2" style="height: 100px;margin-right: 25px;margin-bottom: 25px"><h1>{{$size->size}}</h1> <button type="button" class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#del_size{{$size->id}}">Delete</button>
+            </div>
+              <!-- Modal -->
+          @endforeach
+      </div>
+      @endif
+    <div class="sizeUpload col-sm-12 form-group ">
+          <div class="col-sm-1 pull-right" style="margin-top: 25px">
+              <a class="btn btn-info btn-rounded addsize">Add</a>
+          </div>
+          <div class="sizeDiv">
+              <div class="col-sm-10">
+               {!! Form::label('sizex[]',trans('admin.sizex')) !!}
+        {!! Form::text('sizex[]',null,['class'=>'form-control']) !!}
+         <p class="help-block">{{$errors->first('sizex')}}</p>
+              </div>
+              <div class="col-sm-1 pull-right" style="margin-top: 25px">
+                  <a class="btn btn-danger btn-rounded removesize ">Remove</a>
+              </div>
+          </div>
+      </div>
+
+
+
+    <div class="form-group col-sm-12">
+        {!! Form::label('price',trans('admin.price')) !!}
+        {!! Form::text('price',$products->price,['class'=>'form-control']) !!}
+         <p class="help-block">{{$errors->first('price')}}</p>
+     </div>
+
 
 	  <div class="form-group col-sm-12">
           {!! Form::label('en_content',trans('admin.en_content')) !!}
@@ -159,6 +231,50 @@
                 {!! Form::open(['id'=>'form_data','url'=>aurl('products/destroyimage/'.$media->id),'method'=>'delete']) !!}
                 <div class="modal-body">
                     <h4>{{ trans('admin.delete_photo') }}</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">{{ trans('admin.close') }}</button>
+                    {!! Form::submit(trans('admin.yes'),['class'=>'btn btn-danger']) !!}
+                </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+    @endif
+       @if(!empty($products->products_color()->get()))
+    <div id="del_color{{$color->id}}" class="modal fade" >
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{ trans('admin.delete') }}</h4>
+                </div>
+                {!! Form::open(['id'=>'form_data','url'=>aurl('products/destroycolor/'.$color->id),'method'=>'delete']) !!}
+                <div class="modal-body">
+                    <h4>{{ trans('admin.delete_color') }}</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">{{ trans('admin.close') }}</button>
+                    {!! Form::submit(trans('admin.yes'),['class'=>'btn btn-danger']) !!}
+                </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+    @endif
+           @if(!empty($products->products_size()->get()))
+    <div id="del_size{{$size->id}}" class="modal fade" >
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{ trans('admin.delete') }}</h4>
+                </div>
+                {!! Form::open(['id'=>'form_data','url'=>aurl('products/destroysize/'.$size->id),'method'=>'delete']) !!}
+                <div class="modal-body">
+                    <h4>{{ trans('admin.delete_color') }}</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal">{{ trans('admin.close') }}</button>
