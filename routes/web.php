@@ -1,6 +1,9 @@
 <?php
 
 
+Route::group(['prefix' => 'web', 'namespace' => 'Web'], function () {
+    Route::resource('vendorp','ProductsController');
+  });
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,10 +22,6 @@
     to check site statues
    7/17/2018
    */
-Route::get('web', function () {
-           return view('web.shop');
-        });
-
 
 Route::group(['middleware' => 'Maintenance'], function () {
 
@@ -103,7 +102,6 @@ Route::group(['middleware' => 'Maintenance'], function () {
    7/17/2018
    */
 
-
     Route::group(['middleware' => ['VendorMiddleware', 'auth']], function () {
 
         Route::get('vendor', function () {
@@ -111,6 +109,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
         });
   
     });
+
     /*
     Mohamed Ragab
 
