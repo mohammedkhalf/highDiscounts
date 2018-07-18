@@ -23,7 +23,7 @@ class ProductsController extends Controller
     public function create()
     {
         $department = Dep::where('parent','=',0)->pluck('en_name','id');
-        return view(app('at').'.product.products.create',['title'=>trans('admin.add'),'department'=>$department]);
+        return view(app('fe').'.vendorprocess.create',['title'=>trans('admin.add'),'department'=>$department]);
     }
 
     /**
@@ -72,7 +72,7 @@ class ProductsController extends Controller
             $add->ar_title            = $request->input('ar_name');
             $add->en_content          = $request->input('en_content');
             $add->ar_content          = $request->input('ar_content');
-            $add->price          = $request->input('price');
+            $add->price               = $request->input('price');
             $add->color               = $request->input('color');
             $add->size                = $request->input('size');
             $add->save();

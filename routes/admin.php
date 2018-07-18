@@ -15,6 +15,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
    //////// SingleTon Start
     $singletonarray = [
         'at'=>'admin',
+        'fe'=>'front',
         'theme'=>'themes.master',
         'aurl'=>'admin',
         'language'=>['ar','en'],
