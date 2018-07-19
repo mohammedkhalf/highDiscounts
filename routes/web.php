@@ -26,7 +26,6 @@ Route::group(['middleware' => 'Maintenance'], function () {
     Route::get('/', function () {
         return view('front.home');
     });
-
     /*
     Auth::routes();*/
 
@@ -35,7 +34,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
     Logout
     7/17/2018
     */
-    
+
     Route::POST('/logout', 'SessionController@destroy');
 
     /*
