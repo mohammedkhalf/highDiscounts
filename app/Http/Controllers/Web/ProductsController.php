@@ -130,7 +130,7 @@ class ProductsController extends Controller
             if($request->has('parent') && $request->input('parent') > 0)
             {
                 $dep = Dep::where('parent','=',$request->input('parent'))->get();
-                $data = view(app('at').'.product.products.sub',['department'=>$dep,'parent'=>$request->input('parent')])->render();
+                $data = view(app('fe').'.vendorprocess.sub',['department'=>$dep,'parent'=>$request->input('parent')])->render();
                 if(!empty($data))
                 {
                     return response()->json($data);

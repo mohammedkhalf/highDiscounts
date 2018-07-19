@@ -1,9 +1,7 @@
 <?php
 
 
-Route::group(['prefix' => 'web', 'namespace' => 'Web'], function () {
-    Route::resource('vendorp','ProductsController');
-  });
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -107,6 +105,10 @@ Route::group(['middleware' => 'Maintenance'], function () {
         Route::get('vendor', function () {
             return 'welcome vendor';
         });
+        Route::group(['prefix' => 'web', 'namespace' => 'Web'], function () {
+    Route::resource('vendorp','ProductsController');
+     Route::post('vendorp/department_product/check/parent','ProductsController@check_parent');
+  });
   
     });
 

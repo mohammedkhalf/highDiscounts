@@ -130,7 +130,7 @@
                         }else{
 
                             $.ajax({
-                                url:'{{url(app('aurl').'/department_product/check/parent')}}',
+                                url:'{{url('web/vendorp/department_product/check/parent')}}',
                                 type:'post',
                                 dataType:'json',
                                 data:{parent:parent,'_token':'{!! csrf_token() !!}'},

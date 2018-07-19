@@ -78,7 +78,12 @@ class ProductsController extends Controller
             {
                 $add->photo = $filename;
             }
-            $add->user_id             = admin()->user()->id;
+            if(Auth::admin())
+              { $add->user_id         = admin()->user()->id;
+              }
+           else{
+            $add->user_id         = Auth::user()->id;
+           }
             $add->dep_id              = $request->input('parent');
             $add->en_title            = $request->input('en_name');
             $add->ar_title            = $request->input('ar_name');

@@ -9,13 +9,11 @@
  * Time: 5:47 PM
  */
 
-
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
-
    //////// SingleTon Start
     $singletonarray = [
         'at'=>'admin',
         'fe'=>'front',
+        'vp'=>'vendorp',
         'theme'=>'themes.master',
         'aurl'=>'admin',
         'language'=>['ar','en'],
@@ -28,6 +26,21 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     }
 
 //////// SingleTon End
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::group(['middleware' => ['VendorMiddleware', 'auth']], function () {
+
+       Route::resource('products','ProductsController');
+        Route::delete('products/destroyimage/{id}', 'ProductsController@destroyimage');
+        Route::delete('products/destroysize/{id}', 'ProductsController@destroysize');
+        Route::delete('products/destroycolor/{id}', 'ProductsController@destroycolor');
+
+     });
+    });
+
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+
+
 
 
 
@@ -37,6 +50,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/recovery/password', 'AdminAuthController@forget_password');
     Route::post('/recovery/password', 'AdminAuthController@send_password');
     Route::post('login', 'AdminAuthController@dologin');
+    
     Route::group(['middleware' => 'admin:admin'], function () {
         Route::get('/', 'AdminController@admin');
 

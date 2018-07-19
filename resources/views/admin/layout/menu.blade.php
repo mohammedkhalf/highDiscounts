@@ -28,6 +28,7 @@
                     </div>
                 </div>
                 <!-- /user menu -->
+
                 <!-- Main navigation -->
                 <div class="sidebar-category sidebar-category-visible">
                     <div class="category-content no-padding">
