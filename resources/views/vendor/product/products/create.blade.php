@@ -3,7 +3,7 @@
    Add Products
 @endsection--}}
 @section('up')
-    {{trans('admin.Products')}}
+    {{trans('admin.products')}}
 @endsection
 @section('content')
 	<div class="box box-info">
