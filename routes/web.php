@@ -78,7 +78,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
     Route::get('checklogin', array('as' => 'checklogin', function () {
         if (isset(Auth::user()->id) && Auth::user()->status == 1) {
             if (Auth::user()->level == 'vendor') {
-                return redirect('/');
+                return redirect('/vendor/products');
             } elseif (Auth::user()->u_type == 'user') {
                 return redirect('/');
             } else {

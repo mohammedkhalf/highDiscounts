@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Vendor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -11,6 +11,7 @@ use App\Model\ProductsSize ;
 use App\Model\DepartmentProducts as Dep;
 use Validator;
 use Auth;
+use DB;
 class ProductsController extends Controller
 {
     /**
@@ -20,11 +21,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-
-        $allproducts = Products::orderBy('id','desc')->paginate(10);
-
-
-        return view(app('at').'.product.products.index',['title'=>trans('admin.products'),'allproducts'=>$allproducts]);
+        $vendor =    Auth::user()->id;
+        $allproducts = Products::where('user_id', '=', $vendor)->paginate(10);
+        return view(app('v').'.product.products.index',['title'=>trans('admin.products'),'allproducts'=>$allproducts]);
     }
 
     /**
@@ -35,7 +34,7 @@ class ProductsController extends Controller
     public function create()
     {
         $department = Dep::where('parent','=',0)->pluck('en_name','id');
-        return view(app('at').'.product.products.create',['title'=>trans('admin.add'),'department'=>$department]);
+        return view(app('v').'.product.products.create',['title'=>trans('admin.add'),'department'=>$department]);
     }
 
     /**
@@ -78,15 +77,16 @@ class ProductsController extends Controller
             {
                 $add->photo = $filename;
             }
-          
-            $add->user_id         = admin()->user()->id;
-            $add->user_type         = 'admin';
+           
+           
+            $add->user_id            = Auth::user()->id;
+            $add->user_type            = 'vendor';
             $add->dep_id              = $request->input('parent');
             $add->en_title            = $request->input('en_name');
             $add->ar_title            = $request->input('ar_name');
             $add->en_content          = $request->input('en_content');
             $add->ar_content          = $request->input('ar_content');
-            $add->price          = $request->input('price');
+            $add->price               = $request->input('price');
             $add->color               = $request->input('color');
             $add->size                = $request->input('size');
             $add->save();
@@ -143,7 +143,7 @@ class ProductsController extends Controller
             if($request->has('parent') && $request->input('parent') > 0)
             {
                 $dep = Dep::where('parent','=',$request->input('parent'))->get();
-                $data = view(app('at').'.product.products.sub',['department'=>$dep,'parent'=>$request->input('parent')])->render();
+                $data = view(app('v').'.product.products.sub',['department'=>$dep,'parent'=>$request->input('parent')])->render();
                 if(!empty($data))
                 {
                     return response()->json($data);
@@ -166,7 +166,7 @@ class ProductsController extends Controller
         $products  = Products::find($id);
         $department = Dep::where('parent','=',0)->pluck('en_name','id');
 
-        return view(app('at').'.product.products.edit',['title'=>trans('admin.edit'),'department'=>$department,'products'=>$products]);
+        return view(app('v').'.product.products.edit',['title'=>trans('admin.edit'),'department'=>$department,'products'=>$products]);
     }
 
     /**
@@ -218,8 +218,8 @@ class ProductsController extends Controller
 
             $update->en_title            = $request->input('en_name');
             $update->ar_title            = $request->input('ar_name');
-            $update->user_id             = admin()->user()->id;
-           $update->user_type            = 'admin';
+            $update->user_id             = Auth::user()->id;
+            $update->user_type             = 'vendor';
             $update->en_content          = $request->input('en_content');
             $update->ar_content          = $request->input('ar_content');
             $update->price               = $request->input('price');
