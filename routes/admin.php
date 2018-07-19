@@ -26,7 +26,7 @@
     }
 
 //////// SingleTon End
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'vendor', 'namespace' => 'Admin'], function () {
     Route::group(['middleware' => ['VendorMiddleware', 'auth']], function () {
 
        Route::resource('products','ProductsController');
@@ -50,7 +50,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/recovery/password', 'AdminAuthController@forget_password');
     Route::post('/recovery/password', 'AdminAuthController@send_password');
     Route::post('login', 'AdminAuthController@dologin');
-    
+
     Route::group(['middleware' => 'admin:admin'], function () {
         Route::get('/', 'AdminController@admin');
 
