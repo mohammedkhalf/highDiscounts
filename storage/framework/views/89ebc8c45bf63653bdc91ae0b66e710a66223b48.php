@@ -227,7 +227,7 @@
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <img src="assets/images/placeholder.jpg" alt="">
-                    <span><?php echo e(admin()->user()->name); ?></span>
+                    <span><?php if(Auth::guard('admin')->user()): ?> <?php echo e(admin()->user()->name); ?><?php else: ?> <?php echo e(Auth::user()->name); ?> <?php endif; ?></span>
                     <i class="caret"></i>
                 </a>
 
@@ -238,7 +238,17 @@
                                     class="icon-comment-discussion"></i> Messages</a></li>
                     <li class="divider"></li>
                     <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
-                    <li><a href="<?php echo e(aurl('logout')); ?>"><i class="icon-switch2"></i> <?php echo e(trans('admin.logout')); ?></a></li>
+
+
+                    <li><a <?php if(Auth::guard('admin')->user()): ?>  href="<?php echo e(aurl('logout')); ?>" <?php else: ?> href="<?php echo e(url('/logout')); ?>"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            <?php endif; ?> <i class="icon-switch2"></i> <?php echo e(trans('admin.logout')); ?></a></li>
+
+                    <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST" style="display: none;">
+                        <?php echo e(csrf_field()); ?>
+
+                    </form>
                 </ul>
             </li>
         </ul>

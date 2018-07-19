@@ -227,7 +227,7 @@
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <img src="assets/images/placeholder.jpg" alt="">
-                    <span>{{admin()->user()->name}}</span>
+                    <span>@if(Auth::guard('admin')->user()) {{admin()->user()->name}}@else {{Auth::user()->name}} @endif</span>
                     <i class="caret"></i>
                 </a>
 

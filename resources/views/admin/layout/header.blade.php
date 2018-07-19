@@ -227,7 +227,7 @@
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <img src="assets/images/placeholder.jpg" alt="">
-                    <span>{{admin()->user()->name}}</span>
+                    <span>@if(Auth::guard('admin')->user()) {{admin()->user()->name}}@else {{ Auth::user()->name }} @endif</span>
                     <i class="caret"></i>
                 </a>
 
@@ -238,7 +238,16 @@
                                     class="icon-comment-discussion"></i> Messages</a></li>
                     <li class="divider"></li>
                     <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
-                    <li><a href="{{aurl('logout')}}"><i class="icon-switch2"></i> {{trans('admin.logout')}}</a></li>
+
+
+                    <li><a @if(Auth::guard('admin')->user())  href="{{aurl('logout')}}" @else href="{{ url('/logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            @endif <i class="icon-switch2"></i> {{trans('admin.logout')}}</a></li>
+
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
                 </ul>
             </li>
         </ul>

@@ -39,4 +39,14 @@
     $('body').on('click', '.removecolor', function() {
         $(this).parent().parent().remove();
     });
+
+
+          $('.addsize').click(function(){
+
+        $(this).parent().next('.sizeDiv').clone().appendTo(".sizeUpload");
+
+    });
+    $('body').on('click', '.removesize', function() {
+        $(this).parent().parent().remove();
+    });
 </script>

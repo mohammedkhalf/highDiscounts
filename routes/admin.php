@@ -29,7 +29,9 @@
 Route::group(['prefix' => 'vendor', 'namespace' => 'Admin'], function () {
     Route::group(['middleware' => ['VendorMiddleware', 'auth']], function () {
 
-       Route::resource('products','ProductsController');
+        Route::POST('/logout', 'SessionController@destroy');
+
+        Route::resource('products','ProductsController');
         Route::delete('products/destroyimage/{id}', 'ProductsController@destroyimage');
         Route::delete('products/destroysize/{id}', 'ProductsController@destroysize');
         Route::delete('products/destroycolor/{id}', 'ProductsController@destroycolor');

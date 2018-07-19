@@ -18,7 +18,7 @@ class AdminMiddleware
     public function handle($request, Closure $next = null, $guard = null)
     {
 
-        if (Auth::user()->level !='vendor' ) {
+        if (Auth::user() && Auth::user()->level !='vendor' ) {
             return redirect('/');
         } elseif (Auth::guard($guard)->check()) {
             /*            return redirect('admin');*/

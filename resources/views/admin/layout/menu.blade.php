@@ -12,7 +12,7 @@
                             <a href="#" class="media-left"><img src="assets/images/placeholder.jpg"
                                                                 class="img-circle img-sm" alt=""></a>
                             <div class="media-body">
-                                <span class="media-heading text-semibold">{{admin()->user()->name}}</span>
+                                <span class="media-heading text-semibold">@if(Auth::guard('admin')->user()) {{admin()->user()->name}}@else {{ Auth::user()->name }} @endif</span>
                                 <div class="text-size-mini text-muted">
                                     <i class="icon-pin text-size-small"></i> &nbsp;Santa Ana, CA
                                 </div>
