@@ -32,8 +32,23 @@
                 <!-- Main navigation -->
                 <div class="sidebar-category sidebar-category-visible">
                     <div class="category-content no-padding">
-                        @if(Auth::guard('admin')->user())
+                        @if(Auth::user() && Auth::user()->level == 'vendor')
 
+                            <ul class="navigation navigation-main navigation-accordion">
+                                <li>
+                                    <a href="#"><i class="icon-cart2"></i> <span>{{trans('admin.products')}}</span></a>
+                                    <ul>
+                                        <li {{{ (Request::is('admin/product/department') ? ' class=active' : '') }}}><a
+                                                    href="{{aurl('products')}}">{{trans('admin.allproducts')}}</a></li>
+                                        <li {{{ (Request::is('admin/product/department') ? ' class=active' : '') }}}><a
+                                                    href="{{aurl('products/create')}}">{{trans('admin.addproducts')}}</a>
+                                        </li>
+                                    </ul>
+
+                                </li>
+                            </ul>
+
+                        @else
                             <ul class="navigation navigation-main navigation-accordion">
 
                                 <!-- Main -->
@@ -114,20 +129,6 @@
 
                                 </li>
 
-                            </ul>
-                        @else
-                            <ul class="navigation navigation-main navigation-accordion">
-                                <li>
-                                    <a href="#"><i class="icon-cart2"></i> <span>{{trans('admin.products')}}</span></a>
-                                    <ul>
-                                        <li {{{ (Request::is('admin/product/department') ? ' class=active' : '') }}}><a
-                                                    href="{{aurl('products')}}">{{trans('admin.allproducts')}}</a></li>
-                                        <li {{{ (Request::is('admin/product/department') ? ' class=active' : '') }}}><a
-                                                    href="{{aurl('products/create')}}">{{trans('admin.addproducts')}}</a>
-                                        </li>
-                                    </ul>
-
-                                </li>
                             </ul>
                         @endif
                     </div>
