@@ -238,7 +238,7 @@
                                     class="icon-comment-discussion"></i> Messages</a></li>
                     <li class="divider"></li>
                     <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
-                    <li><a href="{{aurl('logout')}}"><i class="icon-switch2"></i> {{trans('admin.logout')}}</a></li>
+                    <li><a href="@if(Auth::guard('admin')->user()) {{aurl('logout')}} @else {{url('logout')}} @endif"><i class="icon-switch2"></i> {{trans('admin.logout')}}</a></li>
                 </ul>
             </li>
         </ul>
