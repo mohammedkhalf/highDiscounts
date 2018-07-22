@@ -11,10 +11,17 @@ use App\Model\ProductsSize ;
 use App\Model\DepartmentProducts as Dep;
 use Validator;
 
-class ProductsController extends Controller
+class HomeController extends Controller
 {
 
+    public function index()
+    {
 
+        $allproducts = Products::orderBy('id','desc')->get();
+
+
+        return view(app('f').'.home',['allproducts'=>$allproducts]);
+    }
     /**
      * Show the form for creating a new resource.
      *

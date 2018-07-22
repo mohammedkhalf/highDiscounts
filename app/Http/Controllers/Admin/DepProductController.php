@@ -67,26 +67,36 @@ class DepProductController extends Controller
       $rules = [
             'en_name' => 'required',
             'ar_name' => 'required',
+            'image' => 'required|image',
         ];
 
         $Validator   = Validator::make($request->all(),$rules);
         $Validator->SetAttributeNames ([
             'en_name' => trans('admin.en_name'),
             'ar_name' => trans('admin.ar_name'),
+            'image' => trans('admin.image'),
         ]);
         if($Validator->fails())
         {
             return back()->withInput()->withErrors($Validator);
         }else{
             $add = new Dep;
+              $file     = $request->file('image');
+            $path     = public_path().'/upload/products';
+            $filename = time().rand(11111,00000).'.'.$file->getClientOriginalExtension();
+            if($file->move($path,$filename))
+            {
+                $add->image = $filename;
+            }
             if($request->has('parent'))
             {
                 $add->parent = $request->input('parent');
             }
          $add->en_name           = $request->input('en_name');
          $add->ar_name           = $request->input('ar_name');
+        
          $add->save();
-          session()->flash('success',trans('main.added'));
+          session()->flash('success',trans('admin.added'));
         }
         return back();
     }

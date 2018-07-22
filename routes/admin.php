@@ -12,7 +12,7 @@
    //////// SingleTon Start
     $singletonarray = [
         'at'=>'admin',
-        'fe'=>'front',
+        'f'=>'front',
         'v'=>'vendor',
         'theme'=>'themes.master',
         'aurl'=>'admin',

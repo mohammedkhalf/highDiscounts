@@ -7,8 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class DepartmentProducts extends Model
 {
     protected $table = 'department_products';
+       protected $fillable =
+        [
+            'id',
+            'en_name',
+            'ar_name',
+            'image',
+            'parent',
+        ];
      public function product() {
 
-        return $this->hasMany('App\Model\Products', 'dep_id');
+        return $this->hasMany('App\Model\Products', 'dep_id', 'id');
     }
 }

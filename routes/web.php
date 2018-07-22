@@ -20,7 +20,27 @@
     to check site statues
    7/17/2018
    */
+      //////// SingleTon Start
+    $singletonarray = [
+        'at'=>'admin',
+        'f'=>'front',
+        'v'=>'vendor',
+        'theme'=>'themes.master',
+        'aurl'=>'admin',
+        'language'=>['ar','en'],
+    ];
+    foreach($singletonarray as $key => $value)
+    {
+        app()->singleton($key,function() use ($value){
+            return $value;
+        });
+    }
 
+//////// SingleTon End
+Route::group(['namespace' => 'Web'], function () {
+Route::get('/dd', 'HomeController@index');
+
+     });
 Route::group(['middleware' => 'Maintenance'], function () {
 
     Route::get('/', function () {
@@ -104,10 +124,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
         Route::get('vendor', function () {
             return 'welcome vendor';
         });
-        Route::group(['prefix' => 'web', 'namespace' => 'Web'], function () {
-    Route::resource('vendorp','ProductsController');
-     Route::post('vendorp/department_product/check/parent','ProductsController@check_parent');
-  });
+
   
     });
 

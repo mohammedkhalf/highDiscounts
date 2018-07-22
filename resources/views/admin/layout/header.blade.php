@@ -20,7 +20,7 @@
         <p class="navbar-text"><span class="label bg-success">Online</span></p>
 
         <ul class="nav navbar-nav navbar-right">
-    <li><a href="{{url('/')}}"><i class="icon-home8 navbar-text"></i></a></li>
+    <li><a href="{{url('/')}}" ><i class="icon-home8 "></i></a></li>
             <li class="dropdown language-switch">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     @if(lang() == 'ar')
