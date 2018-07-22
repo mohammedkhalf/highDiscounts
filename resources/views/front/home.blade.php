@@ -101,14 +101,14 @@
                                     <img src="{{url('/upload/products/'.$products->photo)}}" alt="">
                                     <div class="product-hover">
                                         <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                        <a href="single_product/{{ $products->id }}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
 
-                                <h2><a href="single-product.html">{{ $products->en_title }}</a></h2>
+                                <h2><a href="single_product/{{ $products->id }}">{{ $products->en_title }}</a></h2>
 
                                 <div class="product-carousel-price">
-                                    <ins>{{ $products->price }} LE</ins> 
+                                    <ins>{{ $products->price }}</ins> 
                                 </div>
                             </div>
                     @endforeach
@@ -126,14 +126,9 @@
                 <div class="col-md-12">
                     <div class="brand-wrapper">
                         <div class="brand-list">
-                            <img src="{{url("front/img/brand1.png")}}" alt="">
-                            <img src="{{url("front/img/brand2.png")}}" alt="">
-                            <img src="{{url("front/img/brand3.png")}}" alt="">
-                            <img src="{{url("front/img/brand4.png")}}" alt="">
-                            <img src="{{url("front/img/brand5.png")}}" alt="">
-                            <img src="{{url("front/img/brand6.png")}}" alt="">
-                            <img src="{{url("front/img/brand1.png")}}" alt="">
-                            <img src="{{url("front/img/brand2.png")}}" alt="">
+                            @foreach($department as $dep)
+                            <img src="{{url('/upload/products/'.$dep->image)}}" alt="">
+                           @endforeach
                         </div>
                     </div>
                 </div>

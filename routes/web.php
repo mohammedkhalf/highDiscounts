@@ -39,7 +39,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
     Route::group(['namespace' => 'Web'], function () {
 
         Route::get('/', 'HomeController@index');
-
+        Route::get('/single_product/{id}', 'HomeController@single');
     });
 
     Route::POST('/logout', 'SessionController@destroy');

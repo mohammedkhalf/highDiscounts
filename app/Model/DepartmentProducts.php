@@ -15,8 +15,5 @@ class DepartmentProducts extends Model
             'image',
             'parent',
         ];
-     public function product() {
-
-        return $this->hasMany('App\Model\Products', 'dep_id', 'id');
-    }
+  
 }

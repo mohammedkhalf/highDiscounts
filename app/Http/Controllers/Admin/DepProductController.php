@@ -151,14 +151,14 @@ class DepProductController extends Controller
            $rules = [
             'en_name' => 'required',
             'ar_name' => 'required',
-            'image' => 'required|image',
+           
         ];
 
         $Validator   = Validator::make($request->all(),$rules);
         $Validator->SetAttributeNames ([
             'en_name' => trans('admin.en_name'),
             'ar_name' => trans('admin.ar_name'),
-            'image' => trans('admin.image'),
+            
         ]);
         if($Validator->fails())
         {
@@ -178,7 +178,7 @@ class DepProductController extends Controller
             {
                 $update->parent = $request->input('parent');
             }
-           
+            
             $update->en_name           = $request->input('en_name');
             $update->ar_name           = $request->input('ar_name');
             $update->save();
