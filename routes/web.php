@@ -1,7 +1,6 @@
 <?php
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,40 +19,28 @@
     to check site statues
    7/17/2018
    */
-      //////// SingleTon Start
-    $singletonarray = [
-        'at'=>'admin',
-        'f'=>'front',
-        'v'=>'vendor',
-        'theme'=>'themes.master',
-        'aurl'=>'admin',
-        'language'=>['ar','en'],
-    ];
-    foreach($singletonarray as $key => $value)
-    {
-        app()->singleton($key,function() use ($value){
-            return $value;
-        });
-    }
+//////// SingleTon Start
+$singletonarray = [
+    'at' => 'admin',
+    'f' => 'front',
+    'v' => 'vendor',
+    'theme' => 'themes.master',
+    'aurl' => 'admin',
+    'language' => ['ar', 'en'],
+];
+foreach ($singletonarray as $key => $value) {
+    app()->singleton($key, function () use ($value) {
+        return $value;
+    });
+}
 
 //////// SingleTon End
-Route::group(['namespace' => 'Web'], function () {
-Route::get('/dd', 'HomeController@index');
-
-     });
 Route::group(['middleware' => 'Maintenance'], function () {
+    Route::group(['namespace' => 'Web'], function () {
 
-    Route::get('/', function () {
-        return view('front.home');
+        Route::get('/', 'HomeController@index');
+
     });
-    /*
-    Auth::routes();*/
-
-    /*
-    Mohamed Ragab
-    Logout
-    7/17/2018
-    */
 
     Route::POST('/logout', 'SessionController@destroy');
 
@@ -125,7 +112,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
             return 'welcome vendor';
         });
 
-  
+
     });
 
     /*
