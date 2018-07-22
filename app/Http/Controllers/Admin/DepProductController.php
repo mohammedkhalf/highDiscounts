@@ -81,7 +81,7 @@ class DepProductController extends Controller
             return back()->withInput()->withErrors($Validator);
         }else{
             $add = new Dep;
-              $file     = $request->file('image');
+            $file     = $request->file('image');
             $path     = public_path().'/upload/products';
             $filename = time().rand(11111,00000).'.'.$file->getClientOriginalExtension();
             if($file->move($path,$filename))
@@ -151,26 +151,38 @@ class DepProductController extends Controller
            $rules = [
             'en_name' => 'required',
             'ar_name' => 'required',
+            'image' => 'required|image',
         ];
 
         $Validator   = Validator::make($request->all(),$rules);
         $Validator->SetAttributeNames ([
             'en_name' => trans('admin.en_name'),
             'ar_name' => trans('admin.ar_name'),
+            'image' => trans('admin.image'),
         ]);
         if($Validator->fails())
         {
             return back()->withInput()->withErrors($Validator);
         }else{
             $update =  Dep::find($id);
+               if ($request->hasFile('image')) {
+                @unlink(public_path() . '/upload/products/' . $update->image);
+                $file = $request->file('image');
+                $path = public_path() . '/upload/products';
+                $filename = time() . rand(11111, 00000) . '.' . $file->getClientOriginalExtension();
+                if ($file->move($path, $filename)) {
+                    $update->image = $filename;
+                }
+            }
             if($request->has('parent'))
             {
                 $update->parent = $request->input('parent');
             }
+           
             $update->en_name           = $request->input('en_name');
             $update->ar_name           = $request->input('ar_name');
             $update->save();
-            session()->flash('success',trans('main.updated'));
+            session()->flash('success',trans('admin.updated'));
         }
         return back();
     }
@@ -200,8 +212,12 @@ class DepProductController extends Controller
     }
     public function destroy($id)
     {
-
-        @Dep::find($id)->delete();
+    $delete =  Dep::find($id);
+        if(!empty($delete->image) and file_exists(public_path().'/upload/products/'.$delete->image))
+        {
+            unlink(public_path().'/upload/products/'.$delete->image);
+        }
+        Dep::find($id)->delete();
         self::DeleteParent($id);
         session()->flash('success',trans('admin.deleted'));
         return back();
