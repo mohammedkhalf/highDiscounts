@@ -39,7 +39,10 @@ Route::group(['middleware' => 'Maintenance'], function () {
     Route::group(['namespace' => 'Web'], function () {
 
         Route::get('/', 'HomeController@index');
+        
         Route::get('/single_product/{id}', 'HomeController@single');
+
+  
     });
 
     Route::POST('/logout', 'SessionController@destroy');
@@ -124,6 +127,14 @@ Route::group(['middleware' => 'Maintenance'], function () {
     */
     Route::group(['middleware' => ['UserMiddleware', 'auth']], function () {
 
+       Route::get('/add-to-cart/{id}',[
+         'uses' => 'HomeController@getAddToCart',
+         'as' => 'product.addToCart',
+     ]);
+             Route::get('/shopping-cart/{id}',[
+         'uses' => 'HomeController@getCart',
+         'as' => 'product.shoppingCart',
+     ]);
         Route::get('user', function () {
             return 'welcome user';
         });
