@@ -248,5 +248,9 @@ class HomeController extends Controller
         return back();
     }
 
+    public function products()
+    {
 
+        return view('front.shop');
+    }
 }
