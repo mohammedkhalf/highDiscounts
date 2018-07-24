@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use  App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Order;
 
 class OrderController extends Controller
 {
@@ -13,7 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        return view(app('at').'.orders.index')->with('orders',$orders);
     }
 
     /**

@@ -133,4 +133,12 @@ return [
     'colorx'              =>'Other Colors',
     'sizex'               =>'Other Sizes',
     'price'               =>'Price',
+
+
+    //orders
+    'orders'=>'Orders',
+    'order'=>'Order',
+    'name'=>'Username',
+    'order_status_code'=>'Code',
+    'order_details'=>'details',
 ];

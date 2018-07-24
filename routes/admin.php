@@ -93,6 +93,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('/users', 'UserController@store');
 
 
+        ////order///
+        Route::get('/orders','OrderController@index');
+
+
         Route::get('lang/{lang}', function ($lang) {
             session()->has('lang') ? session()->forget('lang') : '';
 
