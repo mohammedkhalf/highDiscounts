@@ -86,7 +86,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
         if (isset(Auth::user()->id) && Auth::user()->status == 1) {
             if (Auth::user()->level == 'vendor') {
                 return redirect('/vendor/products');
-            } elseif (Auth::user()->u_type == 'user') {
+            } elseif (Auth::user()->level == 'user') {
                 return redirect('/');
             } else {
                 auth()->logout();
