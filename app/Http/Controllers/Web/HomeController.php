@@ -41,6 +41,7 @@ class HomeController extends Controller
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->add($product , $product->id);
+
         $request->session()->put('cart', $cart);
    
 
@@ -53,7 +54,7 @@ class HomeController extends Controller
     }
     $oldCart =Session::get('cart') ;
     $cart = new Cart($oldCart);
-    return view(app('f').'.shopping-cart' , ['product'=>$cart->items, 'totalPrice' => $cart->totalPrice]);
+    return view(app('f').'.shopping-cart' , ['products'=>$cart, 'totalPrice' => $cart->totalPrice]);
     }
 
     /**

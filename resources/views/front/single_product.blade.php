@@ -7,7 +7,7 @@
     {{trans('front.home')}}
 @endsection
 @section('content')
-   
+  
 
     <div class="product-big-title-area">
         <div class="container">
