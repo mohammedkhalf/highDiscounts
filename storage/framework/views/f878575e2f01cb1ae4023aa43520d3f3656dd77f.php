@@ -100,14 +100,14 @@
                                     <img src="<?php echo e(url('/upload/products/'.$products->photo)); ?>" alt="">
                                     <div class="product-hover">
                                         <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                        <a href="single_product/<?php echo e($products->id); ?>" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
 
-                                <h2><a href="single-product.html"><?php echo e($products->en_title); ?></a></h2>
+                                <h2><a href="single_product/<?php echo e($products->id); ?>"><?php echo e($products->en_title); ?></a></h2>
 
                                 <div class="product-carousel-price">
-                                    <ins><?php echo e($products->price); ?> LE</ins> 
+                                    <ins><?php echo e($products->price); ?></ins> 
                                 </div>
                             </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -125,14 +125,9 @@
                 <div class="col-md-12">
                     <div class="brand-wrapper">
                         <div class="brand-list">
-                            <img src="<?php echo e(url("front/img/brand1.png")); ?>" alt="">
-                            <img src="<?php echo e(url("front/img/brand2.png")); ?>" alt="">
-                            <img src="<?php echo e(url("front/img/brand3.png")); ?>" alt="">
-                            <img src="<?php echo e(url("front/img/brand4.png")); ?>" alt="">
-                            <img src="<?php echo e(url("front/img/brand5.png")); ?>" alt="">
-                            <img src="<?php echo e(url("front/img/brand6.png")); ?>" alt="">
-                            <img src="<?php echo e(url("front/img/brand1.png")); ?>" alt="">
-                            <img src="<?php echo e(url("front/img/brand2.png")); ?>" alt="">
+                            <?php $__currentLoopData = $department; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dep): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <img src="<?php echo e(url('/upload/products/'.$dep->image)); ?>" alt="">
+                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
                 </div>
