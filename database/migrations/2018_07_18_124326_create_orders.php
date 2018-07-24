@@ -15,7 +15,7 @@ class CreateOrders extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('customer_id');
+            $table->integer('user_id');
             $table->string('order_status_code');
             $table->string('order_details')->nullable();
             $table->timestamps();

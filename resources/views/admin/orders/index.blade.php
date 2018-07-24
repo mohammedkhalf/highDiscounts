@@ -4,7 +4,7 @@
     All Users
 @endsection--}}
 @section('up')
-    {{trans('admin.allcountries')}}
+    {{trans('admin.orders')}}
 @endsection
 @section('content')
 
@@ -12,7 +12,7 @@
     <!-- Column selectors -->
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title">All Countries</h5>
+            <h5 class="panel-title">All {{trans('admin.orders')}}</h5>
             <div class="heading-elements">
                 <ul class="icons-list">
                     <li><a href="{{aurl('countries/create')}}"><span class="label border-left-primary label-striped">Add Country</span></a>
@@ -36,26 +36,28 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>{{trans('admin.country_name_ar')}}</th>
-                <th>{{trans('admin.country_name_en')}}</th>
-                <th>{{trans('admin.country_mob')}}</th>
-                <th>{{trans('admin.country_logo')}}</th>
-                <th>{{trans('admin.country_city')}}</th>
+                <th>{{trans('admin.name')}}</th>
+                <th>{{trans('admin.order_status_code')}}</th>
+                <th>{{trans('admin.order_details')}}</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($countries as $country)
+            @foreach($orders as $order)
                 <tr>
-                    <td>{{$country->id}}</td>
-                    <td>{{$country->country_name_ar}}</td>
-                    <td>{{$country->country_name_en}}</td>
-                    <td>{{$country->mob}}</td>
-                    <td><img src="{{Storage::url($country->logo)}}"></td>
-                    <td><a href="{{'countries/cities/'.$country->id}}">
-                            <i class="icon-pen6"></i> <span>{{trans('admin.all_city')}}</span></a></td>
-                    <td><a href="{{'countries/edit/'.$country->id}}"><i class="icon-pen6"></i> <span>edit</span></a>
+                    <td>{{$order->id}}</td>
+                   @if(!empty( $order->user()->get()))
+                       @foreach($order->user()->get() as $user)
+                            <td>{{ $user->name}}</td>
+                           @endforeach
+                       @endif
+
+                    <td>{{$order->order_details}}</td>
+                    <td>{{$order->order_status_code}}</td>
+                    {{--<td><a href="{{'countries/cities/'.$order->id}}">--}}
+                            {{--<i class="icon-pen6"></i> <span>{{trans('admin.all_city')}}</span></a></td>--}}
+                    <td><a href="{{'countries/edit/'.$order->id}}"><i class="icon-pen6"></i> <span>edit</span></a>
                     </td>
                     <td><a href><i class="icon-trash"></i> <span>delete</span></a></td>
                 </tr>

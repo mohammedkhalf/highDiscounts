@@ -95,6 +95,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
             return view('front.homez3tr');
         });*/
 
+        ////order///
+        Route::get('/orders','OrderController@index');
+
+
         Route::get('lang/{lang}', function ($lang) {
             session()->has('lang') ? session()->forget('lang') : '';
 
