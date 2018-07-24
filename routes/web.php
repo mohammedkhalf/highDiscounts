@@ -19,6 +19,19 @@
     to check site statues
    7/17/2018
    */
+
+/*Lang */
+Route::get('lang/{lang}', function ($lang) {
+    session()->has('lang') ? session()->forget('lang') : '';
+
+    if ($lang == 'ar') {
+        Session()->put('lang', 'ar');
+    } else {
+        Session()->put('lang', 'en');
+    }
+
+    return back();
+});
 //////// SingleTon Start
 $singletonarray = [
     'at' => 'admin',
@@ -39,7 +52,10 @@ Route::group(['middleware' => 'Maintenance'], function () {
     Route::group(['namespace' => 'Web'], function () {
 
         Route::get('/', 'HomeController@index');
+        
         Route::get('/single_product/{id}', 'HomeController@single');
+
+  
     });
 
     Route::POST('/logout', 'SessionController@destroy');
@@ -86,7 +102,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
         if (isset(Auth::user()->id) && Auth::user()->status == 1) {
             if (Auth::user()->level == 'vendor') {
                 return redirect('/vendor/products');
-            } elseif (Auth::user()->u_type == 'user') {
+            } elseif (Auth::user()->level == 'user') {
                 return redirect('/');
             } else {
                 auth()->logout();
@@ -124,6 +140,14 @@ Route::group(['middleware' => 'Maintenance'], function () {
     */
     Route::group(['middleware' => ['UserMiddleware', 'auth']], function () {
 
+       Route::get('/add-to-cart/{id}',[
+         'uses' => 'HomeController@getAddToCart',
+         'as' => 'product.addToCart',
+     ]);
+             Route::get('/shopping-cart/{id}',[
+         'uses' => 'HomeController@getCart',
+         'as' => 'product.shoppingCart',
+     ]);
         Route::get('user', function () {
             return 'welcome user';
         });

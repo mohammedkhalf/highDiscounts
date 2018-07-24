@@ -51,11 +51,23 @@
                         </li>
 
                         <li class="dropdown dropdown-small">
-                            <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                @if(lang() == 'ar')
+                                    <img src="{{url('/')}}/adminpanel/assets/images/flags/eg.png" class="position-left" alt="">
+                                    عربى
+                                    <span class="caret"></span>
+                                @else
+                                    <img src="{{url('/')}}/adminpanel/assets/images/flags/gb.png" class="position-left" alt="">
+                                    English
+                                    <span class="caret"></span>
+                                @endif
+                            </a>
+
                             <ul class="dropdown-menu">
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">French</a></li>
-                                <li><a href="#">German</a></li>
+                                <li><a href="{{url('lang/en')}}" class="english"><img
+                                                src="{{url('/')}}/adminpanel/assets/images/flags/gb.png" alt=""> English</a></li>
+                                <li><a href="{{url('lang/ar')}}" class="russian"><img
+                                                src="{{url('/')}}/adminpanel/assets/images/flags/eg.png" alt=""> عربى</a></li>
                             </ul>
                         </li>
                     </ul>

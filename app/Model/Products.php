@@ -7,6 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class Products extends Model
 {
    protected $table = 'products';
+    protected $fillable =
+        [
+            'id',
+            'en_title',
+            'ar_title',
+            'price',
+            'photo',
+            'user_id',
+            'dep_id',
+            'en_content',
+            'ar_content',
+            'size',
+            'color',
+        ];
    public function Depa()
     {
 

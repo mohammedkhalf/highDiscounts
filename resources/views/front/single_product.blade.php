@@ -82,7 +82,7 @@
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="product-breadcroumb">
-                            <a href="/">Home</a>
+                            <a href="{{url('/')}}">Home</a>
                             <a href="">@if(!empty($product->product_dep()->get()))
                                          @foreach($product->product_dep()->get() as $dep)
                                             {!! $dep->en_name!!}

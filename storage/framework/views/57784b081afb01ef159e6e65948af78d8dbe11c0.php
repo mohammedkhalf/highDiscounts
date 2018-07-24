@@ -52,11 +52,23 @@
                         </li>
 
                         <li class="dropdown dropdown-small">
-                            <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <?php if(lang() == 'ar'): ?>
+                                    <img src="<?php echo e(url('/')); ?>/adminpanel/assets/images/flags/eg.png" class="position-left" alt="">
+                                    عربى
+                                    <span class="caret"></span>
+                                <?php else: ?>
+                                    <img src="<?php echo e(url('/')); ?>/adminpanel/assets/images/flags/gb.png" class="position-left" alt="">
+                                    English
+                                    <span class="caret"></span>
+                                <?php endif; ?>
+                            </a>
+
                             <ul class="dropdown-menu">
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">French</a></li>
-                                <li><a href="#">German</a></li>
+                                <li><a href="<?php echo e(url('/en')); ?>" class="english"><img
+                                                src="<?php echo e(url('/')); ?>/adminpanel/assets/images/flags/gb.png" alt=""> English</a></li>
+                                <li><a href="<?php echo e(url('/ar')); ?>" class="russian"><img
+                                                src="<?php echo e(url('/')); ?>/adminpanel/assets/images/flags/eg.png" alt=""> عربى</a></li>
                             </ul>
                         </li>
                     </ul>
