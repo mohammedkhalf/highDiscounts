@@ -164,5 +164,3 @@ Route::get('maintenance', function () {
     }
 });
 
-
-Route::get('/home', 'HomeController@index')->name('home');
