@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Model\Cart ;
+
 use App\Model\Products ;
 use App\Model\ProductsGallary ;
 use App\Model\ProductsColor ;
@@ -270,7 +271,7 @@ class HomeController extends Controller
 
     public function products()
     {
-
-        return view('front.shop');
+        $products=Products::paginate(12);
+        return view('front.shop')->with('products',$products);
     }
 }

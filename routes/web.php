@@ -50,7 +50,7 @@ foreach ($singletonarray as $key => $value) {
 //////// SingleTon End
 Route::group(['middleware' => 'Maintenance'], function () {
     Route::group(['namespace' => 'Web'], function () {
-
+        Route::get('/allproducts','HomeController@products');
         Route::get('/', 'HomeController@index');
         
         Route::get('/single_product/{id}', 'HomeController@single');

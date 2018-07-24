@@ -88,7 +88,7 @@
 		 					</tr>
 		 					@endforeach
 		 				</table>					
-					 {!! str_replace('/?','?',$allproducts->render()) !!}
+				{{--	 {!! str_replace('/?','?',$allproducts->render()) !!}--}}
 
 		</div>
 		<!-- end widget div -->

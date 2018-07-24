@@ -21,7 +21,7 @@ class ProductsController extends Controller
     public function index()
     {
 
-        $allproducts = Products::orderBy('id','desc')->paginate(10);
+        $allproducts = Products::orderBy('id','desc')->get();
 
 
         return view(app('at').'.product.products.index',['title'=>trans('admin.products'),'allproducts'=>$allproducts]);
