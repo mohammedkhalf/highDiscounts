@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Model\Cart ;
 use App\Model\Products ;
 use App\Model\ProductsGallary ;
 use App\Model\ProductsColor ;
 use App\Model\ProductsSize ;
 use App\Model\DepartmentProducts as Dep;
 use Validator;
-
+use Session;
 class HomeController extends Controller
 {
 
@@ -30,11 +31,30 @@ class HomeController extends Controller
     public function single($id)
     {
        $product  = Products::find($id);
-        $department = Dep::where('id','=',$product->dep_id)->pluck('en_name');;
+        $department = Dep::where('id','=',$product->dep_id)->pluck('en_name');
 
         return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product]);
     }
+   public function getAddToCart(Request $request, $id)
+    {
+       $product  = Products::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product , $product->id);
+        $request->session()->put('cart', $cart);
+   
 
+        return back();
+    }
+   public function getCart()
+    {
+    if (!Session::has('cart')) {
+      return view(app('f').'.shopping-cart');
+    }
+    $oldCart =Session::get('cart') ;
+    $cart = new Cart($oldCart);
+    return view(app('f').'.shopping-cart' , ['product'=>$cart->items, 'totalPrice' => $cart->totalPrice]);
+    }
 
     /**
      * Show the form for editing the specified resource.
