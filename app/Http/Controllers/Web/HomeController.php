@@ -247,4 +247,6 @@ class HomeController extends Controller
         session()->flash('success',trans('admin.deleted'));
         return back();
     }
+
+
 }

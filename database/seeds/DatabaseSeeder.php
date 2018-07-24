@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
         $add = new User;
         $add->name     = 'hager';
         $add->password = bcrypt(12345);
@@ -22,5 +23,23 @@ class DatabaseSeeder extends Seeder
         $add->status=1;
         $add->save();
 
+=======
+    	for ($i=0; $i < 30; $i++) { 
+    	     DB::table('products')->insert([
+            'en_title' => 'Samsung'.$i,
+            'ar_title' => 'Samsung'.$i,
+            'photo' => '15322601466833.jpg',
+            'en_content' => '.....',
+            'ar_content' => '.....',
+            'user_id' => '2',
+            'user_type' => 'admin',
+            'dep_id' => '5',
+            'color' => '1'.$i,
+            'price' => '200 LE',
+            'size' => '128 GB',
+        ]);
+    	}
+       
+>>>>>>> 1da0e84e850cbeed5f711e2506816d1eb335b7ca
     }
 }
