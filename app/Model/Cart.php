@@ -6,7 +6,7 @@ namespace App\Model;
 
 class Cart
 {
-public $items ;
+public $items = 0 ;
 public $totalQty = 0;
 public $totalPrice = 0;
 
@@ -16,8 +16,6 @@ public function __construct($oldCart)
     $this->items = $oldCart->items;
     $this->totalQty = $oldCart->totalQty;
     $this->totalPrice = $oldCart->totalPrice;
-  }else{
-    $this->items = null;
   }
 }
    public function add($item , $id)
@@ -29,6 +27,7 @@ if ($this->items) {
   }
   
 }
+ $items = 0 ;
     $storedItem['qty']++;
     $storedItem['price'] = $item->price * $storedItem['qty'];
     $this->$items[$id] = $storedItem;

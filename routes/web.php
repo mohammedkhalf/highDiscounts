@@ -50,12 +50,19 @@ foreach ($singletonarray as $key => $value) {
 //////// SingleTon End
 Route::group(['middleware' => 'Maintenance'], function () {
     Route::group(['namespace' => 'Web'], function () {
-        Route::get('/allproducts','HomeController@products');
+        Route::get('/add-to-cart/{id}',[
+            'uses' => 'HomeController@getAddToCart',
+            'as' => 'product.addToCart',
+        ]);
+        Route::get('/shopping-cart',[
+            'uses' => 'HomeController@getCart',
+            'as' => 'product.shoppingCart',
+        ]);
         Route::get('/', 'HomeController@index');
-        
+
         Route::get('/single_product/{id}', 'HomeController@single');
 
-  
+
     });
 
     Route::POST('/logout', 'SessionController@destroy');
@@ -140,14 +147,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
     */
     Route::group(['middleware' => ['UserMiddleware', 'auth']], function () {
 
-       Route::get('/add-to-cart/{id}',[
-         'uses' => 'HomeController@getAddToCart',
-         'as' => 'product.addToCart',
-     ]);
-             Route::get('/shopping-cart/{id}',[
-         'uses' => 'HomeController@getCart',
-         'as' => 'product.shoppingCart',
-     ]);
+
         Route::get('user', function () {
             return 'welcome user';
         });
@@ -164,5 +164,3 @@ Route::get('maintenance', function () {
     }
 });
 
-
-Route::get('/home', 'HomeController@index')->name('home');
