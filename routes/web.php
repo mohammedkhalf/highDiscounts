@@ -19,6 +19,19 @@
     to check site statues
    7/17/2018
    */
+
+/*Lang */
+Route::get('lang/{lang}', function ($lang) {
+    session()->has('lang') ? session()->forget('lang') : '';
+
+    if ($lang == 'ar') {
+        Session()->put('lang', 'ar');
+    } else {
+        Session()->put('lang', 'en');
+    }
+
+    return back();
+});
 //////// SingleTon Start
 $singletonarray = [
     'at' => 'admin',
