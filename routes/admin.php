@@ -12,8 +12,8 @@
    //////// SingleTon Start
     $singletonarray = [
         'at'=>'admin',
-        'fe'=>'front',
-        'vp'=>'vendorp',
+        'f'=>'front',
+        'v'=>'vendor',
         'theme'=>'themes.master',
         'aurl'=>'admin',
         'language'=>['ar','en'],
@@ -26,7 +26,7 @@
     }
 
 //////// SingleTon End
-Route::group(['prefix' => 'vendor', 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor'], function () {
     Route::group(['middleware' => ['VendorMiddleware', 'auth']], function () {
 
         Route::POST('/logout', 'SessionController@destroy');
@@ -35,7 +35,8 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Admin'], function () {
         Route::delete('products/destroyimage/{id}', 'ProductsController@destroyimage');
         Route::delete('products/destroysize/{id}', 'ProductsController@destroysize');
         Route::delete('products/destroycolor/{id}', 'ProductsController@destroycolor');
-
+        Route::resource('department_product','DepProductController');
+        Route::post('department_product/check/parent','DepProductController@check_parent');
      });
     });
 
@@ -90,10 +91,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/setting', 'SettingsController@index');
         Route::post('/setting', 'SettingsController@setting_save');
         Route::post('/users', 'UserController@store');
-/*
-        Route::get('/', function () {
-            return view('front.homez3tr');
-        });*/
+
 
         ////order///
         Route::get('/orders','OrderController@index');

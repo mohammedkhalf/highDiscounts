@@ -38,10 +38,10 @@
                                 <li>
                                     <a href="#"><i class="icon-cart2"></i> <span>{{trans('admin.products')}}</span></a>
                                     <ul>
-                                        <li {{{ (Request::is('admin/product/department') ? ' class=active' : '') }}}><a
-                                                    href="{{aurl('products')}}">{{trans('admin.allproducts')}}</a></li>
-                                        <li {{{ (Request::is('admin/product/department') ? ' class=active' : '') }}}><a
-                                                    href="{{aurl('products/create')}}">{{trans('admin.addproducts')}}</a>
+                                        <li {{{ (Request::is('vendor/product/department') ? ' class=active' : '') }}}><a
+                                                    href="{{url('vendor/products')}}">{{trans('admin.allproducts')}}</a></li>
+                                        <li {{{ (Request::is('vendor/product/department') ? ' class=active' : '') }}}><a
+                                                    href="{{url('vendor/products/create')}}">{{trans('admin.addproducts')}}</a>
                                         </li>
                                     </ul>
 

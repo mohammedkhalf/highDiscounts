@@ -1,7 +1,6 @@
 <?php
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,20 +19,28 @@
     to check site statues
    7/17/2018
    */
-
-Route::group(['middleware' => 'Maintenance'], function () {
-
-    Route::get('/', function () {
-        return view('front.home');
+//////// SingleTon Start
+$singletonarray = [
+    'at' => 'admin',
+    'f' => 'front',
+    'v' => 'vendor',
+    'theme' => 'themes.master',
+    'aurl' => 'admin',
+    'language' => ['ar', 'en'],
+];
+foreach ($singletonarray as $key => $value) {
+    app()->singleton($key, function () use ($value) {
+        return $value;
     });
-    /*
-    Auth::routes();*/
+}
 
-    /*
-    Mohamed Ragab
-    Logout
-    7/17/2018
-    */
+//////// SingleTon End
+Route::group(['middleware' => 'Maintenance'], function () {
+    Route::group(['namespace' => 'Web'], function () {
+
+        Route::get('/', 'HomeController@index');
+        Route::get('/single_product/{id}', 'HomeController@single');
+    });
 
     Route::POST('/logout', 'SessionController@destroy');
 
@@ -78,7 +85,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
     Route::get('checklogin', array('as' => 'checklogin', function () {
         if (isset(Auth::user()->id) && Auth::user()->status == 1) {
             if (Auth::user()->level == 'vendor') {
-                return redirect('/');
+                return redirect('/vendor/products');
             } elseif (Auth::user()->u_type == 'user') {
                 return redirect('/');
             } else {
@@ -104,11 +111,8 @@ Route::group(['middleware' => 'Maintenance'], function () {
         Route::get('vendor', function () {
             return 'welcome vendor';
         });
-        Route::group(['prefix' => 'web', 'namespace' => 'Web'], function () {
-    Route::resource('vendorp','ProductsController');
-     Route::post('vendorp/department_product/check/parent','ProductsController@check_parent');
-  });
-  
+
+
     });
 
     /*

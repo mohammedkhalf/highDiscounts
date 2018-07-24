@@ -2,8 +2,7 @@
 
 
 
-namespace App\Http\Controllers\Admin;
-
+namespace App\Http\Controllers\Vendor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +25,7 @@ class DepProductController extends Controller
             if($request->input('department') > 0)
             {
                 $master = Dep::find($request->input('department'));
-                $href = '<a href="'.url(app('aurl').'/department_product?department='.$master->parent).'">'.$master->en_name.'</a>';
+                $href = '<a href="'.url(app('v').'/department_product?department='.$master->parent).'">'.$master->en_name.'</a>';
             }else{
                 $href = '';
             }
@@ -34,7 +33,7 @@ class DepProductController extends Controller
             $alldep = Dep::where('parent','=',0)->orderBy('id','desc')->paginate(10);
             $href = '';
         }
-        return view(app('at').'.product.department.index',
+        return view(app('v').'.product.department.index',
             ['title'=>trans('admin.department_product'),
                 'alldep'=>$alldep,
                 'master'=>$href,
@@ -53,7 +52,7 @@ class DepProductController extends Controller
         $department = Dep::where('parent','=',0)->pluck('en_name','id')->all();/*
         return view(app('at').'.product.department.create',['title'=>trans('main.add'),'department'=>$department]);
   */
-        return view('admin.product.department.create')->with('department',$department);
+        return view('vendor.product.department.create')->with('department',$department);
     }
 
     /**
@@ -67,34 +66,24 @@ class DepProductController extends Controller
       $rules = [
             'en_name' => 'required',
             'ar_name' => 'required',
-            'image' => 'required|image',
         ];
 
         $Validator   = Validator::make($request->all(),$rules);
         $Validator->SetAttributeNames ([
             'en_name' => trans('admin.en_name'),
             'ar_name' => trans('admin.ar_name'),
-            'image' => trans('admin.image'),
         ]);
         if($Validator->fails())
         {
             return back()->withInput()->withErrors($Validator);
         }else{
             $add = new Dep;
-            $file     = $request->file('image');
-            $path     = public_path().'/upload/products';
-            $filename = time().rand(11111,00000).'.'.$file->getClientOriginalExtension();
-            if($file->move($path,$filename))
-            {
-                $add->image = $filename;
-            }
             if($request->has('parent'))
             {
                 $add->parent = $request->input('parent');
             }
          $add->en_name           = $request->input('en_name');
          $add->ar_name           = $request->input('ar_name');
-        
          $add->save();
           session()->flash('success',trans('admin.added'));
         }
@@ -113,7 +102,7 @@ class DepProductController extends Controller
     {
         $dep = Dep::find($id);
         $department = Dep::where('parent','=',0)->pluck('en_name','id');
-        return view(app('at').'.product.department.edit',['title'=>trans('admin.edit'),
+        return view(app('v').'.product.department.edit',['title'=>trans('admin.edit'),
             'department'=>$department,
             'edit'=>$dep,
         ]);
@@ -128,7 +117,7 @@ class DepProductController extends Controller
             if($request->has('parent') && $request->input('parent') > 0)
             {
                 $dep = Dep::where('parent','=',$request->input('parent'))->get();
-                $data = view(app('at').'.product.department.sub',['department'=>$dep,'parent'=>$request->input('parent')])->render();
+                $data = view(app('v').'.product.department.sub',['department'=>$dep,'parent'=>$request->input('parent')])->render();
                 if(!empty($data))
                 {
                     return response()->json($data);
@@ -151,34 +140,22 @@ class DepProductController extends Controller
            $rules = [
             'en_name' => 'required',
             'ar_name' => 'required',
-           
         ];
 
         $Validator   = Validator::make($request->all(),$rules);
         $Validator->SetAttributeNames ([
             'en_name' => trans('admin.en_name'),
             'ar_name' => trans('admin.ar_name'),
-            
         ]);
         if($Validator->fails())
         {
             return back()->withInput()->withErrors($Validator);
         }else{
             $update =  Dep::find($id);
-               if ($request->hasFile('image')) {
-                @unlink(public_path() . '/upload/products/' . $update->image);
-                $file = $request->file('image');
-                $path = public_path() . '/upload/products';
-                $filename = time() . rand(11111, 00000) . '.' . $file->getClientOriginalExtension();
-                if ($file->move($path, $filename)) {
-                    $update->image = $filename;
-                }
-            }
             if($request->has('parent'))
             {
                 $update->parent = $request->input('parent');
             }
-            
             $update->en_name           = $request->input('en_name');
             $update->ar_name           = $request->input('ar_name');
             $update->save();
@@ -212,12 +189,8 @@ class DepProductController extends Controller
     }
     public function destroy($id)
     {
-    $delete =  Dep::find($id);
-        if(!empty($delete->image) and file_exists(public_path().'/upload/products/'.$delete->image))
-        {
-            unlink(public_path().'/upload/products/'.$delete->image);
-        }
-        Dep::find($id)->delete();
+
+        @Dep::find($id)->delete();
         self::DeleteParent($id);
         session()->flash('success',trans('admin.deleted'));
         return back();

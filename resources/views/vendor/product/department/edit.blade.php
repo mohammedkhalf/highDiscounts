@@ -33,30 +33,19 @@
 					<!-- widget content -->
 					<div class="widget-body no-padding">
 						
-						{!! Form::open(['url'=>app('aurl').'/department_product/'.$edit->id,'method'=>'put','id'=>'review-form','class'=>'smart-form','files'=>true]) !!}
+						{!! Form::open(['url'=>app('v').'/department_product/'.$edit->id,'method'=>'put','id'=>'review-form','class'=>'smart-form']) !!}
 				
 
-					    <div class="form-group col-sm-12">
+					    <div class="form-group">
 					        {!! Form::label('en_name',trans('admin.en_name')) !!}
 					        {!! Form::text('en_name',$edit->en_name,['class'=>'form-control']) !!}
 					         <p class="help-block">{{$errors->first('en_name')}}</p>
 					     </div>
-					      <div class="form-group col-sm-12">
+					      <div class="form-group">
 					          {!! Form::label('ar_name',trans('admin.ar_name')) !!}
 					          {!! Form::text('ar_name',$edit->ar_name,['class'=>'form-control']) !!}
 					          <p class="help-block">{{$errors->first('ar_name')}}</p>
 					      </div>
-					          <div class=" col-sm-12">
-
-          <img src="{{url('/upload/products/'.$edit->image)}}" style="width: 150px;height: 150px;" />
-
-      </div>
-      <div class="form-group col-sm-12">
-          {!! Form::label('image',trans('admin.photo')) !!}
-          {!! Form::file('image',['class'=>'form-control']) !!}
-          <p class="help-block">{{$errors->first('image')}}</p>
-      </div>
-      <div class=" col-sm-12">
 							@if(count($department) > 0 and $edit->parent > 0)
 							<script type="text/javascript">
 							$(document).on('click','.movedep',function(){
@@ -80,7 +69,7 @@
 										}else{
 											
 											$.ajax({
-												url:'{{url(app('aurl').'/department_product/check/parent')}}',
+												url:'{{url(app('v').'/department_product/check/parent')}}',
 												type:'post',
 												dataType:'json',
 												data:{parent:parent,'_token':'{!! csrf_token() !!}'},
@@ -113,7 +102,7 @@
 							</div>
 								<p><i class="fa fa-spinner fa-spin fa-2x hidden spin_dep"></i></p>
 							</div>	
-                  </div>
+
 							<footer>
 								<button type="submit" class="btn btn-primary">
 									{{trans('admin.save')}}

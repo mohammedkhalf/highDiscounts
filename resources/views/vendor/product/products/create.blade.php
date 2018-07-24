@@ -16,7 +16,7 @@
 		<!-- widget content -->
 		<div class="widget-body no-padding">
 						
-					{!! Form::open(['url'=>app('aurl').'/products','id'=>'review-form','class'=>'smart-form','files'=>true]) !!}
+					{!! Form::open(['url'=>app('v').'/products','id'=>'review-form','class'=>'smart-form','files'=>true]) !!}
 
  <div class="form-group col-sm-12">
         {!! Form::label('en_name',trans('admin.en_name')) !!}
@@ -131,7 +131,7 @@
                         }else{
 
                             $.ajax({
-                                url:'{{url(app('aurl').'/department_product/check/parent')}}',
+                                url:'{{url(app('v').'/department_product/check/parent')}}',
                                 type:'post',
                                 dataType:'json',
                                 data:{parent:parent,'_token':'{!! csrf_token() !!}'},

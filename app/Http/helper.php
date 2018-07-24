@@ -11,6 +11,12 @@ if (!function_exists('aurl')) {
         return url('admin/' . $url);
     }
 }
+if (!function_exists('v')) {
+    function v($url = null)
+    {
+        return url('v/' . $url);
+    }
+}
 
 if (!function_exists('sett')) {
     function sett()

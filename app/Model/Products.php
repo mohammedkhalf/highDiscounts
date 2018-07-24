@@ -25,4 +25,8 @@ class Products extends Model
     {
         return $this->hasMany('App\Model\ProductsSize', 'product_id', 'id');
     }
+       public function product_dep() {
+
+        return $this->belongsTo('App\Model\DepartmentProducts', 'dep_id', 'id');
+    }
 }

@@ -10,54 +10,57 @@
 
 	<!-- Small boxes (Stat box) -->
 
-	     <div class="panel-heading">
-            <h5 class="panel-title">{{$title}}</h5>
-            <div class="heading-elements">
-                <ul class="icons-list">
-                    <li><a href="{{url(app('aurl').'/department_product/create')}}"><span class="label border-left-primary label-striped">{{trans('admin.add')}}</span></a>
-                    </li>
-                    <li><a data-action="collapse"></a></li>
-                    <li><a data-action="reload"></a></li>
-                    <li><a data-action="close"></a></li>
-                </ul>
-            </div>
-        </div>
+	<div class="box box-info">
+		<div class="box-header">
+			<div class="col-md-2">
+				<h3 class="box-title">
+					<a href="{{url(app('v').'/department_product/create')}}" class="btn  btn-success btn-app">
+						<i class="fa fa-plus"></i>	{{trans('admin.add')}}
+					</a>
+				</h3>
+			</div>
+			<div class="col-md-4 col-md-offset-2">
+				<h3>
+					
+				</h3>
+			</div>
+		</div>
+	</div>
 
-			<table class="table datatable-button-html5-columns">
-					<thead>
+	<section class="content">
+		<!-- widget content -->
+		<div class="widget-body no-padding">
+
+			<table class="table table-striped table-bordered table-hovered">
 				<tr>
 					<td>{{ trans('admin.country_name_en') }}</td>
 						<td>{{ trans('admin.country_name_ar') }}</td>
-					<td>{{ trans('admin.photo') }}</td>
-					<td>{{trans('admin.edit')}}</td>
-		 						<td>{{trans('admin.delete')}}</td>
+					
+					<td>{{trans('admin.action')}}</td>
 				</tr>
-				</thead>
 				@foreach($alldep as $dep)
 					<tr>
 							<td>
 								@if(App\Model\DepartmentProducts::where('parent','=',$dep->id)->count() > 0)
-									<a href="{{url(app('aurl').'/department_product?department='.$dep->id)}}">{{ $dep->en_name}}</a>
+									<a href="{{url(app('v').'/department_product?department='.$dep->id)}}">{{ $dep->en_name}}</a>
 								@else
 									{{ $dep->en_name }}
 								@endif
 							</td>
 							<td>
 								@if(App\Model\DepartmentProducts::where('parent','=',$dep->id)->count() > 0)
-									<a href="{{url(app('aurl').'/department_product?department='.$dep->id)}}">{{ $dep->ar_name }}</a>
+									<a href="{{url(app('v').'/department_product?department='.$dep->id)}}">{{ $dep->ar_name }}</a>
 								@else
-									{{ $dep->ar_name }}
+									{{ $dep->en_name }}
 								@endif
 							</td>
-							<td><img src="{{url('/upload/products/'.$dep->image)}}" style="width: 150px;height: 100px;" />
-							</td>
+						
 						<td>
-						<a href="{{url(app('aurl').'/department_product/'.$dep->id.'/edit')}}" class="btn btn-info">{{trans('admin.edit')}}</a>
+						<a href="{{url(app('v').'/department_product/'.$dep->id.'/edit')}}" class="btn btn-info">{{trans('admin.edit')}}</a>
 
-												{!! Form::open(['method'=>'delete','url'=>app('aurl').'/department_product/'.$dep->id,'style'=>'display:inline','class'=>'form'.$dep->id]) !!}
+												{!! Form::open(['method'=>'delete','url'=>app('v').'/department_product/'.$dep->id,'style'=>'display:inline','class'=>'form'.$dep->id]) !!}
 
-						</td>
-						<td>
+						
 						<a type="button" href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
 								{{trans('admin.delete')}}
 							</a>
@@ -74,7 +77,7 @@
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{trans('admin.no')}}</button>
-											<button  href="{{url(app('aurl').'/department_product/'.$dep->id)}}" type="submit" class="btn btn-outline">{{trans('admin.yes')}}</button>
+											<button  href="{{url(app('v').'/department_product/'.$dep->id)}}" type="submit" class="btn btn-outline">{{trans('admin.yes')}}</button>
 										</div>
 									</div>
 									<!-- /.modal-content -->
@@ -87,9 +90,13 @@
 					</tr>
 				@endforeach
 			</table>
-{!! str_replace('/?','?',$alldep->render()) !!}
+
 
 			<!-- end widget content -->
+
+		</div>
+		<!-- end widget div -->
+	</section>
 	</div>
 	<!-- end widget -->
 

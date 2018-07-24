@@ -38,10 +38,10 @@
                                 <li>
                                     <a href="#"><i class="icon-cart2"></i> <span><?php echo e(trans('admin.products')); ?></span></a>
                                     <ul>
-                                        <li <?php echo e((Request::is('admin/product/department') ? ' class=active' : '')); ?>><a
-                                                    href="<?php echo e(aurl('products')); ?>"><?php echo e(trans('admin.allproducts')); ?></a></li>
-                                        <li <?php echo e((Request::is('admin/product/department') ? ' class=active' : '')); ?>><a
-                                                    href="<?php echo e(aurl('products/create')); ?>"><?php echo e(trans('admin.addproducts')); ?></a>
+                                        <li <?php echo e((Request::is('vendor/product/department') ? ' class=active' : '')); ?>><a
+                                                    href="<?php echo e(url('vendor/products')); ?>"><?php echo e(trans('admin.allproducts')); ?></a></li>
+                                        <li <?php echo e((Request::is('vendor/product/department') ? ' class=active' : '')); ?>><a
+                                                    href="<?php echo e(url('vendor/products/create')); ?>"><?php echo e(trans('admin.addproducts')); ?></a>
                                         </li>
                                     </ul>
 
