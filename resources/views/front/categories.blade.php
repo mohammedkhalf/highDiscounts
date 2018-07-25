@@ -14,12 +14,13 @@
 
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">{{trans('admin.categories')}}</h2>
-                    @foreach($categories as $category)
+                    @foreach($departments as $department)
                         <div class="thubmnail-recent">
+                            <img src="{{url('upload/products/'.$department->image)}}" class="recent-thumb" alt="">
                             @if(lang() == 'ar')
-                                <h2><a href="single-product.html">{{$category->category_ar_name}}</a></h2>
+                                <h2><a href="single-product.html">{{$department->ar_name}}</a></h2>
                             @else
-                                <h2><a href="single-product.html">{{$category->category_en_name}}</a></h2>
+                                <h2><a href="single-product.html">{{$department->en_name}}</a></h2>
                             @endif
                         </div>
                     @endforeach
