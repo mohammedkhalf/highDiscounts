@@ -31,7 +31,13 @@
                         <div class="product-upper">
                             <img src="{{url('upload/products/'.$product->photo)}}" alt="">
                         </div>
-                        <h2><a href="{{url('/single_product/'.$product->id)}}">{{$product->en_title}}</a></h2>
+                        <h2><a href="{{url('/single_product/'.$product->id)}}">
+                                @if(lang() == 'ar')
+                                {{$product->ar_title}}
+                                    @else
+                                    {{$product->en_title}}
+                                    @endif
+                            </a></h2>
                         <div class="product-carousel-price">
                             <ins>{{$product->price}}</ins>
                         </div>

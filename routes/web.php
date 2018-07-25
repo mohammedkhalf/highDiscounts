@@ -63,7 +63,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
         Route::get('/single_product/{id}', 'HomeController@single');
 
         Route::get('/allproducts','HomeController@products');
-        Route::get('/allcategories','HomeController@categories');
+        Route::get('/alldepartments','HomeController@departments');
 
     });
 
