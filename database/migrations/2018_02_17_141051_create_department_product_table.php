@@ -17,7 +17,7 @@ class CreateDepartmentProductTable extends Migration
             $table->string('image')->nullable();
             $table->string('ar_name');
             $table->string('en_name');
-            $table->integer('parent');
+            $table->integer('parent')->nullable();
             $table->timestamps();
         });
     }
