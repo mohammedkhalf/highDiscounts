@@ -50,6 +50,7 @@ foreach ($singletonarray as $key => $value) {
 //////// SingleTon End
 Route::group(['middleware' => 'Maintenance'], function () {
     Route::group(['namespace' => 'Web'], function () {
+        Route::get('/allproducts','HomeController@products');
         Route::get('/add-to-cart/{id}',[
             'uses' => 'HomeController@getAddToCart',
             'as' => 'product.addToCart',
