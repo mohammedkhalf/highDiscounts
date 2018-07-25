@@ -41,13 +41,12 @@ class DepProductController extends Controller
             ]);
     }
 
-
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         $department = Dep::where('parent','=',0)->pluck('en_name','id')->all();/*
@@ -101,8 +100,6 @@ class DepProductController extends Controller
         return back();
     }
 
- 
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -118,8 +115,6 @@ class DepProductController extends Controller
             'edit'=>$dep,
         ]);
     }
-
-
 
     public function check_parent(Request $request)
     {

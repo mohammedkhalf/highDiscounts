@@ -28,6 +28,7 @@ return [
      *
      */
 
+    'similer_product' => 'منتجات متشابهه',
     /***
      *
      *settings page
