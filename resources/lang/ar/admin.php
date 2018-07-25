@@ -8,6 +8,7 @@ return [
      *
      *
      */
+    'categories' => 'الفئات',
     'dashboard' => 'لوحه التحكم',
     'admins' => 'المسؤولين',
     'alladmins' => 'كل المسؤولين',

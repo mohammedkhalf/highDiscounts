@@ -103,7 +103,7 @@ return [
 
 
      /* debartments */
-     'categories'         => 'Product Categories',
+     'categories'         => 'Categories',
      'depatments'         => 'Departments',
      'department'         => 'Department',
      'department_product' => 'Product Departments',
