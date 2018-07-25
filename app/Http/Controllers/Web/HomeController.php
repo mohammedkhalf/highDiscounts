@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Model\Cart ;
-
+use App\Model\Category;
 use App\Model\Products ;
 use App\Model\ProductsGallary ;
 use App\Model\ProductsColor ;
@@ -274,5 +274,12 @@ class HomeController extends Controller
     {
         $products=Products::paginate(12);
         return view('front.shop')->with('products',$products);
+    }
+    public function categories()
+    {
+        $categories=Category::whereNull('parent')->get();
+//        return $categories;
+//        die();
+        return view('front.categories')->with('categories',$categories);
     }
 }
