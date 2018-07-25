@@ -34,7 +34,8 @@ class HomeController extends Controller
        $product  = Products::find($id);
         $department = Dep::where('id','=',$product->dep_id)->pluck('en_name');
         $similarProduct = Products::where('dep_id',$product->dep_id)->take(3)->orderBy('id','desc')->get();
-        return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct]);
+        $ratedProduct = Products::where('dep_id',$product->dep_id)->get();
+        return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct ,'ratedProduct'=>$ratedProduct]);
     }
    public function getAddToCart(Request $request, $id)
     {
