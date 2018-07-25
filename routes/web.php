@@ -63,7 +63,6 @@ Route::group(['middleware' => 'Maintenance'], function () {
 
         Route::get('/single_product/{id}', 'HomeController@single');
 
-
     });
 
     Route::POST('/logout', 'SessionController@destroy');
