@@ -169,7 +169,7 @@
                                         <img src="{{url('/upload/products/'.$rated->photo)}}"  alt="{{$rated->en_title}}" />
                                         <div class="product-hover">
                                             <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                            <a href="{{url('/single_product/'.$rated->id)}}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                         </div>
                                     </div>
 
