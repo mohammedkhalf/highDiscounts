@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Model\Cart ;
+//use App\Model\DepartmentProducts;
 use App\Model\Products ;
 use App\Model\ProductsGallary ;
 use App\Model\ProductsColor ;
@@ -32,8 +33,9 @@ class HomeController extends Controller
     {
        $product  = Products::find($id);
         $department = Dep::where('id','=',$product->dep_id)->pluck('en_name');
-
-        return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product]);
+        $similarProduct = Products::where('dep_id',$product->dep_id)->take(3)->orderBy('id','desc')->get();
+        $ratedProduct = Products::where('dep_id',$product->dep_id)->get();
+        return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct ,'ratedProduct'=>$ratedProduct]);
     }
    public function getAddToCart(Request $request, $id)
     {
@@ -267,5 +269,19 @@ class HomeController extends Controller
             }
         session()->flash('success',trans('admin.deleted'));
         return back();
+    }
+
+    public function products()
+    {
+        $products=Products::paginate(12);
+        return view('front.shop')->with('products',$products);
+    }
+
+    public function departments()
+    {
+        $departments=Dep::whereNull('parent')->get();
+//        return $departments;
+//        die();
+       return view('front.categories')->with('departments',$departments);
     }
 }

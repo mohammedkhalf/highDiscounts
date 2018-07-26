@@ -65,9 +65,9 @@
                             </a>
 
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo e(url('/en')); ?>" class="english"><img
+                                <li><a href="<?php echo e(url('lang/en')); ?>" class="english"><img
                                                 src="<?php echo e(url('/')); ?>/adminpanel/assets/images/flags/gb.png" alt=""> English</a></li>
-                                <li><a href="<?php echo e(url('/ar')); ?>" class="russian"><img
+                                <li><a href="<?php echo e(url('lang/ar')); ?>" class="russian"><img
                                                 src="<?php echo e(url('/')); ?>/adminpanel/assets/images/flags/eg.png" alt=""> عربى</a></li>
                             </ul>
                         </li>
