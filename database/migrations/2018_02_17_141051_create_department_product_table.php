@@ -16,7 +16,7 @@ class CreateDepartmentProductTable extends Migration
             $table->increments('id');
             $table->string('ar_name');
             $table->string('en_name');
-            $table->integer('parent');
+            $table->integer('parent')->default(0);
             $table->timestamps();
         });
     }
