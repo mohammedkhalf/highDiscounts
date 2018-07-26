@@ -60,9 +60,14 @@ class HomeController extends Controller
     }
     $oldCart =Session::get('cart') ;
     $cart = new Cart($oldCart);
-$product = ShoppingCart::where('user_id','=',Auth::user()->id)->get();
-
-    return view(app('f').'.shopping-cart' , ['product'=>$product]);
+    $product = ShoppingCart::where('user_id','=',Auth::user()->id)->get();
+    
+    foreach ($product as $products) {
+       $product_id = $products->product_id;
+      $price_total = Products::where('id', $product_id)->get();
+    }
+   $total=  $price_total;
+    return view(app('f').'.shopping-cart' , ['product'=>$product , 'total'=>$total]);
     }
 
     /**
