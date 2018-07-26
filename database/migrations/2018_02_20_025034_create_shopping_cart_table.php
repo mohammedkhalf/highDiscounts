@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDepartmentProductTable extends Migration
+class CreateShoppingCartTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,10 @@ class CreateDepartmentProductTable extends Migration
      */
     public function up()
     {
-        Schema::create('department_products', function (Blueprint $table){
+        Schema::create('shopping_cart', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('image')->nullable();
-            $table->string('ar_name');
-            $table->string('en_name');
-            $table->integer('parent')->default(0);
-           
+            $table->integer('user_id');
+            $table->integer('product_id');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateDepartmentProductTable extends Migration
      */
     public function down()
     {
-        Schema::drop('department_products');
+        Schema::drop('shopping_cart');
     }
 }

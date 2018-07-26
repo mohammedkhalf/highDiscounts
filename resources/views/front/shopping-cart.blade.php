@@ -7,7 +7,7 @@
     {{trans('front.home')}}
 @endsection
 @section('content')
-     @if (Session::has('cart'))
+     @if(!empty($product->shopping()->get()))
     <div class="product-big-title-area">
         <div class="container">
             <div class="row">
@@ -94,7 +94,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                         @foreach($products as $product)
+                                         @foreach($product->shopping()->get() as $products)
                                            
                                         <tr class="cart_item">
                                             <td class="product-remove">
@@ -104,17 +104,17 @@
                                       
 
                                             <td class="product-name">
-                                                <a href="single-product.html">{{$product['items']['title']}}</a> 
+                                                <a href="single-product.html">{{$products->en_title}}</a> 
                                             </td>
 
                                             <td class="product-price">
-                                                <span class="amount">{{$product['price']}}</span> 
+                                                <span class="amount">{{$products->price}}</span> 
                                             </td>
 
                                             <td class="product-quantity">
                                                 <div class="quantity buttons_added">
                                                     <input type="button" class="minus" value="-">
-                                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="{{$product['qty']}}" min="0" step="1">
+                                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="{{$products['qty']}}" min="0" step="1">
                                                     <input type="button" class="plus" value="+">
                                                 </div>
                                             </td>
