@@ -33,7 +33,7 @@
                     }
                 });
             }
-        
+
     </script>
 
     <div class="single-product-area">
