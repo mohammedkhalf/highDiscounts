@@ -124,13 +124,8 @@
 
                                            
                                         </tr>
-  
-                                         @endforeach
-                                             <?php 
-                    
-           $total      =     $product->shoppings()->price ;
 
-                   ?>
+                                         @endforeach
                                         <tr>
                                             <td class="actions" colspan="6">
                                            
