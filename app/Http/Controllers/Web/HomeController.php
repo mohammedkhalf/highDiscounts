@@ -290,4 +290,11 @@ $product = ShoppingCart::where('user_id','=',Auth::user()->id)->get();
 //        die();
        return view('front.categories')->with('departments',$departments);
     }
+    public function childDepartments(Request $request)
+    {
+        $data =Dep::where('parent','=',$request->id)->get();
+//        return $data;
+//        die();
+        return response()->json($data);
+    }
 }

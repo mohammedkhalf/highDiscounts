@@ -58,6 +58,8 @@ Route::group(['middleware' => 'Maintenance'], function () {
         Route::get('/allproducts','HomeController@products');
         Route::get('/alldepartments','HomeController@departments');
 
+        Route::get('/singledep','HomeController@childDepartments');
+
     });
 
     Route::POST('/logout', 'SessionController@destroy');

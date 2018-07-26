@@ -12,20 +12,31 @@
             function reply_click(clicked_id)
             {
                 alert(clicked_id);
-                var id=clicked_id
+                var id=clicked_id;
+                // console.log(id);
+                var op="";
                 $.ajax({
                     type: 'get',
-                    url: '{!! \Illuminate\Support\Facades\URL::to('getcity')!!}',
-                    data: {'id': gov_id },
+                    url: '{!! \Illuminate\Support\Facades\URL::to('/singledep')!!}',
+                    data: {'id': id },
                     success: function (data) {
-                        /* console.log('success');
-                         console.log(data);*/
-                        op += '<option value="0" selected disabled>من فضلك اختر المنطقه</option>';
+                        // console.log('success');
+                        //  console.log(data);
                         for (var i = 0; i < data.length; i++) {
-                            op += '<option value="' + data[i].id + '">' + data[i].c_title + '</option>';
+
+                      op+=' <div class="single-product">\n' +
+                          '<div class="product-f-image">\n' +
+                          '<img src="upload/products/'+ data[i].image+'" alt="">\n' +
+                          '<div class="product-hover">\n' +
+                          '</div>\n' +
+                          '</div>\n' +
+                          '<h2><a href="">'+data[i].en_name+'</a></h2>\n' +
+                          ' <div class="product-carousel-price">\n' +
+                          ' </div>\n' +
+                          ' </div>'
                         }
-                        $('#gov-city').html("");
-                        $('#gov-city').append(op);
+                        $('#dep').html("");
+                        $('#dep').append(op);
                     },
                     error: function () {
                         console.log('error');
@@ -57,9 +68,33 @@
 
                 </div>
 
+<div class="col-md-8" >
+    <div class="related-products-wrapper">
+        <h2 class="related-products-title">Categoiers</h2>
+        <div class="related-products-carousel" id="dep">
+            {{--<div class="single-product">--}}
+            {{--<div class="product-f-image">--}}
+            {{--<img src="img/product-1.jpg" alt="">--}}
+            {{--<div class="product-hover">--}}
+            {{--</div>--}}
+            {{--</div>--}}
+
+            {{--<h2><a href="">Sony Smart TV - 2015</a></h2>--}}
+
+            {{--<div class="product-carousel-price">--}}
+            {{--<ins>$700.00</ins> <del>$100.00</del>--}}
+            {{--</div>--}}
+            {{--</div>--}}
+
+        </div>
+    </div>
+</div>
+
+
 
             </div>
         </div>
     </div>
+
 
 @endsection
