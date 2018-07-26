@@ -279,7 +279,7 @@ class HomeController extends Controller
 
     public function departments()
     {
-        $departments=Dep::whereNull('parent')->get();
+        $departments=Dep::where('parent',0)->get();
 //        return $departments;
 //        die();
        return view('front.categories')->with('departments',$departments);
