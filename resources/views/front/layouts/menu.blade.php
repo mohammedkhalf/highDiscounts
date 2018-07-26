@@ -20,7 +20,7 @@
                     <li><a href="checkout.html">Checkout</a></li>
                     <li{{{ (Request::is('alldepartments') ? ' class=active' : '') }}}><a href="{{url('/alldepartments')}}">Category</a></li>
                     <li><a href="#">Others</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li{{{ (Request::is('contactus') ? ' class=active' : '') }}}><a href="{{url('/contactus')}}">Contact</a></li>
                 </ul>
             </div>
         </div>

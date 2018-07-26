@@ -15,19 +15,28 @@
                 <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
 
                     <p id="billing_postcode_field" class="form-row form-row-last address-field validate-required validate-postcode" data-o_class="form-row form-row-last address-field validate-required validate-postcode">
-                        <label class="" for="billing_postcode">Postcode <abbr title="required" class="required">*</abbr>
+                        <label class="" for="name">Name <abbr title="required" class="required">*</abbr>
                         </label>
-                        <input type="text" value="" placeholder="Postcode / Zip" id="billing_postcode" name="billing_postcode" class="input-text ">
+                        <input type="text"  placeholder="name" id="name" name="name" class="input-text ">
                     </p>
+
                     <p id="billing_postcode_field" class="form-row form-row-last address-field validate-required validate-postcode" data-o_class="form-row form-row-last address-field validate-required validate-postcode">
-                        <label class="" for="billing_postcode">Postcode <abbr title="required" class="required">*</abbr>
+                        <label  for="email">Email <abbr title="required" class="required">*</abbr>
                         </label>
-                        <input type="text" value="" placeholder="Postcode / Zip" id="billing_postcode" name="billing_postcode" class="input-text ">
+                        <input type="email"  placeholder="Email" id="email" name="email" class="input-text ">
                     </p>
+
                     <p id="billing_postcode_field" class="form-row form-row-last address-field validate-required validate-postcode" data-o_class="form-row form-row-last address-field validate-required validate-postcode">
-                        <label class="" for="billing_postcode">Postcode <abbr title="required" class="required">*</abbr>
+                        <label  for="subject">Subject <abbr title="required" class="required">*</abbr>
                         </label>
-                        <input type="text" value="" placeholder="Postcode / Zip" id="billing_postcode" name="billing_postcode" class="input-text ">
+                        <input type="text"  placeholder="subject" id="subject" name="subject" class="input-text ">
+                    </p>
+
+                    <p id="billing_postcode_field" class="form-row form-row-last address-field validate-required validate-postcode" data-o_class="form-row form-row-last address-field validate-required validate-postcode">
+                        <label  for="message">Message <abbr title="required" class="required">*</abbr>
+                        </label>
+
+                    <textarea  placeholder="message" id="message" name="message" class="input-text "></textarea>
                     </p>
 
                 </form>
