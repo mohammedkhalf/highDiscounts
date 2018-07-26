@@ -37,7 +37,8 @@ class HomeController extends Controller
         $department = Dep::where('id','=',$product->dep_id)->pluck('en_name');
         $similarProduct = Products::where('dep_id',$product->dep_id)->take(3)->orderBy('id','desc')->get();
         $ratedProduct = Products::where('dep_id',$product->dep_id)->get();
-        return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct ,'ratedProduct'=>$ratedProduct]);
+        $lastPosted = Products::take(5)->orderBy('id','desc')->get();
+        return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct ,'ratedProduct'=>$ratedProduct,'lastPosted'=>$lastPosted]);
     }
    public function getAddToCart(Request $request, $id)
     {
@@ -59,9 +60,9 @@ class HomeController extends Controller
     }
     $oldCart =Session::get('cart') ;
     $cart = new Cart($oldCart);
-$product = ShoppingCart::where('user_id','=',Auth::user()->id)->pluck('product_id','id');
+$product = ShoppingCart::where('user_id','=',Auth::user()->id)->get();
 
-    return view(app('f').'.shopping-cart' , ['product'=>$product, 'totalPrice' => $cart->totalPrice]);
+    return view(app('f').'.shopping-cart' , ['product'=>$product]);
     }
 
     /**

@@ -43,8 +43,5 @@ class Products extends Model
 
         return $this->belongsTo('App\Model\DepartmentProducts', 'dep_id', 'id');
     }
-        public function shopping() {
 
-        return $this->belongsTo('App\Model\ShoppingCart', 'product_id', 'id');
-    }
 }

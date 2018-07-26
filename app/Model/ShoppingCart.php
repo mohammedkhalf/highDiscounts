@@ -15,5 +15,8 @@ class ShoppingCart extends Model
             'user_id',
             'product_id',
         ];
- 
+         public function shoppings() {
+
+        return $this->belongsTo('App\Model\Products', 'product_id', 'id');
+    }
 }
