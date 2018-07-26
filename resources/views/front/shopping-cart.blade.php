@@ -7,7 +7,7 @@
     {{trans('front.home')}}
 @endsection
 @section('content')
-     @if(!empty($product->shopping()->get()))
+     @if (Session::has('cart'))
     <div class="product-big-title-area">
         <div class="container">
             <div class="row">
@@ -85,7 +85,8 @@
                                 <table cellspacing="0" class="shop_table cart">
                                     <thead>
                                         <tr>
-                                            <th class="product-remove">&nbsp;</th>
+                                             <th class="product-remove">&nbsp;</th>
+                                            <th class="product-thumbnail">&nbsp;</th>
                                          
                                             <th class="product-name">Product</th>
                                             <th class="product-price">Price</th>
@@ -94,34 +95,42 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                         @foreach($product->shopping()->get() as $products)
-                                           
+                                         @foreach($product as $products)
+               
                                         <tr class="cart_item">
                                             <td class="product-remove">
                                                 <a title="Remove this item" class="remove" href="#">×</a> 
                                             </td>
 
-                                      
+                                           <td class="product-thumbnail">
+                                                <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{url('/upload/products/'.$products->shoppings()->first()->photo)}}"></a>
+                                            </td>
 
                                             <td class="product-name">
-                                                <a href="single-product.html">{{$products->en_title}}</a> 
+                                                <a href="single-product.html">{{$products->shoppings()->first()->en_title}}</a> 
                                             </td>
 
                                             <td class="product-price">
-                                                <span class="amount">{{$products->price}}</span> 
+                                                <span class="amount">{{$products->shoppings()->first()->price}}</span> 
                                             </td>
 
                                             <td class="product-quantity">
                                                 <div class="quantity buttons_added">
                                                     <input type="button" class="minus" value="-">
-                                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="{{$products['qty']}}" min="0" step="1">
+                                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="" min="0" step="1">
                                                     <input type="button" class="plus" value="+">
                                                 </div>
                                             </td>
 
                                            
                                         </tr>
+  
                                          @endforeach
+                                             <?php 
+                    
+           $total      =     $product->shoppings()->price ;
+
+                   ?>
                                         <tr>
                                             <td class="actions" colspan="6">
                                            
@@ -130,7 +139,7 @@
                                             </td>
                                              <td class="product-subtotal">
                                                 <label for="coupon_code">Total:</label>
-                                                <span class="amount">{{$totalPrice}}</span> 
+                                                <span class="amount">{{$total}}</span> 
                                             </td>
                                         </tr>
                                     </tbody>

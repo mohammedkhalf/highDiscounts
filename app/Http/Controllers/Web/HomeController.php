@@ -59,9 +59,9 @@ class HomeController extends Controller
     }
     $oldCart =Session::get('cart') ;
     $cart = new Cart($oldCart);
-$product = ShoppingCart::where('user_id','=',Auth::user()->id)->pluck('product_id','id');
+$product = ShoppingCart::where('user_id','=',Auth::user()->id)->get();
 
-    return view(app('f').'.shopping-cart' , ['product'=>$product, 'totalPrice' => $cart->totalPrice]);
+    return view(app('f').'.shopping-cart' , ['product'=>$product]);
     }
 
     /**

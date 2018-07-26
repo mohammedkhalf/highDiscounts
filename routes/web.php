@@ -147,10 +147,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
             'uses' => 'HomeController@getAddToCart',
             'as' => 'product.addToCart',
         ]);
-        Route::get('/shopping-cart',[
-            'uses' => 'HomeController@getCart',
-            'as' => 'product.shoppingCart',
-        ]);
+        Route::get('/shopping-cart', 'HomeController@getCart' );
         });
         Route::get('user', function () {
             return 'welcome user';
