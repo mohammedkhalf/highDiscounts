@@ -10,9 +10,11 @@ use App\Model\Products ;
 use App\Model\ProductsGallary ;
 use App\Model\ProductsColor ;
 use App\Model\ProductsSize ;
+use App\Model\ShoppingCart ;
 use App\Model\DepartmentProducts as Dep;
 use Validator;
 use Session;
+use Auth;
 class HomeController extends Controller
 {
 
@@ -43,10 +45,11 @@ class HomeController extends Controller
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->add($product , $product->id);
-
+        $adde = new ShoppingCart;
+        $adde->user_id    = Auth::user()->id;
+        $adde->product_id = $product->id;
+        $adde->save();
         $request->session()->put('cart', $cart);
-   
-
         return back();
     }
    public function getCart()
@@ -56,7 +59,9 @@ class HomeController extends Controller
     }
     $oldCart =Session::get('cart') ;
     $cart = new Cart($oldCart);
-    return view(app('f').'.shopping-cart' , ['product'=>$cart, 'totalPrice' => $cart->totalPrice]);
+$product = ShoppingCart::where('user_id','=',Auth::user()->id)->pluck('product_id','id');
+
+    return view(app('f').'.shopping-cart' , ['product'=>$product, 'totalPrice' => $cart->totalPrice]);
     }
 
     /**

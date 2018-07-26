@@ -7,7 +7,7 @@
     {{trans('front.home')}}
 @endsection
 @section('content')
-     @if (Session::has('cart'))
+     @if(!empty($product->shopping()->get()))
     <div class="product-big-title-area">
         <div class="container">
             <div class="row">
@@ -94,7 +94,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                         @foreach($product as $products)
+                                         @foreach($product->shopping()->get() as $products)
                                            
                                         <tr class="cart_item">
                                             <td class="product-remove">
@@ -104,11 +104,11 @@
                                       
 
                                             <td class="product-name">
-                                                <a href="single-product.html">{{$products['item']['en_title']}}</a> 
+                                                <a href="single-product.html">{{$products->en_title}}</a> 
                                             </td>
 
                                             <td class="product-price">
-                                                <span class="amount">{{$products['price']}}</span> 
+                                                <span class="amount">{{$products->price}}</span> 
                                             </td>
 
                                             <td class="product-quantity">
