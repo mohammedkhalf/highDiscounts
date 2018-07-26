@@ -52,11 +52,11 @@ class HomeController extends Controller
    public function getCart()
     {
     if (!Session::has('cart')) {
-      return view(app('f').'.shopping-cart');
+      return view(app('f').'.shopping-cart',['product'=>null]);
     }
     $oldCart =Session::get('cart') ;
     $cart = new Cart($oldCart);
-    return view(app('f').'.shopping-cart' , ['products'=>$cart, 'totalPrice' => $cart->totalPrice]);
+    return view(app('f').'.shopping-cart' , ['product'=>$cart, 'totalPrice' => $cart->totalPrice]);
     }
 
     /**

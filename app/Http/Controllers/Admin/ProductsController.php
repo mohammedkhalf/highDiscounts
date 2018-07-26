@@ -69,8 +69,7 @@ class ProductsController extends Controller
         {
             return back()->withInput()->withErrors($Validator);
         }else{
-            $add = new Products ;
-
+            $add = new Products;
             $file     = $request->file('photo');
             $path     = public_path().'/upload/products';
             $filename = time().rand(11111,00000).'.'.$file->getClientOriginalExtension();
@@ -79,14 +78,14 @@ class ProductsController extends Controller
                 $add->photo = $filename;
             }
           
-            $add->user_id         = admin()->user()->id;
-            $add->user_type         = 'admin';
+            $add->user_id             = admin()->user()->id;
+            $add->user_type           = 'admin';
             $add->dep_id              = $request->input('parent');
             $add->en_title            = $request->input('en_name');
             $add->ar_title            = $request->input('ar_name');
             $add->en_content          = $request->input('en_content');
             $add->ar_content          = $request->input('ar_content');
-            $add->price          = $request->input('price');
+            $add->price               = $request->input('price');
             $add->color               = $request->input('color');
             $add->size                = $request->input('size');
             $add->save();
