@@ -150,6 +150,8 @@ Route::group(['middleware' => 'Maintenance'], function () {
             'as' => 'product.addToCart',
         ]);
         Route::get('/shopping-cart', 'HomeController@getCart' );
+        Route::delete('/destroyitem/{id}', 'HomeController@destroyitem');
+        Route::get('/checkout', 'HomeController@checkout' );
         });
         Route::get('user', function () {
             return 'welcome user';

@@ -90,7 +90,7 @@
                                          
                                             <th class="product-name">Product</th>
                                             <th class="product-price">Price</th>
-                                            <th class="product-quantity">Quantity</th>
+                                          
                                           
                                         </tr>
                                     </thead>
@@ -99,7 +99,7 @@
                
                                         <tr class="cart_item">
                                             <td class="product-remove">
-                                                <a title="Remove this item" class="remove" href="#">×</a> 
+                                                <a title="Remove this item" class="remove" href="{{url(app('f').'/department_product/'.$products->id)}}">×</a> 
                                             </td>
 
                                            <td class="product-thumbnail">
@@ -114,13 +114,7 @@
                                                 <span class="amount">{{$products->shoppings()->first()->price}}</span> 
                                             </td>
 
-                                            <td class="product-quantity">
-                                                <div class="quantity buttons_added">
-                                                    <input type="button" class="minus" value="-">
-                                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="" min="0" step="1">
-                                                    <input type="button" class="plus" value="+">
-                                                </div>
-                                            </td>
+                                       
 
                                            
                                         </tr>
