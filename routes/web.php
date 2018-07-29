@@ -60,7 +60,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
 
         Route::get('/singledep','HomeController@childDepartments');
         Route::get('/contactus','HomeController@contactus');
-        Route::post('/insertcontactus','HomeController@addContact');
+        Route::POST('/insertcontactus','HomeController@addContact');
 
     });
 
