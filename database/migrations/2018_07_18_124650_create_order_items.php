@@ -17,10 +17,7 @@ class CreateOrderItems extends Migration
             $table->increments('id');
             $table->integer('product_id');
             $table->integer('order_id');
-            $table->string('order_item_status_code');
-            $table->integer('item_quantity');
             $table->integer('item_price');
-            $table->string('item_details')->nullable();
             $table->timestamps();
         });
     }
