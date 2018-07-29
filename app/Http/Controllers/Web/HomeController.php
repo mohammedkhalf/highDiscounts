@@ -11,6 +11,7 @@ use App\Model\ProductsGallary ;
 use App\Model\ProductsColor ;
 use App\Model\ProductsSize ;
 use App\Model\ShoppingCart ;
+use App\Model\Country ;
 use App\Model\DepartmentProducts as Dep;
 use App\Model\ContactUs;
 use Validator;
@@ -74,18 +75,6 @@ class HomeController extends Controller
    
     return view(app('f').'.shopping-cart' , ['product'=>$product , 'total'=>$total]);
     }
-
-
-    public function checkout(Request $request)
-   {
-        $products  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
-         $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
-
-       return view(app('f').'.checkout', ['product'=>$product , 'total'=>$total]);
-   }
-
-
-
     /**
      * Remove the specified item from shopping_cart.
      *
@@ -98,7 +87,15 @@ class HomeController extends Controller
 
     }
 
- 
+     public function checkout(Request $request)
+   {
+         $cities =  Country::where('parent','!=',null)->get()->all();
+         $product  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
+         $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
+
+       return view(app('f').'.checkout', ['product'=>$product , 'total'=>$total ,'cities'=>$cities]);
+   }
+
    
 
 
