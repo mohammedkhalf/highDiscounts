@@ -95,7 +95,6 @@ class HomeController extends Controller
 
     public function PlaceOrder(Request $request)
     {
-
         $rules = [
 
             'city' => 'required',
@@ -104,12 +103,6 @@ class HomeController extends Controller
             'email' => 'required|email',
             'phone' => 'required|numeric',
         ];
-
-
-
-
-
-
         $Validator   = Validator::make($request->all(),$rules);
         $Validator->SetAttributeNames ([
             'city' => trans('admin.city'),
@@ -202,5 +195,5 @@ class HomeController extends Controller
         return redirect('/contactus')->with('success','this message has been send');
 
     }
-    
+
 }
