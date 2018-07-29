@@ -104,12 +104,6 @@ class HomeController extends Controller
             'email' => 'required|email',
             'phone' => 'required|numeric', 
         ];
-
-      
-
-
-
-
         $Validator   = Validator::make($request->all(),$rules);
         $Validator->SetAttributeNames ([
             'city' => trans('admin.city'),
