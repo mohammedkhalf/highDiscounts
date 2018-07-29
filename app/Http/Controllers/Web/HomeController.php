@@ -68,7 +68,7 @@ class HomeController extends Controller
     $oldCart =Session::get('cart') ;
     $cart = new Cart($oldCart);
     $product = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
-  $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');;
+  $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
  
    
    
@@ -76,13 +76,13 @@ class HomeController extends Controller
     }
 
 
-//    public function checkout(Request $request)
-//    {
-//        $products  = Products::find($id);
-//        $department = Dep::where('parent','=',$products->dep_id)->pluck('en_name','id');
-//
-//        return view(app('at').'.product.products.edit',['title'=>trans('admin.edit'),'department'=>$department,'products'=>$products]);
-//    }
+    public function checkout(Request $request)
+   {
+        $products  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
+         $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
+
+       return view(app('f').'.checkout', ['product'=>$product , 'total'=>$total]);
+   }
 
 
 
@@ -101,50 +101,10 @@ class HomeController extends Controller
  
    
 
-    /**
-     * Remove the specified sub-size from product_size.
-     *
-
-     */
-    public function destroysize($id) {
-        $delete = ProductsSize::find($id);
-     
-        $delete->delete();
-        session()->flash('success',trans('admin.deleted'));
-        return back();
-    }
 
 
-    public function destroy($id)
-    {
-        $delete =  Products::find($id);
-        if(!empty($delete->photo) and file_exists(public_path().'/upload/products/'.$delete->photo))
-        {
-            unlink(public_path().'/upload/products/'.$delete->photo);
-        }
-        $delete->delete();
-               $affected = ProductsGallary::where('product_id', '=', $id)->get()->all();
-                foreach ($affected as $affectedRows){
-                    if (!empty($affectedRows->media) and file_exists(public_path() . '/upload/products/' . $affectedRows->media)) {
-                        @unlink(public_path() . '/upload/products/' . $affectedRows->media);
-                          $affectedRows->delete();
-                    }
-            }
-                    $affectedcolorss = ProductsColor::where('product_id', '=', $id)->get()->all();
-                foreach ($affectedcolorss as $affectedRowsss){
-                 
-                          $affectedRowsss->delete();
-                  
-            }
-                       $affectedsizess = ProductsSize::where('product_id', '=', $id)->get()->all();
-                foreach ($affectedsizess as $affectedRowssss){
-                 
-                          $affectedRowssss->delete();
-                  
-            }
-        session()->flash('success',trans('admin.deleted'));
-        return back();
-    }
+
+
 
     public function products()
     {
