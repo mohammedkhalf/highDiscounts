@@ -83,11 +83,9 @@ class HomeController extends Controller
 
     public function PlaceOrder(Request $request)
     {
-<<<<<<< HEAD
-=======
+
         $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
 
->>>>>>> f21a5d548ab6206eb0ed49813fccbf3823f193ae
         $rules = [
 
             'city' => 'required',
