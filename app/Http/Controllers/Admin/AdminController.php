@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\ContactUs;
 use App\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -51,13 +52,11 @@ class AdminController extends Controller
         //
     }
 
-
     public function edit($id)
     {
         $adminId = Admin::find($id);
         return view('admin.admins.create', compact('adminId'));
     }
-
 
     public function update(Request $request, $id)
     {
@@ -81,5 +80,18 @@ class AdminController extends Controller
         //
     }
 
+
+    public function allContact()
+    {
+        $contacts=ContactUs::all();
+        return view(app('at').'.other.contact')->with('contacts',$contacts);
+    }
+
+    public function deleteContact($id)
+    {
+//        return "welcome";
+        ContactUs::destroy($id);
+        return redirect('admin/allcontact');
+    }
 
 }

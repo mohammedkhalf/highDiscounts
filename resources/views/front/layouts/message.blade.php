@@ -1,15 +1,15 @@
 @if(count($errors->all()))
-    <div class="alert alert-danger">
-    <span class="help-block">
-                                                      <small class="text-info">
+    {{--<div class="alert alert-danger">--}}
+    {{--<span class="help-block">--}}
+                                                      {{--<small class="text-info">--}}
 
-                                                          @foreach($errors->all() as $error)
+                                                          {{--@foreach($errors->all() as $error)--}}
 
-                                                              <li>{{$error}}</li>
-                                                          @endforeach
-                                                      </small>
-                                                </span>
-    </div>
+                                                              {{--<li>{{$error}}</li>--}}
+                                                          {{--@endforeach--}}
+                                                      {{--</small>--}}
+                                                {{--</span>--}}
+    {{--</div>--}}
 
 @endif
 
