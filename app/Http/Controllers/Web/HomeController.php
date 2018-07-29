@@ -36,7 +36,7 @@ class HomeController extends Controller
 
     public function single($id)
     {
-       $product  = Products::find($id);
+        $product  = Products::find($id);
         $department = Dep::where('id','=',$product->dep_id)->pluck('en_name');
         $similarProduct = Products::where('dep_id',$product->dep_id)->take(3)->orderBy('id','desc')->get();
         $ratedProduct = Products::where('dep_id',$product->dep_id)->get();
@@ -48,9 +48,9 @@ class HomeController extends Controller
 
 
 
-   public function getAddToCart(Request $request, $id)
+    public function getAddToCart(Request $request, $id)
     {
-       $product  = Products::find($id);
+        $product  = Products::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->add($product , $product->id);
@@ -62,19 +62,19 @@ class HomeController extends Controller
         $request->session()->put('cart', $cart);
         return back();
     }
-   public function getCart()
+    public function getCart()
     {
-    if (!Session::has('cart')) {
-      return view(app('f').'.shopping-cart',['product'=>null]);
-    }
-    $oldCart =Session::get('cart') ;
-    $cart = new Cart($oldCart);
-    $product = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
-  $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
- 
-   
-   
-    return view(app('f').'.shopping-cart' , ['product'=>$product , 'total'=>$total]);
+        if (!Session::has('cart')) {
+            return view(app('f').'.shopping-cart',['product'=>null]);
+        }
+        $oldCart =Session::get('cart') ;
+        $cart = new Cart($oldCart);
+        $product = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
+        $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
+
+
+
+        return view(app('f').'.shopping-cart' , ['product'=>$product , 'total'=>$total]);
     }
     /**
      * Remove the specified item from shopping_cart.
@@ -82,8 +82,8 @@ class HomeController extends Controller
 
      */
     public function destroyitem($id) {
-      $delete = ShoppingCart::find($id);
-      $delete->delete(); 
+        $delete = ShoppingCart::find($id);
+        $delete->delete();
         return back();
 
     }
@@ -94,28 +94,46 @@ class HomeController extends Controller
          $product  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
          $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
 
-       return view(app('f').'.checkout', ['product'=>$product , 'total'=>$total ,'cities'=>$cities]);
-   }
+    public function checkout()
+    {
+        $cities =  Country::where('parent','!=',null)->get()->all();
+        $product  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
+        $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
+
+        return view(app('f').'.checkout', ['product'=>$product , 'total'=>$total ,'cities'=>$cities]);
+    }
+
 
  public function PlaceOrder(Request $request)
    {
     $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
     $rules = [
+
+    public function PlaceOrder(Request $request)
+    {
+        $rules = [
+
             'city' => 'required',
             'name' => 'required',
             'address' => 'required',
             'email' => 'required|email',
             'phone' => 'required|numeric',
+
             
         ];
    $Validator   = Validator::make($request->all(),$rules);
+
+
+        ];
+        $Validator   = Validator::make($request->all(),$rules);
+
         $Validator->SetAttributeNames ([
             'city' => trans('admin.city'),
             'name' => trans('admin.name'),
             'address' => trans('admin.address'),
             'email' => trans('admin.email'),
             'phone' => trans('admin.phone'),
-           
+
 
         ]);
         if($Validator->fails())
@@ -123,7 +141,6 @@ class HomeController extends Controller
             return back()->withInput()->withErrors($Validator);
         }else{
             $add = new Order;
-        
             $add->user_id             = Auth::user()->id;
             $add->country_id          = $request->input('city');
             $add->name                = $request->input('name');
@@ -138,6 +155,12 @@ class HomeController extends Controller
             }
                    return back();
       }
+
+            $add->save();
+            session()->flash('success',trans('admin.orderplaced'));
+        }
+        return back();
+    }
 
 
 
@@ -155,7 +178,7 @@ class HomeController extends Controller
         $departments=Dep::where('parent',0)->get();
 //        return $departments;
 //        die();
-       return view('front.categories')->with('departments',$departments);
+        return view('front.categories')->with('departments',$departments);
     }
 
     public function childDepartments(Request $request)
@@ -173,7 +196,7 @@ class HomeController extends Controller
 
     public function addContact(Request $request)
     {
-      //  return
+        //  return
         $this->validate(request(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',

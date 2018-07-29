@@ -144,7 +144,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
 
     7/17/2018
     */
-    Route::group(['middleware' => ['UserMiddleware', 'auth']], function () {
+    Route::group(['middleware' => ['UserMiddleware']], function () {
 
     Route::group(['namespace' => 'Web'], function () {
         Route::get('/add-to-cart/{id}',[
