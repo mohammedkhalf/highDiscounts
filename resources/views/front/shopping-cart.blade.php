@@ -123,10 +123,9 @@
                                          @endforeach
                                         <tr>
                                             <td class="actions" colspan="6">
-                                           
-                                                
-                                                <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
-                                            </td>
+                                          <a type=""  class="btn btn-primary btn-rounded" href="{{url('/checkout')}}" >CHECKOUT</button>
+                                             
+                                            </a>
                                              <td class="product-subtotal">
                                                 <label for="coupon_code">Total:</label>
                                                 <span class="amount">{{$total}}</span> 

@@ -7,6 +7,7 @@
     {{trans('front.home')}}
 @endsection
 @section('content')
+@if ( $product != null)
     <div class="product-big-title-area">
         <div class="container">
             <div class="row">
@@ -81,6 +82,7 @@
                     <div class="product-content-right">
                         <div class="woocommerce">
                             <form enctype="multipart/form-data" action="{{url('/place')}}" class="checkout" method="post" name="checkout">
+                                {!! csrf_field() !!}
                                 <div id="customer_details" class="col2-set">
                                     <div class="col-1">
                                         <div class="woocommerce-billing-fields">
@@ -100,23 +102,27 @@
                                                 </label>
                                                 <input type="text" value="{{Auth::user()->name}}" placeholder="" id="billing_first_name" name="name" class="input-text ">
                                             </p>
+                                            <p class="help-block">{{$errors->first('name')}}</p>
                                             <div class="clear"></div>
                                             <p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
                                                 <label class="" for="billing_address_1">Address <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <input type="text" value="" placeholder="Street address" id="billing_address_1" name="address" class="input-text ">
                                             </p>
+                                            <p class="help-block">{{$errors->first('address')}}</p>
                                             <div class="clear"></div>
                                             <p id="billing_email_field" class="form-row form-row-first validate-required validate-email">
                                                 <label class="" for="billing_email">Email Address <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <input type="text" value="{{Auth::user()->email}}" placeholder="" id="billing_email" name="email" class="input-text ">
                                             </p>
+                                            <p class="help-block">{{$errors->first('email')}}</p>
                                             <p id="billing_phone_field" class="form-row form-row-last validate-required validate-phone">
                                                 <label class="" for="billing_phone">Phone <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <input type="text" value="" placeholder="" id="billing_phone" name="phone" class="input-text ">
                                             </p>
+                                            <p class="help-block">{{$errors->first('phone')}}</p>
                                             <div class="clear"></div>
                                         </div>
                                     </div>
@@ -236,4 +242,23 @@
             </div>
         </div>
     </div>
+    @else 
+<div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                @if(session()->has('success'))
+    <div class="alert alert-info">
+        <span class="help-block">
+            <small class="text-success">
+                <h4>{{session('success')}}</h4>
+            </small>
+        </span>
+    </div>
+      @endif
+                <h2>Now Items In The Cart!</h2>
+                </div>
+            </div>
+        </div>
+@endif
    @endsection

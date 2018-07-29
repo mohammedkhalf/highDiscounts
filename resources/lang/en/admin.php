@@ -142,4 +142,5 @@ return [
     'name'=>'Username',
     'order_status_code'=>'Code',
     'order_details'=>'details',
+    'order_placed'=>'Order Done !',
 ];
