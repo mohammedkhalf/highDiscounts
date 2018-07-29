@@ -98,16 +98,17 @@
                                          @foreach($product as $products)
                
                                         <tr class="cart_item">
-                                            <td class="product-remove">
-                                                <a title="Remove this item" class="remove" href="{{url(app('f').'/department_product/'.$products->id)}}">×</a> 
+                                            {!! Form::open(['method'=>'delete','url'=>'/destroy_item/'.$products->id]) !!} 
+                                            <td class="product-remove">  
+                                            <a  type="submit" class="remove" href="{{url('/destroy_item/'.$products->id)}}">×</a> 
                                             </td>
-
+                                             {!! Form::close() !!}
                                            <td class="product-thumbnail">
-                                                <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{url('/upload/products/'.$products->shoppings()->first()->photo)}}"></a>
+                                                <a href="single_product/{{ $products->shoppings()->first()->id }}"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{url('/upload/products/'.$products->shoppings()->first()->photo)}}"></a>
                                             </td>
 
                                             <td class="product-name">
-                                                <a href="single-product.html">{{$products->shoppings()->first()->en_title}}</a> 
+                                                <a href="single_product/{{ $products->shoppings()->first()->id }}">{{$products->shoppings()->first()->en_title}}</a> 
                                             </td>
 
                                             <td class="product-price">
@@ -123,7 +124,7 @@
                                         <tr>
                                             <td class="actions" colspan="6">
                                            
-                                                <input type="submit" value="Update Cart" name="update_cart" class="button">
+                                                
                                                 <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
                                             </td>
                                              <td class="product-subtotal">
@@ -171,7 +172,7 @@
                                     <tbody>
                                         <tr class="cart-subtotal">
                                             <th>Cart Subtotal</th>
-                                            <td><span class="amount">£15.00</span></td>
+                                            <td><span class="amount">{{$total}}</span></td>
                                         </tr>
 
                                         <tr class="shipping">
@@ -181,7 +182,7 @@
 
                                         <tr class="order-total">
                                             <th>Order Total</th>
-                                            <td><strong><span class="amount">£15.00</span></strong> </td>
+                                            <td><strong><span class="amount">{{$total}}</span></strong> </td>
                                         </tr>
                                     </tbody>
                                 </table>

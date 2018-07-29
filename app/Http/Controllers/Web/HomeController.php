@@ -85,30 +85,19 @@ class HomeController extends Controller
 
 
     /**
-     * Remove the specified sub-image from posts_gallary.
+     * Remove the specified item from shopping_cart.
      *
 
      */
     public function destroyitem($id) {
       $delete = ShoppingCart::find($id);
-     
-        $delete->delete();
-        
+      $delete->delete(); 
         return back();
 
     }
 
-    /**
-     * Remove the specified sub-color from product_color.
-     *
-     */
-    public function destroycolor($id) {
-        $delete = ShoppingCart::find($id);
-     
-        $delete->delete();
-        session()->flash('success',trans('admin.deleted'));
-        return back();
-    }
+ 
+   
 
     /**
      * Remove the specified sub-size from product_size.
