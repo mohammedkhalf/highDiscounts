@@ -32,9 +32,6 @@ class HomeController extends Controller
         return view(app('f').'.home',['allproducts'=>$allproducts , 'department'=>$department]);
     }
 
-
-
-
     public function single($id)
     {
         $product  = Products::find($id);
@@ -44,9 +41,6 @@ class HomeController extends Controller
         $lastPosted = Products::take(5)->orderBy('id','desc')->get();
         return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct ,'ratedProduct'=>$ratedProduct,'lastPosted'=>$lastPosted]);
     }
-
-
-
 
 
     public function getAddToCart(Request $request, $id)
@@ -66,7 +60,7 @@ class HomeController extends Controller
         $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
         return view(app('f').'.shopping-cart' , ['product'=>$product , 'total'=>$total]);
     }
- 
+
     /**
      * Remove the specified item from shopping_cart.
      *
@@ -78,7 +72,6 @@ class HomeController extends Controller
         return back();
     }
 
-
     public function checkout()
     {
         $cities =  Country::where('parent','!=',null)->get()->all();
@@ -87,10 +80,6 @@ class HomeController extends Controller
 
         return view(app('f').'.checkout', ['product'=>$product , 'total'=>$total ,'cities'=>$cities]);
     }
-
-
-
-
 
     public function PlaceOrder(Request $request)
     {
@@ -128,29 +117,20 @@ class HomeController extends Controller
 
             $lastid = $add->id;
             $product  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
-           
-           foreach ($product as $item) {
-             $addOrderItems = new OrderItem;
-               $addOrderItems->order_id = $lastid;
-               $addOrderItems->product_id = $item->product_id;
-               $addOrderItems->item_price = $item->price;
+
+            foreach ($product as $item) {
+                $addOrderItems = new OrderItem;
+                $addOrderItems->order_id = $lastid;
+                $addOrderItems->product_id = $item->product_id;
+                $addOrderItems->item_price = $item->price;
                 $addOrderItems->save();
                 $item->delete();
-           }
- 
-session()->flash('success', trans('admin.order_placed'));
             }
-                   return back();
-      }
 
-
-
-
-
-
-
-
-
+            session()->flash('success', trans('admin.order_placed'));
+        }
+        return back();
+    }
 
     public function products()
     {
@@ -205,7 +185,5 @@ session()->flash('success', trans('admin.order_placed'));
         return redirect('/contactus')->with('success','this message has been send');
 
     }
-
-
-
+    
 }
