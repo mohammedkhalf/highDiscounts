@@ -12,9 +12,11 @@ use App\Model\ProductsColor ;
 use App\Model\ProductsSize ;
 use App\Model\ShoppingCart ;
 use App\Model\DepartmentProducts as Dep;
+use App\Model\ContactUs;
 use Validator;
 use Session;
 use Auth;
+
 class HomeController extends Controller
 {
 
@@ -74,13 +76,13 @@ class HomeController extends Controller
     }
 
 
-    public function checkout(Request $request)
-    {
-        $products  = Products::find($id);
-        $department = Dep::where('parent','=',$products->dep_id)->pluck('en_name','id');
-
-        return view(app('at').'.product.products.edit',['title'=>trans('admin.edit'),'department'=>$department,'products'=>$products]);
-    }
+//    public function checkout(Request $request)
+//    {
+//        $products  = Products::find($id);
+//        $department = Dep::where('parent','=',$products->dep_id)->pluck('en_name','id');
+//
+//        return view(app('at').'.product.products.edit',['title'=>trans('admin.edit'),'department'=>$department,'products'=>$products]);
+//    }
 
 
 
@@ -157,6 +159,7 @@ class HomeController extends Controller
 //        die();
        return view('front.categories')->with('departments',$departments);
     }
+
     public function childDepartments(Request $request)
     {
         $data =Dep::where('parent','=',$request->id)->get();
@@ -164,4 +167,30 @@ class HomeController extends Controller
 //        die();
         return response()->json($data);
     }
+
+    public function contactus()
+    {
+        return view('front.contactus');
+    }
+
+    public function addContact(Request $request)
+    {
+      //  return
+//        $this->validate(request(), [
+//            'name' => 'required|string|max:255',
+//            'email' => 'required|email|max:255',
+//            'subject' => 'required|string|max:255',
+//            'message' => 'required|string|max:255',
+//        ]);
+        $contact = new ContactUs();
+        $contact->name=$request->name;
+        $contact->email=$request->email;
+        $contact->subject=$request->subject;
+        $contact->message=$request->message;
+        $contact->save();
+//        return redirect('/contactus');
+
+    }
+
+
 }
