@@ -42,7 +42,6 @@ class HomeController extends Controller
         return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct ,'ratedProduct'=>$ratedProduct,'lastPosted'=>$lastPosted]);
     }
 
-
     public function getAddToCart(Request $request, $id)
     {
         $product  = Products::find($id);
