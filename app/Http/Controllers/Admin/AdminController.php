@@ -84,7 +84,14 @@ class AdminController extends Controller
     public function allContact()
     {
         $contacts=ContactUs::all();
-        return view(app('at').'.other.index')->with('contacts',$contacts);
+        return view(app('at').'.other.contact')->with('contacts',$contacts);
+    }
+
+    public function deleteContact($id)
+    {
+//        return "welcome";
+        ContactUs::destroy($id);
+        return redirect('admin/allcontact');
     }
 
 }

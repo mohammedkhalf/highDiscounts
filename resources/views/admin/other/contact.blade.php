@@ -13,15 +13,6 @@ All Users
 <div class="panel panel-flat">
     <div class="panel-heading">
         <h5 class="panel-title">All {{trans('admin.orders')}}</h5>
-        <div class="heading-elements">
-            <ul class="icons-list">
-                <li><a href="{{aurl('countries/create')}}"><span class="label border-left-primary label-striped">Add Country</span></a>
-                </li>
-                <li><a data-action="collapse"></a></li>
-                <li><a data-action="reload"></a></li>
-                <li><a data-action="close"></a></li>
-            </ul>
-        </div>
     </div>
 
     <div class="panel-body">
@@ -51,7 +42,7 @@ All Users
             <td>{{$contact->email}}</td>
             <td>{{$contact->subject}}</td>
             <td>{{$contact->message}}</td>
-            <td><a href><i class="icon-trash"></i> <span>delete</span></a></td>
+            <td><a href="{{url('admin/deletecontact/'.$contact->id)}}}"><i class="icon-trash"></i> <span>delete</span></a></td>
         </tr>
         @endforeach
         </tbody>
