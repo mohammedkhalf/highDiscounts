@@ -187,19 +187,19 @@ class HomeController extends Controller
     public function addContact(Request $request)
     {
       //  return
-//        $this->validate(request(), [
-//            'name' => 'required|string|max:255',
-//            'email' => 'required|email|max:255',
-//            'subject' => 'required|string|max:255',
-//            'message' => 'required|string|max:255',
-//        ]);
-        $contact = new ContactUs();
+        $this->validate(request(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string|max:255',
+        ]);
+        $contact = new ContactUs;
         $contact->name=$request->name;
         $contact->email=$request->email;
         $contact->subject=$request->subject;
         $contact->message=$request->message;
         $contact->save();
-//        return redirect('/contactus');
+        return redirect('/contactus')->with('success','this message has been send');
 
     }
 
