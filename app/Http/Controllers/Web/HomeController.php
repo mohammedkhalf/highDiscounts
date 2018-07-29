@@ -138,9 +138,6 @@ class HomeController extends Controller
             $add->phone               = $request->input('phone');
             $add->price               = $total;
             $add->save();
-
-
-
             $add->save();
             session()->flash('success',trans('admin.orderplaced'));
         }
