@@ -12,8 +12,12 @@ class Order extends Model
         [
             'id',
             'user_id',
-            'order_status_code',
-            'order_details',
+            'country_id',
+            'name',
+            'address',
+            'email',
+            'phone',
+            'price',
         ];
     public function user()
 {

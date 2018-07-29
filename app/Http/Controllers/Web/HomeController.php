@@ -12,6 +12,7 @@ use App\Model\ProductsColor ;
 use App\Model\ProductsSize ;
 use App\Model\ShoppingCart ;
 use App\Model\Country ;
+use App\Model\Order ;
 use App\Model\DepartmentProducts as Dep;
 use App\Model\ContactUs;
 use Validator;
@@ -87,7 +88,7 @@ class HomeController extends Controller
 
     }
 
-     public function checkout(Request $request)
+     public function checkout()
    {
          $cities =  Country::where('parent','!=',null)->get()->all();
          $product  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
@@ -96,7 +97,47 @@ class HomeController extends Controller
        return view(app('f').'.checkout', ['product'=>$product , 'total'=>$total ,'cities'=>$cities]);
    }
 
-   
+ public function PlaceOrder(Request $request)
+   {
+    $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
+    $rules = [
+            'city' => 'required',
+            'name' => 'required',
+            'address' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            
+        ];
+   $Validator   = Validator::make($request->all(),$rules);
+        $Validator->SetAttributeNames ([
+            'city' => trans('admin.city'),
+            'name' => trans('admin.name'),
+            'address' => trans('admin.address'),
+            'email' => trans('admin.email'),
+            'phone' => trans('admin.phone'),
+           
+
+        ]);
+        if($Validator->fails())
+        {
+            return back()->withInput()->withErrors($Validator);
+        }else{
+            $add = new Order;
+        
+            $add->user_id             = Auth::user()->id;
+            $add->country_id          = $request->input('city');
+            $add->name                = $request->input('name');
+            $add->address             = $request->input('address');
+            $add->email               = $request->input('email');
+            $add->phone               = $request->input('phone');
+            $add->price               = $total;
+            $add->save();
+
+
+ session()->flash('success',trans('admin.orderplaced'));
+            }
+                   return back();
+      }
 
 
 

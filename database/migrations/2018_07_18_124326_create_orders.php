@@ -16,8 +16,11 @@ class CreateOrders extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->string('order_status_code');
-            $table->string('order_details')->nullable();
+            $table->integer('country_id');
+            $table->string('name');
+            $table->string('address');
+            $table->string('phone');
+            $table->string('price');
             $table->timestamps();
         });
     }

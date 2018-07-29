@@ -80,15 +80,7 @@
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="woocommerce">
-                         
-
-
-                        
-
-                 
-
-                            <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
-
+                            <form enctype="multipart/form-data" action="{{url('/place')}}" class="checkout" method="post" name="checkout">
                                 <div id="customer_details" class="col2-set">
                                     <div class="col-1">
                                         <div class="woocommerce-billing-fields">
@@ -96,51 +88,38 @@
                                             <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
                                                 <label class="" for="billing_country">City <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <select class="country_to_state country_select" id="billing_country" name="billing_country">
+                                                <select class="country_to_state country_select" id="billing_country" name="city">
                                                     <option value="">Select a City…</option>
                                                    @foreach($cities as $city)
                                                     <option value="{{$city->id}}">{{$city->country_name_en}}</option>
                                                    @endforeach
                                                 </select>
                                             </p>
-
                                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name"> Name <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <input type="text" value="{{Auth::user()->name}}" placeholder="" id="billing_first_name" name="name" class="input-text ">
                                             </p>
-
                                             <div class="clear"></div>
-
-                                 
-
                                             <p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
                                                 <label class="" for="billing_address_1">Address <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="Street address" id="billing_address_1" name="billing_address_1" class="input-text ">
+                                                <input type="text" value="" placeholder="Street address" id="billing_address_1" name="address" class="input-text ">
                                             </p>
-
                                             <div class="clear"></div>
-
                                             <p id="billing_email_field" class="form-row form-row-first validate-required validate-email">
                                                 <label class="" for="billing_email">Email Address <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="{{Auth::user()->email}}" placeholder="" id="billing_email" name="billing_email" class="input-text ">
+                                                <input type="text" value="{{Auth::user()->email}}" placeholder="" id="billing_email" name="email" class="input-text ">
                                             </p>
-
                                             <p id="billing_phone_field" class="form-row form-row-last validate-required validate-phone">
                                                 <label class="" for="billing_phone">Phone <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_phone" name="billing_phone" class="input-text ">
+                                                <input type="text" value="" placeholder="" id="billing_phone" name="phone" class="input-text ">
                                             </p>
                                             <div class="clear"></div>
-
-
-                                
-
                                         </div>
                                     </div>
-
                                     <div class="col-2">
                                         <div class="woocommerce-shipping-fields">
                                           <h3 id="order_review_heading">Your order</h3>
@@ -152,7 +131,6 @@
                                                 <th class="product-total">Total</th>
                                             </tr>
                                         </thead>
-
                                         <tbody>
                                              @foreach($product as $products)
                                             <tr class="cart_item">
@@ -167,61 +145,29 @@
                                               @endforeach
                                         </tbody>
                                         <tfoot>
-
-                                       
-
                                             <tr class="shipping">
                                                 <th>Shipping and Handling</th>
                                                 <td>
-
                                                     Free Shipping
                                                     <input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0" data-index="0" name="shipping_method[0]">
                                                 </td>
                                             </tr>
-
-
                                             <tr class="order-total">
                                                 <th>Order Total</th>
                                                 <td><strong><span class="amount">{{$total}}</span></strong> </td>
                                             </tr>
-
                                         </tfoot>
                                     </table>
-                       
-                        </h3>
-                                           
-
-
-
-
-
-                        
-
-
+                                   </h3>
                                         </div>
-
                                     </div>
-
                                 </div>
-
-                                
-
                                 <div id="order_review" style="position: relative;">
-                                  
-
-
                                     <div id="payment">
-                                     
-
                                         <div class="form-row place-order">
-
-                                            <input type="submit" data-value="Place order" value="Place order" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
-
-
+                                            <input type="submit" data-value="Place order" value="Place order" id="place_order" name="place" class="button alt">
                                         </div>
-
                                         <div class="clear"></div>
-
                                     </div>
                                 </div>
                             </form>
