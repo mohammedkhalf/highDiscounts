@@ -100,6 +100,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/allcontact','AdminController@allContact');
         Route::get('/deletecontact/{id}','AdminController@deleteContact');
 
+        ///aboutUs
+        Route::get('/updateabout','AdminController@updateAboutUs');
+
         Route::get('lang/{lang}', function ($lang) {
             session()->has('lang') ? session()->forget('lang') : '';
 

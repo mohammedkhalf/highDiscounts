@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\ContactUs;
+use App\Model\AboutUs;
 use App\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -80,7 +81,7 @@ class AdminController extends Controller
         //
     }
 
-
+    /////////////contact/////////////
     public function allContact()
     {
         $contacts=ContactUs::all();
@@ -91,7 +92,14 @@ class AdminController extends Controller
     {
 //        return "welcome";
         ContactUs::destroy($id);
-        return redirect('admin/allcontact');
+        return redirect('admin/allcontact')->with('message','the contact deleted');
+    }
+
+    /////aboutus//////
+    public function updateAboutUs()
+    {
+        $about=AboutUs::find(1);
+        return view(app('at').'.other.update_aboutus')->with('about',$about);
     }
 
 }

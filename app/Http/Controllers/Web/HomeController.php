@@ -13,6 +13,7 @@ use App\Model\ProductsSize ;
 use App\Model\ShoppingCart ;
 use App\Model\Country ;
 use App\Model\Order ;
+use App\Model\OrderItem ;
 use App\Model\DepartmentProducts as Dep;
 use App\Model\ContactUs;
 use Validator;
@@ -31,9 +32,6 @@ class HomeController extends Controller
         return view(app('f').'.home',['allproducts'=>$allproducts , 'department'=>$department]);
     }
 
-
-
-
     public function single($id)
     {
         $product  = Products::find($id);
@@ -43,9 +41,6 @@ class HomeController extends Controller
         $lastPosted = Products::take(5)->orderBy('id','desc')->get();
         return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct ,'ratedProduct'=>$ratedProduct,'lastPosted'=>$lastPosted]);
     }
-
-
-
 
 
     public function getAddToCart(Request $request, $id)
@@ -76,6 +71,7 @@ class HomeController extends Controller
 
         return view(app('f').'.shopping-cart' , ['product'=>$product , 'total'=>$total]);
     }
+
     /**
      * Remove the specified item from shopping_cart.
      *
@@ -88,8 +84,8 @@ class HomeController extends Controller
 
     }
 
-     public function checkout()
-   {
+    public function checkout()
+    {
         $cities =  Country::where('parent','!=',null)->get()->all();
         $product  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
         $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
@@ -97,10 +93,9 @@ class HomeController extends Controller
         return view(app('f').'.checkout', ['product'=>$product , 'total'=>$total ,'cities'=>$cities]);
     }
 
-
-
     public function PlaceOrder(Request $request)
     {
+
         $rules = [
 
             'city' => 'required',
@@ -108,22 +103,20 @@ class HomeController extends Controller
             'address' => 'required',
             'email' => 'required|email',
             'phone' => 'required|numeric',
-
-            
         ];
 
 
 
-        $Validator   = Validator::make($request->all(),$rules);
 
+
+
+        $Validator   = Validator::make($request->all(),$rules);
         $Validator->SetAttributeNames ([
             'city' => trans('admin.city'),
             'name' => trans('admin.name'),
             'address' => trans('admin.address'),
             'email' => trans('admin.email'),
             'phone' => trans('admin.phone'),
-
-
         ]);
         if($Validator->fails())
         {
@@ -138,16 +131,23 @@ class HomeController extends Controller
             $add->phone               = $request->input('phone');
             $add->price               = $total;
             $add->save();
-            $add->save();
-            session()->flash('success',trans('admin.orderplaced'));
+
+            $lastid = $add->id;
+            $product  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
+
+            foreach ($product as $item) {
+                $addOrderItems = new OrderItem;
+                $addOrderItems->order_id = $lastid;
+                $addOrderItems->product_id = $item->product_id;
+                $addOrderItems->item_price = $item->price;
+                $addOrderItems->save();
+                $item->delete();
+            }
+
+            session()->flash('success', trans('admin.order_placed'));
         }
         return back();
     }
-
-
-
-
-
 
     public function products()
     {
@@ -169,6 +169,14 @@ class HomeController extends Controller
 //        return $data;
 //        die();
         return response()->json($data);
+    }
+
+    public function productDepartment(Request $request)
+    {
+        $data=Products::where('dep_id', $request->id)->get();
+//        return view('front.prodcut_category')->with('products',$products);
+        return response()->json($data);
+
     }
 
     public function contactus()
@@ -194,6 +202,5 @@ class HomeController extends Controller
         return redirect('/contactus')->with('success','this message has been send');
 
     }
-
-
+    
 }

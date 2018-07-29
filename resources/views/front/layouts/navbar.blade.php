@@ -9,7 +9,7 @@
 
             <div class="col-sm-6">
                 <div class="shopping-item">
-                    <a href="{{url('shopping-cart')}}">Cart - <span class="cart-amunt"></span> <i class="fa fa-shopping-cart"></i> <span class="product-count">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span></a>
+                    <a href="{{url('shopping-cart')}}">Cart - <span class="cart-amunt"></span> <i class="fa fa-shopping-cart"></i> <span class="product-count">{{ $product}}</span></a>
                 </div>
             </div>
         </div>
