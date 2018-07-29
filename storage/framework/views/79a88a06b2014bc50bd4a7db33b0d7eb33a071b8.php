@@ -18,9 +18,9 @@
                     <li <?php echo e((Request::is('shopping-cart') ? ' class=active' : '')); ?>><a href="<?php echo e(url('/shopping-cart')); ?>">Cart</a></li>
                     
                     <li><a href="checkout.html">Checkout</a></li>
-                    <li><a href="#">Category</a></li>
+                    <li<?php echo e((Request::is('alldepartments') ? ' class=active' : '')); ?>><a href="<?php echo e(url('/alldepartments')); ?>">Category</a></li>
                     <li><a href="#">Others</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li<?php echo e((Request::is('contactus') ? ' class=active' : '')); ?>><a href="<?php echo e(url('/contactus')); ?>">Contact</a></li>
                 </ul>
             </div>
         </div>
