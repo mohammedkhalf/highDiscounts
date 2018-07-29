@@ -1,0 +1,1 @@
+{{$products->en_title}}

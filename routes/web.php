@@ -59,8 +59,11 @@ Route::group(['middleware' => 'Maintenance'], function () {
         Route::get('/alldepartments','HomeController@departments');
 
         Route::get('/singledep','HomeController@childDepartments');
+        Route::get('/productdepartment','HomeController@productDepartment');
+
         Route::get('/contactus','HomeController@contactus');
         Route::POST('/insertcontactus','HomeController@addContact');
+
 
     });
 

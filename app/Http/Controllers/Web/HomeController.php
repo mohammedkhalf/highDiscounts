@@ -79,7 +79,7 @@ class HomeController extends Controller
     }
         public function nav()
     {
-        $product = ShoppingCart::where('user_id','=',Auth::user()->id)->count();
+        $product = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->count();
         
 
         return view(app('f').'.layouts.nav' , ['product'=>$product ]);
@@ -97,7 +97,6 @@ class HomeController extends Controller
     }
 
 
-
     public function checkout()
     {
         $cities =  Country::where('parent','!=',null)->get()->all();
@@ -108,17 +107,27 @@ class HomeController extends Controller
     }
 
 
- public function PlaceOrder(Request $request)
-   {
-    $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
+
+
+
+    public function PlaceOrder(Request $request)
+    {
+
         $rules = [
 
             'city' => 'required',
             'name' => 'required',
             'address' => 'required',
             'email' => 'required|email',
+
             'phone' => 'required|numeric', 
         ];
+
+      
+
+
+
+
         $Validator   = Validator::make($request->all(),$rules);
         $Validator->SetAttributeNames ([
             'city' => trans('admin.city'),
@@ -140,6 +149,7 @@ class HomeController extends Controller
             $add->phone               = $request->input('phone');
             $add->price               = $total;
             $add->save();
+
             $lastid = $add->id;
             $product  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
            
@@ -156,6 +166,8 @@ session()->flash('success', trans('admin.order_placed'));
             }
                    return back();
       }
+
+
 
 
 
@@ -186,6 +198,14 @@ session()->flash('success', trans('admin.order_placed'));
         return response()->json($data);
     }
 
+    public function productDepartment(Request $request)
+    {
+        $data=Products::where('dep_id', $request->id)->get();
+//        return view('front.prodcut_category')->with('products',$products);
+        return response()->json($data);
+
+    }
+
     public function contactus()
     {
         return view('front.contactus');
@@ -209,6 +229,7 @@ session()->flash('success', trans('admin.order_placed'));
         return redirect('/contactus')->with('success','this message has been send');
 
     }
+
 
 
 }
