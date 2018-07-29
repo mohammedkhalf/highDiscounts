@@ -52,38 +52,21 @@ class HomeController extends Controller
     public function getAddToCart(Request $request, $id)
     {
         $product  = Products::find($id);
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->add($product , $product->id);
         $adde = new ShoppingCart;
         $adde->user_id    = Auth::user()->id;
         $adde->product_id = $product->id;
         $adde->price = $product->price;
         $adde->save();
-        $request->session()->put('cart', $cart);
+        
         return back();
     }
     public function getCart()
     {
-        if (!Session::has('cart')) {
-            return view(app('f').'.shopping-cart',['product'=>null]);
-        }
-        $oldCart =Session::get('cart') ;
-        $cart = new Cart($oldCart);
         $product = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
         $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
-
-
-
         return view(app('f').'.shopping-cart' , ['product'=>$product , 'total'=>$total]);
     }
-        public function nav()
-    {
-        $product = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->count();
-        
-
-        return view(app('f').'.layouts.nav' , ['product'=>$product ]);
-    }
+ 
     /**
      * Remove the specified item from shopping_cart.
      *
@@ -93,7 +76,6 @@ class HomeController extends Controller
         $delete = ShoppingCart::find($id);
         $delete->delete();
         return back();
-
     }
 
 
@@ -112,6 +94,7 @@ class HomeController extends Controller
 
     public function PlaceOrder(Request $request)
     {
+        $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
 
         $rules = [
 
@@ -119,7 +102,6 @@ class HomeController extends Controller
             'name' => 'required',
             'address' => 'required',
             'email' => 'required|email',
-
             'phone' => 'required|numeric', 
         ];
 
