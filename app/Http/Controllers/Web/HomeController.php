@@ -90,12 +90,6 @@ class HomeController extends Controller
 
      public function checkout()
    {
-         $cities =  Country::where('parent','!=',null)->get()->all();
-         $product  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
-         $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
-
-    public function checkout()
-    {
         $cities =  Country::where('parent','!=',null)->get()->all();
         $product  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
         $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
@@ -104,10 +98,6 @@ class HomeController extends Controller
     }
 
 
- public function PlaceOrder(Request $request)
-   {
-    $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
-    $rules = [
 
     public function PlaceOrder(Request $request)
     {
@@ -121,10 +111,9 @@ class HomeController extends Controller
 
             
         ];
-   $Validator   = Validator::make($request->all(),$rules);
 
 
-        ];
+
         $Validator   = Validator::make($request->all(),$rules);
 
         $Validator->SetAttributeNames ([
@@ -151,10 +140,6 @@ class HomeController extends Controller
             $add->save();
 
 
- session()->flash('success',trans('admin.orderplaced'));
-            }
-                   return back();
-      }
 
             $add->save();
             session()->flash('success',trans('admin.orderplaced'));
