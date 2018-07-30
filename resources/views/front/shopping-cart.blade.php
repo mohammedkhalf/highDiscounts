@@ -81,6 +81,10 @@
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="woocommerce">
+<<<<<<< HEAD
+                            
+=======
+>>>>>>> 8379ccd8c1696e792a73a7ea00c7d84a3bdc27e4
                                 <table cellspacing="0" class="shop_table cart">
                                     <thead>
                                         <tr>
@@ -129,6 +133,11 @@
                                         </tr>
                                     </tbody>
                                 </table>
+<<<<<<< HEAD
+                            
+
+=======
+>>>>>>> 8379ccd8c1696e792a73a7ea00c7d84a3bdc27e4
                             <div class="cart-collaterals">
 
 

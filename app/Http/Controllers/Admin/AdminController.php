@@ -9,7 +9,7 @@ use App\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Validator;
 
 class AdminController extends Controller
 {
@@ -84,49 +84,64 @@ class AdminController extends Controller
     /////////////contact/////////////
     public function allContact()
     {
-        $contacts=ContactUs::all();
-        return view(app('at').'.other.contact')->with('contacts',$contacts);
+        $contacts = ContactUs::all();
+        return view(app('at') . '.other.contact')->with('contacts', $contacts);
     }
 
     public function deleteContact($id)
     {
 //        return "welcome";
         ContactUs::destroy($id);
-        return redirect('admin/allcontact')->with('message','the contact deleted');
+        return redirect('admin/allcontact')->with('message', 'the contact deleted');
     }
 
     /////aboutus//////
     public function updateAboutUs()
     {
-        $about=AboutUs::find(1);
+        $about = AboutUs::find(1);
 //
-        return view(app('at').'.other.update_aboutus')->with('about',$about);
+        return view(app('at') . '.other.update_aboutus')->with('about', $about);
     }
 
     public function editAbout(Request $request)
     {
-//        return "welcome";
-        $this->validate(request(), [
-
+        $rules = [
             'en_content' => 'required',
             'ar_content' => 'required',
             'image' => 'sometimes|nullable|' . v_image(),
+        ];
+        $Validator   = Validator::make($request->all(),$rules);
+        $Validator->SetAttributeNames ([
+
+            'en_content' => trans('admin.en_content'),
+            'ar_content' => trans('admin.ar_content'),
+
+            'image' => trans('admin.image'),
+
+
         ]);
-
-//        $about=AboutUs::find(1);
-////        return $request->ar_content;
-
-        if ($request->image != '') {
-            $image =$request->image->getClientOriginalExtension();
-            $request->image->move(public_path('upload/products'),$image);
+        if($Validator->fails())
+        {
+            return back()->withInput()->withErrors($Validator);
+        }else{
+            $about = AboutUs::find(1);
+            if ($request->hasFile('image')) {
+                @unlink(public_path() . '/upload/products/' . $about->image);
+                $file = $request->file('image');
+                $path = public_path() . '/upload/products';
+                $filename = time() . rand(11111, 00000) . '.' . $file->getClientOriginalExtension();
+                if ($file->move($path, $filename)) {
+                    $about->image = $filename;
+                }
+            }
+            $about->en_content =  $request->input('en_content');
+            $about->ar_content = $request->input('ar_content');
+            $about->save();
         }
-        AboutUs::where('id', 1)->update(array ('en_content' => $request->en_content,
-                                               'ar_content'=>$request->ar_content,
-                                             'image'=>$image));
 
-        return redirect('admin/updateabout')->with('success','the update has been done');
+
+        return redirect('admin/updateabout')->with('success', 'the update has been done');
 
     }
-
 
 }
