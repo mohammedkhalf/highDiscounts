@@ -81,7 +81,7 @@
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="woocommerce">
-                            <form method="post" action="#">
+                            
                                 <table cellspacing="0" class="shop_table cart">
                                     <thead>
                                         <tr>
@@ -133,7 +133,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </form>
+                            
 
                             <div class="cart-collaterals">
 
