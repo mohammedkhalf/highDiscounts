@@ -99,8 +99,33 @@ class AdminController extends Controller
     public function updateAboutUs()
     {
         $about=AboutUs::find(1);
-//        ->with('about',$about)
-        return view(app('at').'.other.update_aboutus');
+//
+        return view(app('at').'.other.update_aboutus')->with('about',$about);
     }
+
+    public function editAbout(Request $request)
+    {
+//        return "welcome";
+        $this->validate(request(), [
+
+            'en_content' => 'required',
+            'ar_content' => 'required',
+            'image' => 'sometimes|nullable|' . v_image(),
+        ]);
+
+//        $about=AboutUs::find(1);
+////        return $request->ar_content;
+
+        if ($request->image != '') {
+            $image =$request->image->getClientOriginalExtension();
+            $request->image->move(public_path('upload/products'),$image);
+        }
+        AboutUs::where('id', 1)->update(array ('en_content' => $request->en_content,
+                                               'ar_content'=>$request->ar_content,
+                                             'image'=>$image));
+        return redirect('admin/updateabout')->with('success','the update has been done');
+
+    }
+
 
 }

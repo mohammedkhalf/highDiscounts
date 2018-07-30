@@ -15,7 +15,8 @@ class CreateAboutus extends Migration
     {
         Schema::create('aboutus', function (Blueprint $table){
             $table->increments('id');
-            $table->text('description');
+            $table->text('ar_content');
+            $table->text('en_content');
             $table->string('image');
             $table->timestamps();
         });
