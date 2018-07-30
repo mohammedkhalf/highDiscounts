@@ -124,7 +124,7 @@ class AdminController extends Controller
             if ($request->image != '') {
                 $image = $request->image->getClientOriginalExtension();
                 $request->image->move(public_path('upload/products'), $image);
-                'image' => $image,
+                'image' => $image
                 }
         ));
         return redirect('admin/updateabout')->with('success', 'the update has been done');
