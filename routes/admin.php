@@ -102,6 +102,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         ///aboutUs
         Route::get('/updateabout','AdminController@updateAboutUs');
+        Route::post('/editabout','AdminController@editAbout');
 
         Route::get('lang/{lang}', function ($lang) {
             session()->has('lang') ? session()->forget('lang') : '';
