@@ -84,23 +84,23 @@ class AdminController extends Controller
     /////////////contact/////////////
     public function allContact()
     {
-        $contacts=ContactUs::all();
-        return view(app('at').'.other.contact')->with('contacts',$contacts);
+        $contacts = ContactUs::all();
+        return view(app('at') . '.other.contact')->with('contacts', $contacts);
     }
 
     public function deleteContact($id)
     {
 //        return "welcome";
         ContactUs::destroy($id);
-        return redirect('admin/allcontact')->with('message','the contact deleted');
+        return redirect('admin/allcontact')->with('message', 'the contact deleted');
     }
 
     /////aboutus//////
     public function updateAboutUs()
     {
-        $about=AboutUs::find(1);
+        $about = AboutUs::find(1);
 //
-        return view(app('at').'.other.update_aboutus')->with('about',$about);
+        return view(app('at') . '.other.update_aboutus')->with('about', $about);
     }
 
     public function editAbout(Request $request)
@@ -116,14 +116,18 @@ class AdminController extends Controller
 //        $about=AboutUs::find(1);
 ////        return $request->ar_content;
 
-        if ($request->image != '') {
-            $image =$request->image->getClientOriginalExtension();
-            $request->image->move(public_path('upload/products'),$image);
-        }
-        AboutUs::where('id', 1)->update(array ('en_content' => $request->en_content,
-                                               'ar_content'=>$request->ar_content,
-                                             'image'=>$image));
-        return redirect('admin/updateabout')->with('success','the update has been done');
+
+        AboutUs::where('id', 1)->update(array(
+            'en_content' => $request->en_content,
+            'ar_content' => $request->ar_content,
+
+            if ($request->image != '') {
+                $image = $request->image->getClientOriginalExtension();
+                $request->image->move(public_path('upload/products'), $image);
+                'image' => $image,
+                }
+        ));
+        return redirect('admin/updateabout')->with('success', 'the update has been done');
 
     }
 
