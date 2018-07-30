@@ -123,6 +123,7 @@ class AdminController extends Controller
         AboutUs::where('id', 1)->update(array ('en_content' => $request->en_content,
                                                'ar_content'=>$request->ar_content,
                                              'image'=>$image));
+
         return redirect('admin/updateabout')->with('success','the update has been done');
 
     }
