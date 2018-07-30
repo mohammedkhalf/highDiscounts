@@ -16,11 +16,18 @@
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">About Us</h2>
                         <div class="thubmnail-recent">
-                            <h2>Sony Smart TV - 2015</h2>
-                        </div>
+                            @if(lang() == 'ar')
+                                <h2>{{$about->ar_content}}</h2>
+                                @else
+                                <h2>{{$about->en_content}}</h2>
+                                @endif
 
+                        </div>
                     </div>
 
+                </div>
+                <div class="col-md-4">
+                    <img  src="{{url('/upload/products/'.$about->image)}}">
                 </div>
             </div>
         </div>

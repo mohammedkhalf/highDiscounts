@@ -10,6 +10,7 @@ use App\Model\Products ;
 use App\Model\ProductsGallary ;
 use App\Model\ProductsColor ;
 use App\Model\ProductsSize ;
+use App\Model\AboutUs;
 use App\Model\ShoppingCart ;
 use App\Model\Country ;
 use App\Model\Order ;
@@ -167,7 +168,6 @@ class HomeController extends Controller
         return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct ,'ratedProduct'=>$ratedProduct,'lastPosted'=>$lastPosted]);
     }
 
-
     public function contactus()
     {
         return view('front.contactus');
@@ -190,6 +190,12 @@ class HomeController extends Controller
         $contact->save();
         return redirect('/contactus')->with('success','this message has been send');
 
+    }
+
+    public function aboutus ()
+    {
+        $about=AboutUs::find(1);
+        return view('front.aboutus')->with('about',$about);
     }
 
 }
