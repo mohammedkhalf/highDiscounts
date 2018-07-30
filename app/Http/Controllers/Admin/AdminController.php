@@ -99,7 +99,8 @@ class AdminController extends Controller
     public function updateAboutUs()
     {
         $about=AboutUs::find(1);
-        return view(app('at').'.other.update_aboutus')->with('about',$about);
+//        ->with('about',$about)
+        return view(app('at').'.other.update_aboutus');
     }
 
 }

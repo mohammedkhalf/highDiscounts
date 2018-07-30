@@ -42,7 +42,6 @@ class HomeController extends Controller
         return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct ,'ratedProduct'=>$ratedProduct,'lastPosted'=>$lastPosted]);
     }
 
-
     public function getAddToCart(Request $request, $id)
     {
         $product  = Products::find($id);
@@ -83,6 +82,7 @@ class HomeController extends Controller
 
     public function PlaceOrder(Request $request)
     {
+
         $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
 
         $rules = [
@@ -157,6 +157,16 @@ class HomeController extends Controller
         return response()->json($data);
 
     }
+    public function singleProduct(Request $request)
+    {
+        $product  = Products::find($request->id);
+        $department = Dep::where('id','=',$product->dep_id)->pluck('en_name');
+        $similarProduct = Products::where('dep_id',$product->dep_id)->take(3)->orderBy('id','desc')->get();
+        $ratedProduct = Products::where('dep_id',$product->dep_id)->get();
+        $lastPosted = Products::take(5)->orderBy('id','desc')->get();
+        return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct ,'ratedProduct'=>$ratedProduct,'lastPosted'=>$lastPosted]);
+    }
+
 
     public function contactus()
     {
@@ -181,5 +191,5 @@ class HomeController extends Controller
         return redirect('/contactus')->with('success','this message has been send');
 
     }
-    
+
 }
