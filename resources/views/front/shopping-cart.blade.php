@@ -81,16 +81,18 @@
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="woocommerce">
+<<<<<<< HEAD
                             
+=======
+>>>>>>> 8379ccd8c1696e792a73a7ea00c7d84a3bdc27e4
                                 <table cellspacing="0" class="shop_table cart">
                                     <thead>
                                         <tr>
-                                             <th class="product-remove">&nbsp;</th>
-                                            <th class="product-thumbnail">&nbsp;</th>
-                                         
+                                             <th class="product-remove">&nbsp;{{trans('admin.delete')}}</th>
+                                            <th class="product-thumbnail">{{trans('admin.image')}}</th>
                                             <th class="product-name">Product</th>
                                             <th class="product-price">Price</th>
-                                          
+
                                           
                                         </tr>
                                     </thead>
@@ -112,29 +114,30 @@
                                             </td>
 
                                             <td class="product-price">
-                                                <span class="amount">{{$products->price}}</span> 
+                                                <span class="amount">{{$products->price}}</span>
                                             </td>
 
-                                       
 
-                                           
                                         </tr>
 
                                          @endforeach
                                         <tr>
-                                            <td class="actions" colspan="6">
+                                            <td class="actions" colspan="3">
                                           <a type=""  class="btn btn-primary btn-rounded" href="{{url('/checkout')}}" >CHECKOUT</button>
-                                             
                                             </a>
-                                             <td class="product-subtotal">
+
+                                            <td class="product-subtotal">
                                                 <label for="coupon_code">Total:</label>
                                                 <span class="amount">{{$total}}</span> 
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+<<<<<<< HEAD
                             
 
+=======
+>>>>>>> 8379ccd8c1696e792a73a7ea00c7d84a3bdc27e4
                             <div class="cart-collaterals">
 
 
