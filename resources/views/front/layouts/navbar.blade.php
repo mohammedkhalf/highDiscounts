@@ -6,8 +6,10 @@
                     <h1><a href=".."><img src="{{url('/img/logo.png')}}"></a></h1>
                 </div>
             </div>
-            <?php   $product = App\Model\ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
-        $total =  App\Model\ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price'); ?>
+            <?php if (Auth::user()) {
+                # code...
+             $product = App\Model\ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
+        $total =  App\Model\ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');  ?>
 @if ( $product != null)
             <div class="col-sm-6">
                 <div class="shopping-item">
@@ -15,6 +17,7 @@
                 </div>
             </div>
             @endif
+            <?php } ?>
         </div>
     </div>
 </div> <!-- End site branding area -->
