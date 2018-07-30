@@ -86,7 +86,6 @@ class HomeController extends Controller
         $total =  ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');
 
         $rules = [
-
             'city' => 'required',
             'name' => 'required',
             'address' => 'required',
@@ -114,10 +113,8 @@ class HomeController extends Controller
             $add->phone               = $request->input('phone');
             $add->price               = $total;
             $add->save();
-
             $lastid = $add->id;
             $product  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
-
             foreach ($product as $item) {
                 $addOrderItems = new OrderItem;
                 $addOrderItems->order_id = $lastid;
@@ -126,12 +123,11 @@ class HomeController extends Controller
                 $addOrderItems->save();
                 $item->delete();
             }
-
             session()->flash('success', trans('admin.order_placed'));
         }
         return back();
     }
-
+    
     public function products()
     {
         $products=Products::paginate(12);
