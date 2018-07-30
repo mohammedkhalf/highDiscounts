@@ -103,27 +103,26 @@ class AdminController extends Controller
         return view(app('at') . '.other.update_aboutus')->with('about', $about);
     }
 
-   public function editAbout(Request $request)
+    public function editAbout(Request $request)
     {
-            $rules = [
-          'en_content' => 'required',
+        $rules = [
+            'en_content' => 'required',
             'ar_content' => 'required',
             'image' => 'sometimes|nullable|' . v_image(),
         ];
-   $Validator   = Validator::make($request->all(),$rules);
-        $Validator->SetAttributeNames ([
-            
+        $Validator = Validator::make($request->all(), $rules);
+        $Validator->SetAttributeNames([
+
             'en_content' => trans('admin.en_content'),
             'ar_content' => trans('admin.ar_content'),
-            
+
             'image' => trans('admin.image'),
-      
+
 
         ]);
-        if($Validator->fails())
-        {
+        if ($Validator->fails()) {
             return back()->withInput()->withErrors($Validator);
-        }else{
+        } else {
             $about = AboutUs::find(1);
             if ($request->hasFile('image')) {
                 @unlink(public_path() . '/upload/products/' . $about->image);
@@ -134,12 +133,12 @@ class AdminController extends Controller
                     $about->image = $filename;
                 }
             }
-           $about->en_content =  $request->input('en_content');
+            $about->en_content = $request->input('en_content');
             $about->ar_content = $request->input('ar_content');
             $about->save();
-        } 
+        }
 
-     
+
         return redirect('admin/updateabout')->with('success', 'the update has been done');
 
     }
