@@ -103,7 +103,7 @@ class AdminController extends Controller
         return view(app('at') . '.other.update_aboutus')->with('about', $about);
     }
 
-    public function editAbout(Request $request)
+   public function editAbout(Request $request)
     {
             $rules = [
           'en_content' => 'required',
@@ -143,6 +143,5 @@ class AdminController extends Controller
         return redirect('admin/updateabout')->with('success', 'the update has been done');
 
     }
-
 
 }
