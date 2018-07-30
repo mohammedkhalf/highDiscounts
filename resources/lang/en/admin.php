@@ -101,9 +101,10 @@ return [
     'city_name_en'        =>'Name In English',
     'city_mob'            =>'Phone Key',
 
-    'similer_product' => 'Similar Product',
+    'similer_product' => 'Random Product',
 
      /* debartments */
+     'image'         => 'image',
      'categories'         => 'Categories',
      'depatments'         => 'Departments',
      'department'         => 'Department',
