@@ -37,6 +37,7 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor'], function () {
         Route::delete('products/destroycolor/{id}', 'ProductsController@destroycolor');
         Route::resource('department_product','DepProductController');
         Route::post('department_product/check/parent','DepProductController@check_parent');
+        Route::get('/orders','OrderController@index');
      });
     });
 

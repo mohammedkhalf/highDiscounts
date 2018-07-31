@@ -29,7 +29,11 @@
         {!! Form::text('ar_name',old('ar_name'),['class'=>'form-control']) !!}
          <p class="help-block">{{$errors->first('ar_name')}}</p>
      </div>
-
+   <div class="form-group col-sm-12">
+        {!! Form::label('stock',trans('admin.stock')) !!}
+        {!! Form::text('stock',old('stock'),['class'=>'form-control']) !!}
+         <p class="help-block">{{$errors->first('stock')}}</p>
+     </div>
       <div class="form-group col-sm-12">
           {!! Form::label('photo',trans('admin.photo')) !!}
           {!! Form::file('photo',['class'=>'form-control'],'multiple') !!}

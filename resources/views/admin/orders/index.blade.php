@@ -48,7 +48,7 @@
                    @if(!empty( $order->user()->get()))
                        @foreach($order->user()->get() as $user)
                        
-                            <td><a href="{{aurl('orders/details/$order->id')}}">{{ $user->name}}</a></td>
+                            <td><a href="{{aurl('orders/details/'.$order->id)}}">{{ $user->name}}</a></td>
 
                            @endforeach
                        @endif

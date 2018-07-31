@@ -99,7 +99,9 @@
                                 <div class="product-f-image">
                                     <img src="<?php echo e(url('/upload/products/'.$products->photo)); ?>" alt="">
                                     <div class="product-hover">
+                                        <?php if( $products->stock >= 1): ?>
                                         <a href="<?php echo e(route('product.addToCart' , ['id' => $products->id])); ?>" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                         <?php endif; ?>
                                         <a href="single_product/<?php echo e($products->id); ?>" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
@@ -109,6 +111,11 @@
                                 <div class="product-carousel-price">
                                     <ins><?php echo e($products->price); ?></ins> 
                                 </div>
+                                <?php if( $products->stock >= 1): ?>
+                                <p>In Stock : <?php echo e($products->stock); ?></p>
+                                <?php else: ?>
+                                <p>Unavailable In Stock </p>
+                                <?php endif; ?>
                             </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>

@@ -39,11 +39,18 @@
                                     @endif
                             </a></h2>
                         <div class="product-carousel-price">
-                            <ins>{{$product->price}}</ins>
+                            <ins>{{$product->price}} LE</ins>
                         </div>
+                             @if( $product->stock >= 1)
+                                <p>In Stock : {{ $product->stock }}</p>
+                                @else
+                                <p>Unavailable In Stock </p>
+                                @endif
 
                         <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="{{route('product.addToCart' , ['id' => $product->id])}}">Add to cart</a>
+                                @if( $product->stock >= 1)
+                                        <a href="{{route('product.addToCart' , ['id' => $product->id])}}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                         @endif
                         </div>
                     </div>
                 </div>

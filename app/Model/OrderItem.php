@@ -18,4 +18,8 @@ class OrderItem extends Model
             'item_price',
             'item_details',
         ];
+                 public function shoppings() {
+
+        return $this->belongsTo('App\Model\Products', 'product_id', 'id');
+    }
 }

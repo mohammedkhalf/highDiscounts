@@ -100,7 +100,9 @@
                                 <div class="product-f-image">
                                     <img src="{{url('/upload/products/'.$products->photo)}}" alt="">
                                     <div class="product-hover">
+                                        @if( $products->stock >= 1)
                                         <a href="{{route('product.addToCart' , ['id' => $products->id])}}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                         @endif
                                         <a href="single_product/{{ $products->id }}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
@@ -108,8 +110,13 @@
                                 <h2><a href="single_product/{{ $products->id }}">{{ $products->en_title }}</a></h2>
 
                                 <div class="product-carousel-price">
-                                    <ins>{{ $products->price }}</ins> 
+                                    <ins>{{ $products->price }} LE</ins> 
                                 </div>
+                                @if( $products->stock >= 1)
+                                <p>In Stock : {{ $products->stock }}</p>
+                                @else
+                                <p>Unavailable In Stock </p>
+                                @endif
                             </div>
                     @endforeach
                         </div>
