@@ -22,6 +22,7 @@ class CreateOrders extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('price');
+            $table->enum('level',['prepare','ship','done','reject']);
             $table->timestamps();
         });
     }

@@ -50,6 +50,8 @@ class HomeController extends Controller
         $adde->user_id    = Auth::user()->id;
         $adde->product_id = $product->id;
         $adde->price = $product->price;
+        $adde->vendor_id = $product->user_id;
+        $adde->vendor_type = $product->user_type;
         $adde->save();
         
         return back();
@@ -112,6 +114,7 @@ class HomeController extends Controller
             $add->address             = $request->input('address');
             $add->email               = $request->input('email');
             $add->phone               = $request->input('phone');
+            $add->level               = 'prepare';
             $add->price               = $total;
             $add->save();
             $lastid = $add->id;
@@ -121,6 +124,8 @@ class HomeController extends Controller
                 $addOrderItems->order_id = $lastid;
                 $addOrderItems->product_id = $item->product_id;
                 $addOrderItems->item_price = $item->price;
+                 $addOrderItems->vendor_id = $item->vendor_id;
+                $addOrderItems->vendor_type = $item->vendor_type;
                 $addOrderItems->save();
                 $item->delete();
             }

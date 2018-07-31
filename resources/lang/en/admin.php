@@ -140,9 +140,11 @@ return [
     //orders
     'orders'=>'Orders',
     'order'=>'Order',
+
     'name'=>'Username',
     'order_status_code'=>'Code',
-    'order_details'=>'details',
+    'order_details'=>'Order Details',
+    'details'=>'Order Details',
     'order_placed'=>'Order Done !',
 
        //contact and about pages

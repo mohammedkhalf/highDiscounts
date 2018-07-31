@@ -39,7 +39,7 @@
                                     @endif
                             </a></h2>
                         <div class="product-carousel-price">
-                            <ins>{{$product->price}}</ins>
+                            <ins>{{$product->price}} LE</ins>
                         </div>
                              @if( $product->stock >= 1)
                                 <p>In Stock : {{ $product->stock }}</p>

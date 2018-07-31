@@ -110,7 +110,7 @@
                                 <h2><a href="single_product/{{ $products->id }}">{{ $products->en_title }}</a></h2>
 
                                 <div class="product-carousel-price">
-                                    <ins>{{ $products->price }}</ins> 
+                                    <ins>{{ $products->price }} LE</ins> 
                                 </div>
                                 @if( $products->stock >= 1)
                                 <p>In Stock : {{ $products->stock }}</p>
