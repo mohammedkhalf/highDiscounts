@@ -10,6 +10,7 @@ use App\Model\Products ;
 use App\Model\ProductsGallary ;
 use App\Model\ProductsColor ;
 use App\Model\ProductsSize ;
+use App\Model\AboutUs;
 use App\Model\ShoppingCart ;
 use App\Model\Country ;
 use App\Model\Order ;
@@ -159,14 +160,16 @@ class HomeController extends Controller
     }
     public function singleProduct(Request $request)
     {
-        $product  = Products::find($request->id);
-        $department = Dep::where('id','=',$product->dep_id)->pluck('en_name');
-        $similarProduct = Products::where('dep_id',$product->dep_id)->take(3)->orderBy('id','desc')->get();
-        $ratedProduct = Products::where('dep_id',$product->dep_id)->get();
-        $lastPosted = Products::take(5)->orderBy('id','desc')->get();
-        return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct ,'ratedProduct'=>$ratedProduct,'lastPosted'=>$lastPosted]);
+       // return "welcome";
+        $data=url('/single_product/'.$request->id);
+        return response()->json($data);
+//        $product  = Products::find($request->id);
+//        $department = Dep::where('id','=',$product->dep_id)->pluck('en_name');
+//        $similarProduct = Products::where('dep_id',$product->dep_id)->take(3)->orderBy('id','desc')->get();
+//        $ratedProduct = Products::where('dep_id',$product->dep_id)->get();
+//        $lastPosted = Products::take(5)->orderBy('id','desc')->get();
+//        return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct ,'ratedProduct'=>$ratedProduct,'lastPosted'=>$lastPosted]);
     }
-
 
     public function contactus()
     {
@@ -190,6 +193,12 @@ class HomeController extends Controller
         $contact->save();
         return redirect('/contactus')->with('success','this message has been send');
 
+    }
+
+    public function aboutus ()
+    {
+        $about=AboutUs::find(1);
+        return view('front.aboutus')->with('about',$about);
     }
 
 }
