@@ -115,10 +115,7 @@ class AdminController extends Controller
 
             'en_content' => trans('admin.en_content'),
             'ar_content' => trans('admin.ar_content'),
-
             'image' => trans('admin.image'),
-
-
         ]);
         if($Validator->fails())
         {
