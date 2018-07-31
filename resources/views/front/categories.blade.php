@@ -46,7 +46,8 @@
                     }
                 });
             }
-
+</script>
+<script>
 
             function product(clicked_id)
             {
@@ -66,9 +67,8 @@
                             op+='<ul class="products">\n' +
                                 '<li class="product">\n' +
                                 ' <a href="">\n' +
-
                                 '<img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="upload/products/'+ data[i].photo+'">\n' +
-                                ' <h3><button  class="add_to_cart_button" id="'+ data[i].id+'" onClick="single_product(this.id)">'+data[i].en_title+'</button></h3>\n' +
+                                ' <h3><button  class="add_to_cart_button" id="'+ data[i].id+'" onClick="singleProduct(this.id)">'+data[i].en_title+'</button></h3>\n' +
                                 '<span class="price"><span class="amount">'+data[i].price+'</span></span>\n' +
                                 '</a>\n' +
                                 '</li>\n' +
@@ -83,26 +83,31 @@
                     }
                 });
             }
-
-            function single_product(clicked_id)
+</script>
+    <script>
+            function singleProduct(clicked_id)
             {
-                window.location.href = "<?php echo URL::to('/singleproduct'); ?>";
-                {{--// alert(clicked_id);--}}
-                {{--var id=clicked_id;--}}
-                {{--// console.log(id);--}}
-                {{--var op="";--}}
-                {{--$.ajax({--}}
-                    {{--type: 'get',--}}
-                    {{--url: '{!! \Illuminate\Support\Facades\URL::to('/singleproduct')!!}',--}}
-                    {{--data: {'id': id },--}}
-                    {{--success: function (data) {--}}
-                      {{--console.log('success');--}}
-                    {{--},--}}
-                    {{--error: function () {--}}
-                        {{--console.log('error');--}}
+                var id=clicked_id;
+                // //
+                // // alert(clicked_id);
+                // // var id=clicked_id;
+                // // // console.log(id);
+                // var op="";
+                $.ajax({
+                    type: 'get',
+                    url: '{!! \Illuminate\Support\Facades\URL::to('/singleproduct')!!}',
+                    data: {'id': id },
+                    success: function (data) {
+                     // console.log('success');
+                      //  console.log(data);
+                      //   alert(data)
+                        window.location.href = data;
+                    },
+                    error: function () {
+                        console.log('error');
 
-                    {{--}--}}
-                {{--});--}}
+                    }
+                });
             }
 
 
