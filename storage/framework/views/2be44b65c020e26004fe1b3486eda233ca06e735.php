@@ -128,6 +128,18 @@
                                     </ul>
 
                                 </li>
+                                      </li>
+                                        <li <?php echo e((Request::is('admin/orders') ? ' class=active' : '')); ?>>
+                                    <a href="<?php echo e(aurl('orders')); ?>"><i class="  icon-price-tags"></i> <span><?php echo e(trans('admin.orders')); ?></span></a>
+                                </li>
+                                        <li <?php echo e((Request::is('admin/updateabout') ? ' class=active' : '')); ?>>
+                                    <a href="<?php echo e(aurl('updateabout')); ?>"><i class=" icon-info3"></i> <span><?php echo e(trans('admin.aboutus')); ?></span></a>
+                                </li>
+
+                                    </li>
+                                        <li <?php echo e((Request::is('admin/allcontact') ? ' class=active' : '')); ?>>
+                                    <a href="<?php echo e(aurl('allcontact')); ?>"><i class="  icon-envelope"></i> <span><?php echo e(trans('admin.inbox')); ?></span></a>
+                                </li>
 
                             </ul>
                         <?php endif; ?>
