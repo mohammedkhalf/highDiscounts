@@ -52,6 +52,7 @@ class ProductsController extends Controller
             'ar_content' => 'required',
             'photo' => 'required|image|mimes:gif,jpeg,jpg,png',
             'color' => 'required',
+             'stock' => 'required|numeric',
         ];
    $Validator   = Validator::make($request->all(),$rules);
         $Validator->SetAttributeNames ([
@@ -62,6 +63,7 @@ class ProductsController extends Controller
             'parent' => trans('admin.department'),
             'photo' => trans('admin.photo'),
             'color' => trans('admin.color'),
+            'stock' => trans('admin.stock'),
 
         ]);
         if($Validator->fails())
@@ -89,6 +91,7 @@ class ProductsController extends Controller
             $add->price               = $request->input('price');
             $add->color               = $request->input('color');
             $add->size                = $request->input('size');
+            $add->stock                = $request->input('stock');
             $add->save();
 
              $lastid = $add->id;
@@ -186,6 +189,7 @@ class ProductsController extends Controller
             'ar_content' => 'required',
             'parent' => 'required',
             'photo' => 'image|mimes:gif,jpeg,jpg,png',
+            'stock' => 'required|numeric',
 
         ];
    $Validator   = Validator::make($request->all(),$rules);
@@ -196,6 +200,7 @@ class ProductsController extends Controller
             'ar_content' => trans('admin.ar_content'),
             'parent' => trans('admin.department'),
             'photo' => trans('admin.photo'),
+            'stock' => trans('admin.stock'),
 
         ]);
         if ($Validator->fails()) {
@@ -225,6 +230,7 @@ class ProductsController extends Controller
             $update->price               = $request->input('price');
             $update->color               = $request->input('color');
             $update->size                = $request->input('size');
+              $update->stock                = $request->input('stock');
             $update->save();
 
             /** update multiphotos in ProductsGallary table**/

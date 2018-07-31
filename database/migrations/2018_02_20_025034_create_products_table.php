@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('en_title');
             $table->longtext('en_content');
             $table->longtext('ar_content');
+            $table->integer('stock');
              $table->string('price');
             $table->string('size')->nullable();
             $table->string('color')->nullable();
