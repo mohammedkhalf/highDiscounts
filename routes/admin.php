@@ -95,6 +95,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         ////order///
         Route::get('/orders','OrderController@index');
+        Route::get('/orders/details/{id}','OrderController@details');
 
         ////contactus
         Route::get('/allcontact','AdminController@allContact');

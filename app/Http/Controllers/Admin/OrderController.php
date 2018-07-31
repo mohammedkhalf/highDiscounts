@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use  App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Order;
+use App\Model\OrderItem ;
 
 class OrderController extends Controller
 {
@@ -14,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::orderBy('id','desc')->get();
         return view(app('at').'.orders.index')->with('orders',$orders);
     }
 
@@ -23,10 +24,12 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function details($id)
     {
-        //
-    }
+       $order = Order::find($id); 
+$orderItem  = OrderItem::where('order_id','=',$id)->get()->all();
+ return view(app('at').'.orders.details', ['order'=>$order , 'orderItem'=>$orderItem]);
+          }
 
     /**
      * Store a newly created resource in storage.

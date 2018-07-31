@@ -128,6 +128,18 @@
                                     </ul>
 
                                 </li>
+                                      </li>
+                                        <li {{{ (Request::is('admin/orders') ? ' class=active' : '') }}}>
+                                    <a href="{{aurl('orders')}}"><i class="  icon-price-tags"></i> <span>{{trans('admin.orders')}}</span></a>
+                                </li>
+                                        <li {{{ (Request::is('admin/updateabout') ? ' class=active' : '') }}}>
+                                    <a href="{{aurl('updateabout')}}"><i class=" icon-info3"></i> <span>{{trans('admin.aboutus')}}</span></a>
+                                </li>
+
+                                    </li>
+                                        <li {{{ (Request::is('admin/allcontact') ? ' class=active' : '') }}}>
+                                    <a href="{{aurl('allcontact')}}"><i class="  icon-envelope"></i> <span>{{trans('admin.inbox')}}</span></a>
+                                </li>
 
                             </ul>
                         @endif

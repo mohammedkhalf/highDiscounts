@@ -23,4 +23,8 @@ class Order extends Model
 {
     return $this->belongsTo('App\User','user_id','id' );
 }
+    public function country()
+{
+    return $this->belongsTo('App\Model\Country','country_id','id' );
+}
 }
