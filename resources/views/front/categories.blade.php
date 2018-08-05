@@ -20,25 +20,25 @@
                     url: '{!! \Illuminate\Support\Facades\URL::to('/singledep')!!}',
                     data: {'id': id },
                     success: function (data) {
-                        // console.log('success');
-                        //  console.log(data);
                         for (var i = 0; i < data.length; i++) {
-
-                      op+=' <div class="single-product">\n' +
-                          '<div class="product-f-image">\n' +
-                          '<img src="upload/products/'+ data[i].image+'" alt="">\n' +
-                          '<div class="product-hover">\n' +
-                          '</div>\n' +
-                          '</div>\n' +
-                          '<h2><button  class="add_to_cart_button" id="'+ data[i].id+'" onClick="product(this.id)">'+data[i].en_name+'</button> </h2>\n' +
-                          ' <div class="product-carousel-price">\n' +
-                          ' </div>\n' +
-                          ' </div>'
-
-
+                            op+=  ' <li>\n' +
+                            '  <div class="thubmnail-recent">\n' +
+                            ' <img src="upload/products/'+ data[i].image+'" class="recent-thumb" alt=""' +
+                            @if(lang() == 'ar')
+                                'style="float: right;"'+
+                            @else
+                               ' style="float: left;" '+
+                            @endif
+                                '>\n' +
+                             @if(lang() =='ar')
+                                 '<h2><button  class="add_to_cart_button" id="'+ data[i].id+'" onClick="product(this.id)">'+data[i].ar_name+'</button> </h2>\n' +
+                              @else
+                                  '<h2><button  class="add_to_cart_button" id="'+ data[i].id+'" onClick="product(this.id)">'+data[i].en_name+'</button> </h2>\n' +                            @endif
+                            '</div>\n' +
+                            '</li>'
                         }
-                        $('#dep').html("");
-                        $('#dep').append(op);
+                        $('#'+id+'_1').html("");
+                        $('#'+id+'_1').append(op);
                     },
                     error: function () {
                         console.log('error');
@@ -46,7 +46,7 @@
                     }
                 });
             }
-</script>
+   </script>
 <script>
 
             function product(clicked_id)
@@ -62,18 +62,18 @@
                     success: function (data) {
                         // console.log('success');
                         //  console.log(data);
+                         op+= '<ul class="products">'
                         for (var i = 0; i < data.length; i++) {
 
-                            op+='<ul class="products">\n' +
-                                '<li class="product">\n' +
-                                ' <a href="">\n' +
-                                '<img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="upload/products/'+ data[i].photo+'">\n' +
+                            op+= '<li class="product">'+
+                              '<img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="upload/products/'+ data[i].photo+'">\n' +
                                 ' <h3><button  class="add_to_cart_button" id="'+ data[i].id+'" onClick="singleProduct(this.id)">'+data[i].en_title+'</button></h3>\n' +
-                                '<span class="price"><span class="amount">'+data[i].price+'</span></span>\n' +
-                                '</a>\n' +
-                                '</li>\n' +
-                                '</ul>'
+                                '<span class="price"><span class="amount">'+data[i].price+'</span></span>\n'+
+                                    '</li>'
+
+
                         }
+                       op+= '</ul>'
                         $('#product').html("");
                         $('#product').append(op);
                     },
@@ -88,19 +88,11 @@
             function singleProduct(clicked_id)
             {
                 var id=clicked_id;
-                // //
-                // // alert(clicked_id);
-                // // var id=clicked_id;
-                // // // console.log(id);
-                // var op="";
                 $.ajax({
                     type: 'get',
                     url: '{!! \Illuminate\Support\Facades\URL::to('/singleproduct')!!}',
                     data: {'id': id },
                     success: function (data) {
-                     // console.log('success');
-                      //  console.log(data);
-                      //   alert(data)
                         window.location.href = data;
                     },
                     error: function () {
@@ -119,58 +111,76 @@
         <div class="container">
             <div class="row">
 
-<div class="col-md-4">
-    <div class="single-sidebar">
-        <h2 class="sidebar-title">{{trans('admin.categories')}}</h2>
-        @foreach($departments as $department)
+                <div class="col-md-4">
+                    <h2 class="sidebar-title">{{trans('admin.categories')}}</h2>
+                    <ul >
+                        @foreach($departments as $department)
+                            <li>
+                                <div class="thubmnail-recent">
+                                    <img @if(lang() == 'ar') style="float: right;"@else style="float: left;" @endif src="{{url('upload/products/'.$department->image)}}" class="recent-thumb" alt="">
+                                    @if(lang() == 'ar')
+                                        <h2><button  class="add_to_cart_button" id="{{$department->id}}" onClick="reply_click(this.id)">{{$department->ar_name}}</button></h2>
+                                    @else
+                                        <h2><button class="add_to_cart_button" id="{{$department->id}}" onClick="reply_click(this.id)">{{$department->en_name}}</button></h2>
+                                    @endif
+                                </div>
+                                <ul style="margin-top: 50px;" id="{{$department->id}}_1">
 
-            <div class="thubmnail-recent">
-                <img  @if(lang() == 'ar') style="float: right;"@else style="float: left;" @endif src="{{url('upload/products/'.$department->image)}}" class="recent-thumb" alt="">
-                @if(lang() == 'ar')
-                    <h2><button  class="add_to_cart_button" id="{{$department->id}}" onClick="reply_click(this.id)">{{$department->ar_name}}</button></h2>
-                @else
-                    <h2><button class="add_to_cart_button" id="{{$department->id}}" onClick="reply_click(this.id)">{{$department->en_name}}</button></h2>
-                @endif
+                                </ul>
+                            </li>
+                        @endforeach
+                    </ul>
+
+                </div>
+
+
+                <div class="col-md-8">
+                    <div class="product-content-right">
+                        <div class="woocommerce">
+                            <div class="cart-collaterals">
+
+
+
+                                <div class="cross-sells">
+                                    <h2 id="product">Related Products</h2>
+                                        {{--<ul class="products" id="product"  >--}}
+                                        {{--<li class="product"  >--}}
+                                            {{--<a href="single-product.html">--}}
+                                                {{--<img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-2.jpg">--}}
+                                                {{--<h3>Ship Your Idea</h3>--}}
+                                                {{--<span class="price"><span class="amount">£20.00</span></span>--}}
+                                            {{--</a>--}}
+
+                                            {{--<a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>--}}
+                                      {{----}}
+                                        {{--</li>--}}
+
+
+                                    {{--</ul>--}}
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                   </div>
+                </div>
+
+
+
             </div>
-        @endforeach
-
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="cross-sells" id="product">
-        <h2>Related Products</h2>
-
-    </div>
-</div>
 
 
 
-<div class="col-md-8" >
-    <div class="related-products-wrapper">
-        <h2 class="related-products-title">Categoiers</h2>
-        <div class="related-products-carousel" id="dep">
-            {{--<div class="single-product">--}}
-            {{--<div class="product-f-image">--}}
-            {{--<img src="img/product-1.jpg" alt="">--}}
-            {{--<div class="product-hover">--}}
-            {{--</div>--}}
-            {{--</div>--}}
-
-            {{--<h2><a href="">Sony Smart TV - 2015</a></h2>--}}
-
-            {{--<div class="product-carousel-price">--}}
-            {{--<ins>$700.00</ins> <del>$100.00</del>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-
-        </div>
-    </div>
-</div>
 
 
 
-            </div>
+
+
+
+
+
         </div>
     </div>
 
