@@ -21,7 +21,7 @@
 						
 					{!! Form::open(['url'=>app('aurl').'/products/'.$products->id,'method'=>'put','id'=>'review-form','class'=>'smart-form','files'=>true]) !!}
 
-
+ {{csrf_field()}}
 							    <div class="form-group col-sm-12">
         {!! Form::label('en_name',trans('admin.en_name')) !!}
         {!! Form::text('en_name',$products->en_title,['class'=>'form-control']) !!}
@@ -48,12 +48,34 @@
           {!! Form::file('photo',['class'=>'form-control']) !!}
           <p class="help-block">{{$errors->first('photo')}}</p>
       </div>
-      @if(!empty($products->products_gallary()->get()))
+      @if(!empty($products->products_gallary()->get()) && ($products->products_gallary()->get()) != null)
       <div class="col-sm-12">
           @foreach($products->products_gallary()->get() as $media)
+
             <img src="{{url('/upload/products/'.$media->media)}}" style="width: 150px;height: 150px;" />
              <button type="button" class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#del_admin{{$media->id}}">Delete</button>
               <!-- Modal -->
+                 <div id="del_admin{{$media->id}}" class="modal fade" >
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{ trans('admin.delete') }}</h4>
+                </div>
+                {!! Form::open(['id'=>'form_data','url'=>aurl('products/destroyimage/'.$media->id),'method'=>'delete']) !!}
+                {{csrf_field()}}
+                <div class="modal-body">
+                    <h4>{{ trans('admin.delete_photo') }}</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">{{ trans('admin.close') }}</button>
+                    {!! Form::submit(trans('admin.yes'),['class'=>'btn btn-danger']) !!}
+                </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>   
           @endforeach
       </div>
       @endif
@@ -84,8 +106,30 @@
       <div class="col-sm-12">
           @foreach($products->products_color()->get() as $color)
             <div class="col-md-1"  style="background-color: {{$color->color}};height: 100px;margin-right: 25px">     <button type="button" class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#del_color{{$color->id}}">Delete</button></div>
-        
+            <!-- Modal -->
+            <div id="del_color{{$color->id}}" class="modal fade" >
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{ trans('admin.delete') }}</h4>
+                </div>
+                {!! Form::open(['id'=>'form_data','url'=>aurl('products/destroycolor/'.$color->id),'method'=>'delete']) !!}
+                <div class="modal-body">
+                  {{csrf_field()}}
+                    <h4>{{ trans('admin.delete_color') }}</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">{{ trans('admin.close') }}</button>
+                    {!! Form::submit(trans('admin.yes'),['class'=>'btn btn-danger']) !!}
+                </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
               <!-- Modal -->
+
           @endforeach
       </div>
       @endif
@@ -96,9 +140,10 @@
           <div class="colorDiv">
               <div class="col-sm-10">
          
-        {!! Form::label('colorx[]',trans('admin.colorx')) !!}
-        {!! Form::text('colorx[]',null,['class'=>'form-control']) !!}
-         <p class="help-block">{{$errors->first('colorx')}}</p>
+         {!! Form::label('colorx',trans('admin.colorx')) !!}
+        {!! Form::text('colorx[]','',['class'=>'form-control']) !!}
+       
+        
               </div>
               <div class="col-sm-1 pull-right" style="margin-top: 25px">
                   <a class="btn btn-danger btn-rounded removecolor">Remove</a>
@@ -117,6 +162,27 @@
             <div class="col-md-2" style="height: 100px;margin-right: 25px;margin-bottom: 25px"><h1>{{$size->size}}</h1> <button type="button" class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#del_size{{$size->id}}">Delete</button>
             </div>
               <!-- Modal -->
+                 <div id="del_size{{$size->id}}" class="modal fade" >
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{ trans('admin.delete') }}</h4>
+                </div>
+                {!! Form::open(['id'=>'form_data','url'=>aurl('products/destroysize/'.$size->id),'method'=>'delete']) !!}
+                <div class="modal-body">
+                    <h4>{{ trans('admin.delete_color') }}</h4>
+                    {{csrf_field()}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">{{ trans('admin.close') }}</button>
+                    {!! Form::submit(trans('admin.yes'),['class'=>'btn btn-danger']) !!}
+                </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
           @endforeach
       </div>
       @endif
@@ -127,8 +193,8 @@
           <div class="sizeDiv">
               <div class="col-sm-10">
                {!! Form::label('sizex[]',trans('admin.sizex')) !!}
-        {!! Form::text('sizex[]',null,['class'=>'form-control']) !!}
-         <p class="help-block">{{$errors->first('sizex')}}</p>
+        {!! Form::text('sizex[]','',['class'=>'form-control']) !!}
+     
               </div>
               <div class="col-sm-1 pull-right" style="margin-top: 25px">
                   <a class="btn btn-danger btn-rounded removesize ">Remove</a>
@@ -224,75 +290,15 @@
 								</button>
 							</footer>
 						{!! Form::close() !!}
-    @if(!empty($products->products_gallary()->get()))
-    <div id="del_admin{{$media->id}}" class="modal fade" >
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">{{ trans('admin.delete') }}</h4>
-                </div>
-                {!! Form::open(['id'=>'form_data','url'=>aurl('products/destroyimage/'.$media->id),'method'=>'delete']) !!}
-                <div class="modal-body">
-                    <h4>{{ trans('admin.delete_photo') }}</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">{{ trans('admin.close') }}</button>
-                    {!! Form::submit(trans('admin.yes'),['class'=>'btn btn-danger']) !!}
-                </div>
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div>
-    @endif
-       @if(!empty($products->products_color()->get()))
-    <div id="del_color{{$color->id}}" class="modal fade" >
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">{{ trans('admin.delete') }}</h4>
-                </div>
-                {!! Form::open(['id'=>'form_data','url'=>aurl('products/destroycolor/'.$color->id),'method'=>'delete']) !!}
-                <div class="modal-body">
-                    <h4>{{ trans('admin.delete_color') }}</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">{{ trans('admin.close') }}</button>
-                    {!! Form::submit(trans('admin.yes'),['class'=>'btn btn-danger']) !!}
-                </div>
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div>
-    @endif
-           @if(!empty($products->products_size()->get()))
-    <div id="del_size{{$size->id}}" class="modal fade" >
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">{{ trans('admin.delete') }}</h4>
-                </div>
-                {!! Form::open(['id'=>'form_data','url'=>aurl('products/destroysize/'.$size->id),'method'=>'delete']) !!}
-                <div class="modal-body">
-                    <h4>{{ trans('admin.delete_color') }}</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">{{ trans('admin.close') }}</button>
-                    {!! Form::submit(trans('admin.yes'),['class'=>'btn btn-danger']) !!}
-                </div>
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div>
-    @endif
+   
+
+     
+ 
+   
+
 		<!-- end widget div -->
 	</section>
 	</div>
 
 
-@stop
+@endsection

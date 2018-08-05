@@ -29,16 +29,17 @@
                 <table class="table table-lg">
                     <thead>
                         <tr>
+                            <th class="col-sm-1">Order Code</th>
                             <th class="col-sm-1">Image</th>
                             <th class="col-sm-1">Product Name</th>
                             <th class="col-sm-1">Price</th>
-                            
-                            
+                            <th class="col-sm-1">status</th>
                         </tr>
                     </thead>
                     <tbody>
                       @foreach($orderItem as $products)
                         <tr>
+                            <td>{{$products->order_dd()->first()->code}}</td>
                        <td class="product-thumbnail">
                         <img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{url('/upload/products/'.$products->shoppings()->first()->photo)}}">
                        </td>
@@ -47,7 +48,9 @@
                              
                             </td>
                             <td>{{$products->item_price}} LE</td>
-                       
+                            
+                     
+                      <td>{{$products->order_dd()->first()->level}}</td>
                         </tr>
                     @endforeach
                     </tbody>

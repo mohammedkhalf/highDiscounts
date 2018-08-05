@@ -6,12 +6,7 @@
     {{trans('admin.products')}}
 @endsection
 @section('content')
-	<div class="box box-info">
-		<div class="box-header">
 
-		
-		</div>
-	</div>
 	<section class="content">
 		<!-- widget content -->
 		<div class="widget-body no-padding">
@@ -46,9 +41,9 @@
           </div>
           <div class="inputDiv">
               <div class="col-sm-10">
-                      {!! Form::label('media[]',trans('admin.media')) !!}
+                      {!! Form::label('media',trans('admin.media')) !!}
                       {!! Form::file('media[]',['class'=>'form-control']) !!}
-                      <p class="help-block">{{$errors->first('media')}}</p>
+                     
               </div>
               <div class="col-sm-1 pull-right" style="margin-top: 25px">
                   <a class="btn btn-danger btn-rounded removeInput">Remove</a>
@@ -68,9 +63,10 @@
           <div class="colorDiv">
               <div class="col-sm-10">
          
-                            {!! Form::label('colorx[]',trans('admin.colorx')) !!}
-        {!! Form::text('colorx[]',old('colorx'),['class'=>'form-control']) !!}
-         <p class="help-block">{{$errors->first('colorx')}}</p>
+                            {!! Form::label('colorx',trans('admin.colorx')) !!}
+        {!! Form::text('colorx[]','',['class'=>'form-control']) !!}
+         
+        
               </div>
               <div class="col-sm-1 pull-right" style="margin-top: 25px">
                   <a class="btn btn-danger btn-rounded removecolor">Remove</a>
@@ -89,9 +85,9 @@
           </div>
           <div class="sizeDiv">
               <div class="col-sm-10">
-               {!! Form::label('sizex[]',trans('admin.sizex')) !!}
-        {!! Form::text('sizex[]',old('sizex'),['class'=>'form-control']) !!}
-         <p class="help-block">{{$errors->first('sizex')}}</p>
+               {!! Form::label('sizex',trans('admin.sizex')) !!}
+        {!! Form::text('sizex[]','',['class'=>'form-control','multiple']) !!}
+         
               </div>
               <div class="col-sm-1 pull-right" style="margin-top: 25px">
                   <a class="btn btn-danger btn-rounded removesize ">Remove</a>
@@ -182,4 +178,4 @@
 			<!-- end widget -->	
 	
 
-@stop
+@endsection

@@ -51,9 +51,14 @@ class ProductsController extends Controller
             'ar_name' => 'required',
             'en_content' => 'required',
             'ar_content' => 'required',
+            'parent' => 'required',
             'photo' => 'required|image|mimes:gif,jpeg,jpg,png',
             'color' => 'required',
+            'size' => 'required',
+            'price' => 'required|numeric',
             'stock' => 'required|numeric',
+   
+
         ];
    $Validator   = Validator::make($request->all(),$rules);
         $Validator->SetAttributeNames ([
@@ -64,7 +69,10 @@ class ProductsController extends Controller
             'parent' => trans('admin.department'),
             'photo' => trans('admin.photo'),
             'color' => trans('admin.color'),
+            'size' => trans('admin.size'),
+            'price' => trans('admin.price'),
             'stock' => trans('admin.stock'),
+          
 
         ]);
         if($Validator->fails())
@@ -72,6 +80,7 @@ class ProductsController extends Controller
             return back()->withInput()->withErrors($Validator);
         }else{
             $add = new Products;
+         
             $file     = $request->file('photo');
             $path     = public_path().'/upload/products';
             $filename = time().rand(11111,00000).'.'.$file->getClientOriginalExtension();
@@ -80,9 +89,13 @@ class ProductsController extends Controller
                 $add->photo = $filename;
             }
           
+          
             $add->user_id             = admin()->user()->id;
             $add->user_type           = 'admin';
+            if($request->has('parent'))
+            {
             $add->dep_id              = $request->input('parent');
+          }
             $add->en_title            = $request->input('en_name');
             $add->ar_title            = $request->input('ar_name');
             $add->en_content          = $request->input('en_content');
@@ -96,6 +109,7 @@ class ProductsController extends Controller
              $lastid = $add->id;
 
          //multiupload photos to table product_gallary
+             if ($request->hasFile('media.*')) {
          $multifile     = $request->file('media');
           foreach ($multifile as $files)
            {
@@ -109,7 +123,10 @@ class ProductsController extends Controller
                  }
 
            }
+         }
      //multiadd color to table product_color
+           if($request->input('colorx') > 0 && $request->input('colorx') != null)
+            {
             $multicolor    = $request->input('colorx');
              foreach ($multicolor as $colors) 
               {
@@ -118,7 +135,10 @@ class ProductsController extends Controller
                 $multiaddcolors->color = $colors;
                 $multiaddcolors->save();
               }
+            }
       //multiadd size to table product_size
+              if($request->input('sizex') > 0 && $request->input('sizex') != null)
+            {
             $multisize    = $request->input('sizex');
              foreach ($multisize as $sizes)
               {
@@ -127,6 +147,7 @@ class ProductsController extends Controller
                 $multiaddsize->size = $sizes;
                 $multiaddsize->save();
               }
+            }
             session()->flash('success',trans('admin.added'));
         }
         return back();
@@ -145,7 +166,7 @@ class ProductsController extends Controller
             if($request->has('parent') && $request->input('parent') > 0)
             {
                 $dep = Dep::where('parent','=',$request->input('parent'))->get();
-                $data = view(app('at').'.product.products.sub',['department'=>$dep,'parent'=>$request->input('parent')])->render();
+                $data = view(app('at').'.product.department.sub',['department'=>$dep,'parent'=>$request->input('parent')])->render();
                 if(!empty($data))
                 {
                     return response()->json($data);
@@ -182,14 +203,18 @@ class ProductsController extends Controller
     {
     
       $rules = [
-            'en_name' => 'required',
+           'en_name' => 'required',
             'ar_name' => 'required',
             'en_content' => 'required',
             'ar_content' => 'required',
             'parent' => 'required',
             'photo' => 'image|mimes:gif,jpeg,jpg,png',
+            'media.*' => 'image|mimes:gif,jpeg,jpg,png',
+            'color' => 'required',
+            'size' => 'required',
+            'price' => 'required|numeric',
             'stock' => 'required|numeric',
-
+         
 
         ];
    $Validator   = Validator::make($request->all(),$rules);
@@ -200,7 +225,11 @@ class ProductsController extends Controller
             'ar_content' => trans('admin.ar_content'),
             'parent' => trans('admin.department'),
             'photo' => trans('admin.photo'),
+            'color' => trans('admin.color'),
+            'size' => trans('admin.size'),
+            'price' => trans('admin.price'),
             'stock' => trans('admin.stock'),
+            'media.*' => trans('admin.stock'),
         ]);
         if ($Validator->fails()) {
             return back()->withInput()->withErrors($Validator);
@@ -223,7 +252,7 @@ class ProductsController extends Controller
             $update->en_title            = $request->input('en_name');
             $update->ar_title            = $request->input('ar_name');
             $update->user_id             = admin()->user()->id;
-           $update->user_type            = 'admin';
+            $update->user_type            = 'admin';
             $update->en_content          = $request->input('en_content');
             $update->ar_content          = $request->input('ar_content');
             $update->price               = $request->input('price');
@@ -231,20 +260,11 @@ class ProductsController extends Controller
             $update->size                = $request->input('size');
             $update->stock                = $request->input('stock');
             $update->save();
-
+ $lastid = $update->id;
             /** update multiphotos in ProductsGallary table**/
             $path     = public_path().'/upload/products';
             $multifile     = $request->file('media');
-            if($request->hasFile('media')) {
-
-                $affected = ProductsGallary::where('product_id', '=', $id)->get()->all();
-                foreach ($affected as $affectedRows){
-                    if (!empty($affectedRows->media) and file_exists(public_path() . '/upload/products/' . $affectedRows->media)) {
-                        @unlink(public_path() . '/upload/products/' . $affectedRows->media);
-                          $affectedRows->delete();
-                    }
-            }
-              
+            if($request->hasFile('media.*')) {
                 foreach ($multifile as $files)
                 {
                     $extension = $files->getClientOriginalExtension();
@@ -262,38 +282,26 @@ class ProductsController extends Controller
 
       //update color in table product_color
 
-             if($request->has('colorx')) {
-
-                $affectedcolors = ProductsColor::where('product_id', '=', $id)->get()->all();
-                foreach ($affectedcolors as $affectedRowss)
-                {
-                  $affectedRowss->delete();  
-                }
+             if( $request->input('colorx') > 0 && $request->input('colorx') != null) {
             $multicolor    = $request->input('colorx');
              foreach ($multicolor as $colors) 
               {
                 $multiupdatecolors = new ProductsColor;
-                $multiupdatecolors->product_id  = $id;
+                $multiupdatecolors->product_id  = $lastid;
                 $multiupdatecolors->color = $colors;
                 $multiupdatecolors->save();
               } }
       //update size in table product_size
-                if($request->has('sizex')) {
-
-                $affectedsizess = ProductsSize::where('product_id', '=', $id)->get()->all();
-                foreach ($affectedsizess as $affectedRowss)
-                {
-                  $affectedRowss->delete();  
-                }
+        if($request->input('sizex') > 0 && $request->input('sizex') != null) {
             $multisize    = $request->input('sizex');
              foreach ($multisize as $sizes)
               {
                 $multiupdatesize = new ProductsSize;
-                $multiupdatesize->product_id = $id;
+                $multiupdatesize->product_id = $lastid;
                 $multiupdatesize->size = $sizes;
                 $multiupdatesize->save();
               }
-}
+           }
 
             session()->flash('success', trans('admin.updated'));
         }

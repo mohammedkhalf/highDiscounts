@@ -46,6 +46,10 @@
                                     </ul>
 
                                 </li>
+                                       <li {{{ (Request::is('admin/orders') ? ' class=active' : '') }}}>
+                                    <a href="{{url('vendor/orders')}}"><i class="  icon-price-tags"></i> <span>{{trans('admin.orders')}}</span></a>
+                                </li>
+                                        
                             </ul>
 
                         @else

@@ -37,9 +37,13 @@ $orderItem  = OrderItem::where('order_id','=',$id)->get()->all();
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function status(Request $request, $id)
     {
-        //
+        $order = Order::find($id); 
+        $order->level           = $request->input('level');
+
+        $order->save();
+        return back();
     }
 
     /**

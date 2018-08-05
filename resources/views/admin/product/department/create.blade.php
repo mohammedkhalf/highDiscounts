@@ -92,7 +92,7 @@
 		<!-- end widget div -->
 	</section>
 	</div>
-	<!-- end widg
+	
 			<!-- end widget -->	
 		 
 

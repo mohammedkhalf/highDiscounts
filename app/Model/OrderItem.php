@@ -22,4 +22,8 @@ class OrderItem extends Model
 
         return $this->belongsTo('App\Model\Products', 'product_id', 'id');
     }
+                     public function order_dd() {
+
+        return $this->belongsTo('App\Model\Order', 'order_id', 'id');
+    }
 }

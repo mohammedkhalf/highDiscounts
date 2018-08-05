@@ -16,8 +16,10 @@ class OrderController extends Controller
     public function index()
     {
         $vendor =    Auth::user()->id;
-        $orderItem = OrderItem::where('vendor_id', '=', $vendor)->paginate(10);
-        return view(app('v').'.orders.index')->with('orderItem',$orderItem);
+
+        $orderItem = OrderItem::where('vendor_id', '=', $vendor)->get()->all();
+
+        return view(app('v').'.orders.index', [ 'orderItem'=>$orderItem]);
     }
 
     /**

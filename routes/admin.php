@@ -86,6 +86,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('department_product/check/parent','DepProductController@check_parent');
        
         Route::resource('products','ProductsController');
+        Route::post('products/check/parent','ProductsController@check_parent');
         Route::delete('products/destroyimage/{id}', 'ProductsController@destroyimage');
         Route::delete('products/destroysize/{id}', 'ProductsController@destroysize');
         Route::delete('products/destroycolor/{id}', 'ProductsController@destroycolor');
@@ -97,6 +98,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         ////order///
         Route::get('/orders','OrderController@index');
         Route::get('/orders/details/{id}','OrderController@details');
+        Route::post('/orders/status/{id}','OrderController@status');
 
         ////contactus
         Route::get('/allcontact','AdminController@allContact');

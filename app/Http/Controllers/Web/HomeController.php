@@ -115,6 +115,7 @@ class HomeController extends Controller
             $add->email               = $request->input('email');
             $add->phone               = $request->input('phone');
             $add->level               = 'prepare';
+            $add->code               = '#'.time().rand(11,00).$add->id;
             $add->price               = $total;
             $add->save();
             $lastid = $add->id;

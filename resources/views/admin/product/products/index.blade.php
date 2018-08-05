@@ -94,4 +94,4 @@
 		<!-- end widget div -->
 
 
-@stop
+@endsection

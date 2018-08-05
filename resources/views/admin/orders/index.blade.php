@@ -28,15 +28,16 @@
         <table class="table datatable-button-html5-columns">
             <thead>
             <tr>
-                <th>ID</th>
+                
+                 <th>{{trans('admin.code')}}</th>
                 <th>{{trans('admin.name')}}</th>
                 <th>{{trans('admin.city')}}</th>
-                <th>{{trans('admin.address')}}</th>
-                <th>{{trans('admin.email')}}</th>
                 <th>{{trans('admin.phone')}}</th>
                 <th>{{trans('admin.totalprice')}}</th>
-             
-                <th>Delete</th>
+               <th>{{trans('admin.status')}}</th>
+                <th>{{trans('admin.apply')}}</th>
+               <th>{{trans('admin.order_details')}}</th>
+
             </tr>
             </thead>
             <tbody>
@@ -44,11 +45,12 @@
            
                 <tr>
                      
-                    <td>{{$order->id}}</td>
+                    
+                    <td>{{$order->code}}</td>
                    @if(!empty( $order->user()->get()))
                        @foreach($order->user()->get() as $user)
                        
-                            <td><a href="{{aurl('orders/details/'.$order->id)}}">{{ $user->name}}</a></td>
+                            <td>{{ $user->name}}</td>
 
                            @endforeach
                        @endif
@@ -58,16 +60,24 @@
                             <td>{{ $country->country_name_en}}</td>
                            @endforeach
                        @endif
-                    <td>{{$order->address}}</td>
-                    <td>{{$order->email}}</td>
+                   
+                   
                     <td>{{$order->phone}}</td>
                     <td>{{$order->price}}</td>
-                   
-                   
-                    <td><a href><i class="icon-trash"></i> <span>reject</span></a></td>
-                   
+                    {!! Form::open(['url'=>app('aurl').'/orders/status/'.$order->id,'method'=>'post']) !!}
+                        <td> <select style="width: 100px" class="form-control" name="level">
+                          <option value="prepare" @if($order->level == 'prepare') selected @endif>Prepare</option>
+                          <option value="ship" @if($order->level == 'ship') selected @endif>Shipping</option>
+                          <option value="done" @if($order->level == 'done') selected @endif>Done</option>
+                          <option value="reject" @if($order->level == 'reject') selected @endif>Reject</option>
+                             </select></td>                  
+                        <td><button type="submit"><i class="icon-basket"></i> <span>Apply</span></button></td>
+
+                   {!! Form::close() !!}
+                      <td><a href="{{aurl('orders/details/'.$order->id)}}"><i class="icon-eye"></i> <span>View</span></a>
+                    </td>
                 </tr>
-                
+              
             @endforeach
             </tbody>
         </table>
