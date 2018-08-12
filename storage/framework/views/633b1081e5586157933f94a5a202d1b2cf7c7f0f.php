@@ -129,7 +129,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn bg-blue btn-block">Login <i
+                    <button type="submit" class="btn bg-blue btn-block">Add <i
                                 class="icon-arrow-right14 position-right"></i></button>
                 </div>
 
