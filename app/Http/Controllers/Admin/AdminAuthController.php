@@ -42,7 +42,7 @@ class AdminAuthController extends  Controller
     public function dologin()
     {
         $rememberme = request('rememberme') == 1 ? true : false;
-        if (admin()->attempt(['email' => request('email'), 'password' => request('password')], $rememberme)) {
+        if (auth()->guard('admin')->attempt(['email' => request('email'), 'password' => request('password')], $rememberme)) {
             return redirect('admin');
         } else {
             Session()->flash('error', trans('admin_incorect_login'));

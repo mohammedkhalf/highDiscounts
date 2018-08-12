@@ -46,6 +46,10 @@
                                     </ul>
 
                                 </li>
+                                       <li <?php echo e((Request::is('admin/orders') ? ' class=active' : '')); ?>>
+                                    <a href="<?php echo e(url('vendor/orders')); ?>"><i class="  icon-price-tags"></i> <span><?php echo e(trans('admin.orders')); ?></span></a>
+                                </li>
+                                        
                             </ul>
 
                         <?php else: ?>

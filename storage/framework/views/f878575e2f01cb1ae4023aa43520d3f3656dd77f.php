@@ -109,7 +109,7 @@
                                 <h2><a href="single_product/<?php echo e($products->id); ?>"><?php echo e($products->en_title); ?></a></h2>
 
                                 <div class="product-carousel-price">
-                                    <ins><?php echo e($products->price); ?></ins> 
+                                    <ins><?php echo e($products->price); ?> LE</ins> 
                                 </div>
                                 <?php if( $products->stock >= 1): ?>
                                 <p>In Stock : <?php echo e($products->stock); ?></p>
