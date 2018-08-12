@@ -1,6 +1,5 @@
 <?php
-
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -29,8 +28,8 @@ class HomeController extends Controller
 
         $allproducts = Products::orderBy('id','desc')->take(10)->get();
         $department = Dep::where('parent','=',0)->get();
-
-        return view(app('f').'.home',['allproducts'=>$allproducts , 'department'=>$department]);
+return response(['status' => true,  'allproducts'=>$allproducts, 'department'=>$department]);
+      
     }
 
     public function single($id)
@@ -40,11 +39,13 @@ class HomeController extends Controller
         $similarProduct = Products::where('dep_id',$product->dep_id)->take(3)->orderBy('id','desc')->get();
         $ratedProduct = Products::where('dep_id',$product->dep_id)->get();
         $lastPosted = Products::take(5)->orderBy('id','desc')->get();
-        return view(app('f').'.single_product',['title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct ,'ratedProduct'=>$ratedProduct,'lastPosted'=>$lastPosted]);
+     
+        return response(['status' => true,'title'=>trans('admin.single_product'),'department'=>$department,'product'=>$product , 'similarProduct'=>$similarProduct ,'ratedProduct'=>$ratedProduct,'lastPosted'=>$lastPosted]);
     }
 
     public function getAddToCart(Request $request, $id)
     {
+        if (Auth::user() && Auth::user()->level == 'user') {
         $product  = Products::find($id);
         $adde = new ShoppingCart;
         $adde->user_id    = Auth::user()->id;
@@ -53,6 +54,8 @@ class HomeController extends Controller
         $adde->vendor_id = $product->user_id;
         $adde->vendor_type = $product->user_type;
         $adde->save();
+        }
+   
         
         return back();
     }
@@ -118,7 +121,6 @@ class HomeController extends Controller
             $add->code               = '#'.time().rand(11,00).$add->id;
             $add->price               = $total;
             $add->save();
-            
             $lastid = $add->id;
             $product  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
             foreach ($product as $item) {

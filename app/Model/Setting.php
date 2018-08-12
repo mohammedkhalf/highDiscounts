@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
 {
-    protected $table = "Settings";
+    protected $table = "settings";
     protected $fillable =
         [
             'id',

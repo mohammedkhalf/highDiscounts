@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->enum('level',['user','vendor']);
             $table->string('status');
+            $table->string('api_token', 60);
             $table->rememberToken();
             $table->timestamps();
         });

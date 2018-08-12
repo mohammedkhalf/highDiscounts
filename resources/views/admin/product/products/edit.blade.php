@@ -118,7 +118,7 @@
                 {!! Form::open(['id'=>'form_data','url'=>aurl('products/destroycolor/'.$color->id),'method'=>'delete']) !!}
                 <div class="modal-body">
                   {{csrf_field()}}
-                    <h4>{{ trans('admin.delete_color') }}</h4>
+                    <h4>{{ trans('admin.delete_color').' '.$color->color}}</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal">{{ trans('admin.close') }}</button>
