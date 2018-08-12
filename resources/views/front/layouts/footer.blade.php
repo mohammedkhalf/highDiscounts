@@ -175,7 +175,7 @@
 {{Html::script('front/assets/js/jquery.easing.min.js')}}
 {{Html::script('front/assets/js/jquery.waypoints.min.js')}}
 {{Html::script('front/assets/js/electro.js')}}
-      
+
 
     </body>
 </html>

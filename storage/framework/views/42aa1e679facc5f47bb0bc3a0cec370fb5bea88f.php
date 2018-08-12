@@ -1,45 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ustora Demo</title>
 
-    <!-- Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet'
-          type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+    <title>Electro &#8211; Electronics Ecommerce Theme</title>
+    <?php echo e(Html::style('front/assets/css/font-awesome.min.css')); ?>
 
-    <!-- Bootstrap -->
-    <?php echo e(Html::style('front/css/bootstrap.min.css')); ?>
+    <?php echo e(Html::style('front/assets/css/animate.min.css')); ?>
 
+    <?php echo e(Html::style('front/assets/css/font-electro.css')); ?>
 
-    <!-- Font Awesome -->
-    <?php echo e(Html::style('front/css/font-awesome.min.css')); ?>
+    <?php echo e(Html::style('front/assets/css/owl-carousel.css')); ?>
 
-
-    <!-- Custom CSS -->
-
-
-    <?php echo e(Html::style('front/css/owl.carousel.css')); ?>
-
-    <?php echo e(Html::style('front/style.css')); ?>
-
-    <?php echo e(Html::style('front/css/responsive.css')); ?>
+    <?php echo e(Html::style('front/assets/css/colors/yellow.css')); ?>
 
     <?php if(lang() == 'ar'): ?>
-        <?php echo e(Html::style('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css')); ?>
+        <?php echo e(Html::style('front/assets/css/bootstrap-rtl.min.css')); ?>
+
+        <?php echo e(Html::style('front/assets/css/rtl.min.css')); ?>
+
+
+    <?php else: ?>
+        <?php echo e(Html::style('front/assets/css/bootstrap.min.css')); ?>
+
+        <?php echo e(Html::style('front/assets/css/style.css')); ?>
+
 
     <?php endif; ?>
 
-    <link rel="icon" href="<?php echo e(Storage::url(sett()->icon)); ?>"/>
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,700italic,800,800italic,600italic,400italic,300italic'
+          rel='stylesheet' type='text/css'>
+
+    <link rel="shortcut icon" href="<?php echo e(url('front/assets/images/fav-icon.png')); ?>">
 </head>
-<body>
+
+<body class="home-v2">
