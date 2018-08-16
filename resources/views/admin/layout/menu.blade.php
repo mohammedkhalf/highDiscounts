@@ -70,6 +70,10 @@
                                         <li>
                                     </ul>
                                 </li>
+           <li {{{ (Request::is('admin/slider') ? ' class=active' : '') }}}>
+                                    <a href="{{aurl('slider')}}"><i class="  icon-price-tags"></i> <span>{{trans('admin.slider')}}</span></a>
+                                </li>
+                       
                                 <li>
                                     <a href="#"><i class="icon-sync icon-pen"></i>
                                         <span>{{trans('admin.admins')}}</span></a>

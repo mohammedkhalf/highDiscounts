@@ -14,7 +14,7 @@
             <h5 class="panel-title">{{$title}}</h5>
             <div class="heading-elements">
                 <ul class="icons-list">
-                    <li><a href="{{url(app('aurl').'/products/create')}}"><span class="label border-left-primary label-striped">{{trans('admin.add')}}</span></a>
+                    <li><a href="{{url(app('aurl').'/slider/create')}}"><span class="label border-left-primary label-striped">{{trans('admin.add')}}</span></a>
                     </li>
                     <li><a data-action="collapse"></a></li>
                     <li><a data-action="reload"></a></li>
@@ -28,33 +28,28 @@
 		 					<tr>
 		 						<td>{{ trans('admin.en_name') }}</td>
 		 						<td>{{ trans('admin.ar_name') }}</td>
-								<td>{{ trans('admin.department') }}</td>
-								<td>{{ trans('admin.color') }}</td>
-								<td>{{ trans('admin.size') }}</td>
-								<td>{{ trans('admin.price') }}</td>
+								
+								<td>{{ trans('admin.en_content') }}</td>
+								<td>{{ trans('admin.ar_content') }}</td>
+							
 								<td>{{ trans('admin.photo') }}</td>
 		 						<td>{{trans('admin.edit')}}</td>
 		 						<td>{{trans('admin.delete')}}</td>
 		 					</tr>	
 		 					</thead>
-		 					@foreach($allproducts as $products)
+		 					@foreach($slider as $sliders)
 		 					<tr>
-								<td>{{ $products->en_title }}</td>
-								<td>{{ $products->ar_title }}</td>
-								<?php $department = App\Model\DepartmentProducts::where('id','=',$products->dep_id)->pluck('en_name');?>
-								<td>
-									@foreach($department as $dep)
-										{!!	$dep!!}
-									@endforeach
-								</td>
-                          <td>{{ $products->color }}</td>
-                          <td>{{ $products->size }}</td>
-                          <td>{{ $products->price }}</td>
-								<td><img src="{{url('/upload/products/'.$products->photo)}}" style="width: 150px;height: 100px;" />
+								<td>{{ $sliders->en_title }}</td>
+								<td>{{ $sliders->ar_title }}</td>
+						
+                          <td>{{ $sliders->en_content  }}</td>
+                          <td>{{ $sliders->ar_content  }}</td>
+                       
+								<td><img src="{{url('/upload/products/'.$sliders->image)}}" style="width: 200px;height: 100px;" />
 								</td>
 								<td>
-		 							<a href="{{url(app('aurl').'/products/'.$products->id.'/edit')}}" class="btn btn-info">{{trans('admin.edit')}}</a>
-		 							{!! Form::open(['method'=>'delete','url'=>app('aurl').'/products/'.$products->id,'style'=>'display:inline','class'=>'form'.$products->id]) !!} 
+		 							<a href="{{url(app('aurl').'/sliders/'.$sliders->id.'/edit')}}" class="btn btn-info">{{trans('admin.edit')}}</a>
+		 							{!! Form::open(['method'=>'delete','url'=>app('aurl').'/slider/'.$sliders->id,'style'=>'display:inline','class'=>'form'.$sliders->id]) !!} 
 		 						</td>
 		 						<td>
 									<a type="button" href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
@@ -74,7 +69,7 @@
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{trans('admin.no')}}</button>
-													<button  href="{{url(app('aurl').'/products/'.$products->id)}}" type="submit" class="btn btn-outline">{{trans('admin.yes')}}</button>
+													<button  href="{{url(app('aurl').'/slider/'.$sliders->id)}}" type="submit" class="btn btn-outline">{{trans('admin.yes')}}</button>
 												</div>
 											</div>
 											<!-- /.modal-content -->

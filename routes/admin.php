@@ -81,7 +81,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::get('/countries/cities/{id}', 'CountriesController@show');
 
-
+        Route::resource('slider','SliderController');
         Route::resource('department_product','DepProductController');
         Route::post('department_product/check/parent','DepProductController@check_parent');
        

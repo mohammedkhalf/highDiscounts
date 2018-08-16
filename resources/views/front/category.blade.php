@@ -115,7 +115,7 @@
                                 <nav class="woocommerce-pagination">
                                     <ul >
                                       
-                                   {!! str_replace('/?','?',$products->render()) !!}
+                                 
                          
                                     </ul>
                                 </nav>

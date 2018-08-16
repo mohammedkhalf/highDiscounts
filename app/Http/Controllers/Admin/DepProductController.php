@@ -87,9 +87,11 @@ class DepProductController extends Controller
             {
                 $add->image = $filename;
             }
-            if($request->has('parent'))
+            if($request->has('parent') && $request->input('parent') !== null)
             {
                 $add->parent = $request->input('parent');
+            }else{
+                $add->parent = 0;
             }
          $add->en_name           = $request->input('en_name');
          $add->ar_name           = $request->input('ar_name');
@@ -169,7 +171,7 @@ class DepProductController extends Controller
                     $update->image = $filename;
                 }
             }
-            if($request->has('parent'))
+            if($request->has('parent') && $request->input('parent') !== null)
             {
                 $update->parent = $request->input('parent');
             }

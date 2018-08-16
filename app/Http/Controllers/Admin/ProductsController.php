@@ -92,7 +92,7 @@ class ProductsController extends Controller
           
             $add->user_id             = admin()->user()->id;
             $add->user_type           = 'admin';
-            if($request->has('parent'))
+            if($request->has('parent') && $request->input('parent') !== null)
             {
             $add->dep_id              = $request->input('parent');
           }
@@ -125,7 +125,7 @@ class ProductsController extends Controller
            }
          }
      //multiadd color to table product_color
-           if($request->input('colorx') > 0 && $request->input('colorx') != null)
+           if($request->input('colorx') > 0 && $request->input('colorx') !== null)
             {
             $multicolor    = $request->input('colorx');
              foreach ($multicolor as $colors) 
@@ -137,7 +137,7 @@ class ProductsController extends Controller
               }
             }
       //multiadd size to table product_size
-              if($request->input('sizex') > 0 && $request->input('sizex') != null)
+              if($request->input('sizex') > 0 && $request->input('sizex') !== null)
             {
             $multisize    = $request->input('sizex');
              foreach ($multisize as $sizes)
@@ -244,7 +244,7 @@ class ProductsController extends Controller
                     $update->photo = $filename;
                 }
             }
-            if($request->has('parent'))
+            if($request->has('parent') && $request->input('parent') !== null)
             {
                 $update->dep_id = $request->input('parent');
             }
@@ -282,7 +282,7 @@ class ProductsController extends Controller
 
       //update color in table product_color
 
-             if( $request->input('colorx') > 0 && $request->input('colorx') != null) {
+             if( $request->input('colorx') > 0 && $request->input('colorx') !== null) {
             $multicolor    = $request->input('colorx');
              foreach ($multicolor as $colors) 
               {
@@ -292,7 +292,7 @@ class ProductsController extends Controller
                 $multiupdatecolors->save();
               } }
       //update size in table product_size
-        if($request->input('sizex') > 0 && $request->input('sizex') != null) {
+        if($request->input('sizex') > 0 && $request->input('sizex') !== null) {
             $multisize    = $request->input('sizex');
              foreach ($multisize as $sizes)
               {

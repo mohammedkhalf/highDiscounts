@@ -42,6 +42,7 @@ class SessionController extends Controller
         $data->level = $request->level;
         if($request->level == 'vendor'){
             $data->status= 0;
+         
         }else{
             $data->status= 1;
         }

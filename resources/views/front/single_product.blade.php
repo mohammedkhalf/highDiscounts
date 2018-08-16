@@ -9,206 +9,208 @@
 @section('content')
 
 
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>{{$title}}</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+            <div id="content" class="site-content" tabindex="-1">
+                <div class="container">
 
+                    <nav class="woocommerce-breadcrumb">
+                        <a href="home.html">Home</a>
+                        <span class="delimiter"><i class="fa fa-angle-right"></i></span>
+                        <a href="product-category.html">Accessories</a>
+                        <span class="delimiter"><i class="fa fa-angle-right"></i></span>
+                        <a href="product-category.html">Headphones</a>
+                        <span class="delimiter"><i class="fa fa-angle-right"></i>
+                        </span>Ultra Wireless S50 Headphones S50 with Bluetooth
+                    </nav><!-- /.woocommerce-breadcrumb -->
 
-    <div class="single-product-area">
-        <div class="zigzag-bottom"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="single-sidebar">
-                        <h2 class="sidebar-title">Search Products</h2>
-                        <form action="">
-                            <input type="text" placeholder="Search products...">
-                            <input type="submit" value="Search">
-                        </form>
-                    </div>
+                    <div id="primary" class="content-area">
+                        <main id="main" class="site-main">
 
-                    <div class="single-sidebar">
-                        <h2 class="sidebar-title">{{trans('admin.similer_product')}}</h2>
-                        @foreach($similarProduct as $similar)
-                            <a href="{{url('/single_product/'.$similar->id)}}">
-                                <div class="thubmnail-recent">
-                                    <img style="height: 100px; width: auto"
-                                         src="{{url('/upload/products/'.$similar->photo)}}"
-                                         alt="{{$similar->en_title}}"/>
-                                    <h2>
-                                        <a href="">@if(lang() == 'ar') {{$similar->ar_title}} @else {{$similar->en_title}} @endif</a>
-                                    </h2>
-                                    <div class="product-sidebar-price">
-                                        <ins>{{$similar->price}}</ins>{{-- <del>$100.00</del>--}}
-                                    </div>
-                                </div>
-                            </a>
-                        @endforeach
-                    </div>
+                            <div class="product">
 
-                    <div class="single-sidebar">
-                        <h2 class="sidebar-title">Recent Posts</h2>
-                        <ul>
-                            @foreach($lastPosted as $last)
-                                @if(lang()== 'ar')
-                                    <li><a href="{{url('/single_product/'.$last->id)}}">{{$last->ar_title}}</a></li>
-                                @else
-                                    <li><a href="{{url('/single_product/'.$last->id)}}">{{$last->en_title}}</a></li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
+                                <div class="single-product-wrapper">
+                                    <div class="product-images-wrapper">
+                                      <img src="{{url('/upload/products/'.$product->photo)}}" alt="">
+                                        <div class="images electro-gallery">
+                                            <div class="thumbnails-single owl-carousel">
 
-                <div class="col-md-8">
-                    <div class="product-content-right">
-                        <div class="product-breadcroumb">
-                            <a href="{{url('/')}}">Home</a>
-                            <a href="">@if(!empty($product->product_dep()->get()))
-                                    @foreach($product->product_dep()->get() as $dep)
-                                        {!! $dep->en_name!!}
-                                    @endforeach
-                                @endif  </a>
-                            <a href="">{{$product->en_title}}</a>
-                        </div>
+                                                <a href="{{url('/upload/products/'.$product->photo)}}" class="zoom" title="" data-rel="prettyPhoto[product-gallery]"><img src="{{url('/upload/products/'.$product->photo)}}" data-echo="{{url('/upload/products/'.$product->photo)}}" class="wp-post-image" alt=""></a>
+                                            </div><!-- .thumbnails-single -->
 
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="product-images">
-                                    <div class="product-main-img">
-                                        <img src="{{url('/upload/products/'.$product->photo)}}"/>
-                                    </div>
+                                            <div > 
+                                           
 
-                                    <div class="product-gallery">
-
-                                        @if(!empty($product->products_gallary()->get()))
+                                              @if(!empty($product->products_gallary()->get()))
 
                                             @foreach($product->products_gallary()->get() as $media)
-                                                <img src="{{url('/upload/products/'.$media->media)}}"/>
-
+                                             <div class="col-md-4">
+     <img src="{{url('/upload/products/'.$media->media)}}"  alt="" style="height: 150px;width: 150px">
                                                 <!-- Modal -->
+                                            </div>
                                             @endforeach
 
                                         @endif
+                                            </div><!-- .thumbnails-all -->
+                                        </div><!-- .electro-gallery -->
+                                    </div><!-- /.product-images-wrapper -->
 
-                                    </div>
-                                </div>
-                            </div>
+                                    <div class="summary entry-summary">
 
-                            <div class="col-sm-6">
-                                <div class="product-inner">
-                                    <h2 class="product-name">{{$product->en_title}}</h2>
-                                    <div class="product-inner-price">
-                                        <ins>{{$product->price}}</ins>
-                                    </div>
+                                        <span class="loop-product-categories">
+                                            <a href="" rel="tag">@if(!empty($product->product_dep()->get()))
+                                    @foreach($product->product_dep()->get() as $dep)
+                                        {!! $dep->en_name!!}
+                                    @endforeach
+                                @endif</a>
+                                        </span><!-- /.loop-product-categories -->
 
-                                    <form action="" class="cart">
-                                        <div class="quantity">
-                                            <input type="number" size="4" class="input-text qty text" title="Qty"
-                                                   value="1" name="quantity" min="1" step="1">
-                                        </div>
-                                        <button class="add_to_cart_button" type="submit">Add to cart</button>
-                                    </form>
+                                        <h1 itemprop="name" class="product_title entry-title">{{$product->en_title}}</h1>
 
-                                    <div class="product-inner-category">
-                                        <p>Category: <a href="">@if(!empty($product->product_dep()->get()))
-                                                    @foreach($product->product_dep()->get() as $dep)
-                                                        {!! $dep->en_name!!}
-                                                    @endforeach
-                                                @endif
 
-                                            </a>. Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>,
-                                            <a href="">shoes</a>. </p>
-                                    </div>
+                                        <div class="brand">
+                                            <a href="product-category.html">
+                                                @if(!empty($product->product_dep()->get()))
+                                    @foreach($product->product_dep()->get() as $dep)
+                                       
+                                           <img src="{{url('/upload/products/'.$dep->image)}}" alt="{{$dep->en_name}}" />
 
-                                    <div role="tabpanel">
-                                        <ul class="product-tab" role="tablist">
-                                            <li role="presentation" class="active"><a href="#home" aria-controls="home"
-                                                                                      role="tab" data-toggle="tab">Description</a>
-                                            </li>
-                                            <li role="presentation"><a href="#profile" aria-controls="profile"
-                                                                       role="tab" data-toggle="tab">Reviews</a></li>
-                                        </ul>
-                                        <div class="tab-content">
-                                            <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                                <h2>Product Description</h2>
-                                                <p>{{$product->en_content}}</p>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="profile">
-                                                <h2>Reviews</h2>
-                                                <div class="submit-review">
-                                                    <p><label for="name">Name</label> <input name="name" type="text">
-                                                    </p>
-                                                    <p><label for="email">Email</label> <input name="email"
-                                                                                               type="email"></p>
-                                                    <div class="rating-chooser">
-                                                        <p>Your rating</p>
+                                    @endforeach
+                                           @endif  
+                                            </a>
+                                        </div><!-- .brand -->
 
-                                                        <div class="rating-wrap-post">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                    <p><label for="review">Your review</label> <textarea name="review"
-                                                                                                         id="" cols="30"
-                                                                                                         rows="10"></textarea>
-                                                    </p>
-                                                    <p><input type="submit" value="Submit"></p>
+                                        <div class="availability in-stock">Availablity: <span>In stock</span> {{$product->stock}} Item(s)</div><!-- .availability -->
+
+                                        <hr class="single-product-title-divider" />
+
+                                    
+                                        <div itemprop="description">
+                                          
+
+                                            <p>{{$product->en_content}}>
+                                            <p><strong>Product Price</strong>: {{$product->price}} LE</p>
+                                        </div><!-- .description -->
+
+                            
+
+                                        <form class="variations_form cart" method="post">
+
+                                            <table class="variations">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="label"><label>Color</label></td>
+                                                        <td class="value">
+                                                            <select class="" name="attribute_pa_color">
+                                                            
+                                                                         @if(!empty($product->products_color()->get()))
+                                    @foreach($product->products_color()->get() as $color)
+                                       
+                                            <option value="{{$color->id}}"  selected='selected'>{{$color->color}}</option>
+
+                                    @endforeach
+                                           @endif 
+                                                            </select>
+                                                            <a class="reset_variations" href="#">Clear</a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+
+                                            <div class="single_variation_wrap">
+                                                <div class="woocommerce-variation single_variation"></div>
+                                                <div class="woocommerce-variation-add-to-cart variations_button">
+                                                     @if( $product->stock >= 1)
+                                        <a href="{{route('product.addToCart' , ['id' => $product->id])}}" class="single_add_to_cart_button button"> Add to cart</a>
+                                         @endif
+                                                 
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </form>
 
-                                </div>
-                            </div>
-                        </div>
+                                    </div><!-- .summary -->
+                                </div><!-- /.single-product-wrapper -->
 
 
-                        <div class="related-products-wrapper">
-                            <h2 class="related-products-title">Related Products</h2>
-                            <div class="related-products-carousel">
+                         
 
-                                @foreach($ratedProduct as $rated)
-                                    <div class="single-product">
-                                        <div class="product-f-image">
-                                            <img src="{{url('/upload/products/'.$rated->photo)}}"
-                                                 alt="{{$rated->en_title}}"/>
-                                            <div class="product-hover">
-                                                <a href="{{url('/add-to-cart/'.$rated->id)}}"
-                                                   class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to
-                                                    cart</a>
-                                                <a href="{{url('/single_product/'.$rated->id)}}"
-                                                   class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                            </div>
-                                        </div>
+                                <div class="related products">
+                                    <h2>{{trans('admin.similer_product')}}</h2>
 
-                                        <h2>
-                                            <a href="">@if(lang() == 'ar'){{$rated->ar_title}} @else {{$rated->en_title}} @endif</a>
-                                        </h2>
+                                    <ul class="products columns-5">
 
-                                        <div class="product-carousel-price">
-                                            <ins>{{$rated->price}}</ins> {{--<del>$100.00</del>--}}
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
+ @foreach($similarProduct as $similar)
+  <a href="{{url('/single_product/'.$similar->id)}}">
+                                        <li class="product">
+                                            <div class="product-outer">
+                                                <div class="product-inner">
+                                                    <span class="loop-product-categories"><a href="product-category.html" rel="tag">Smartphones</a></span>
+                                                    <a href="{{url('/single_product/'.$similar->id)}}">
+                                                        <h3> <a href="{{url('/single_product/'.$similar->id)}}">@if(lang() == 'ar') {{$similar->ar_title}} @else {{$similar->en_title}} @endif</a></h3>
+                                                        <div class="product-thumbnail">
+                                                          <img style="height: 100px; width: auto"
+                                         src="{{url('/upload/products/'.$similar->photo)}}"
+                                         alt="{{$similar->en_title}}"/>
+                                                        </div>
+                                                    </a>
+
+                                                    <div class="price-add-to-cart">
+                                                        <span class="price">
+                                                            <span class="electro-price">
+                                                                <ins><span class="amount">&#036;{{$similar->price}}</span></ins>
+                                                            </span>
+                                                        </span>
+                                                        <a rel="nofollow" href="{{route('product.addToCart' , ['id' => $similar->id])}}" class="button add_to_cart_button">Add to cart</a>
+                                                    </div><!-- /.price-add-to-cart -->
+
+                                              
+                                                </div><!-- /.product-inner -->
+                                            </div><!-- /.product-outer -->
+                                        </li>
+                                    </a>
+ @endforeach
+                                 
+                                    </ul><!-- /.products -->
+                                </div><!-- /.related -->
+                            </div><!-- /.product -->
+
+                        </main><!-- /.site-main -->
+                    </div><!-- /.content-area -->
+                </div><!-- /.container -->
+            </div><!-- /.site-content -->
+
+            <section class="brands-carousel">
+                <h2 class="sr-only">Brands Carousel</h2>
+                <div class="container">
+                    <div id="owl-brands" class="owl-brands owl-carousel unicase-owl-carousel owl-outer-nav">
+
+                        <div class="item">
+
+                            <a href="#">
+
+                                <figure>
+                                    <figcaption class="text-overlay">
+                                        <div class="info">
+                                            <h4>Acer</h4>
+                                        </div><!-- /.info -->
+                                    </figcaption>
+
+                                     <img src="assets/images/blank.gif" data-echo="assets/images/brands/1.png" class="img-responsive" alt="">
+
+                                </figure>
+                            </a>
+                        </div><!-- /.item -->
+
+
+                
+
+                    </div><!-- /.owl-carousel -->
+
                 </div>
-            </div>
-        </div>
-    </div>
+            </section>
+
+      
+
+        </div><!-- #page -->
 
 
 @endsection

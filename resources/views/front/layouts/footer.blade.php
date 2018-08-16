@@ -3,7 +3,72 @@
 
 
 
-
+ <footer id="colophon" class="site-footer">
+                <div class="footer-widgets">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                <aside class="widget clearfix">
+                                    <div class="body">
+                                        <h4 class="widget-title">Featured Products</h4>
+                                        <ul class="product_list_widget">
+                                            <?php $featuredp = App\Model\Products::inRandomOrder()->take(3)->get(); ?>
+                                            @foreach($featuredp as $fe )
+                                            <li>
+                                                <a href="{{url('/single_product/'.$fe->id)}}" title="{{$fe->en_title}}">
+                                                    <img class="wp-post-image" data-echo="{{url('upload/products/'.$fe->photo)}}" src="{{url('upload/products/'.$fe->image)}}" alt="">
+                                                    <span class="product-title">{{$fe->en_title}}</span>
+                                                </a>
+                                                <span class="electro-price"><span class="amount">{{$fe->price}} LE</span>
+                                            </li>
+                                            @endforeach
+                                      
+                                        </ul>
+                                    </div>
+                                </aside>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                <aside class="widget clearfix">
+                                    <div class="body"><h4 class="widget-title">Onsale Products</h4>
+                                        <ul class="product_list_widget">
+                                            <?php $onsale = App\Model\Products::inRandomOrder()->take(3)->get(); ?>
+                                            @foreach($onsale as $sale )
+                                            <li>
+                                                <a href="{{url('/single_product/'.$sale->id)}}" title="{{$sale->en_title}}">
+                                                    <img class="wp-post-image" data-echo="{{url('upload/products/'.$sale->photo)}}" src="{{url('upload/products/'.$sale->photo)}}" alt="">
+                                                    <span class="product-title">{{$sale->en_title}}</span>
+                                                </a>
+                                                <span class="electro-price"><span class="amount">{{$sale->price}} LE</span> 
+                                            </li>
+                                            @endforeach
+                                       
+                                        </ul>
+                                    </div>
+                                </aside>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                <aside class="widget clearfix">
+                                    <div class="body">
+                                        <h4 class="widget-title">Top Rated Products</h4>
+                                        <ul class="product_list_widget">
+                                             <?php $rated = App\Model\Products::inRandomOrder()->take(3)->get(); ?>
+                                            @foreach($rated as $rate )
+                                            <li>
+                                                <a href="{{url('/single_product/'.$rate->id)}}" title="{{$rate->en_title}}">
+                                                    <img class="wp-post-image" data-echo="{{url('upload/products/'.$rate->photo)}}" src="{{url('upload/products/'.$rate->photo)}}f" alt="">
+                                                    <span class="product-title">{{$rate->en_title}}</span>
+                                                </a>
+                                                     <span class="electro-price"><ins><span class="amount">{{$rate->price}} LE</span>
+                                            </li>
+                                            @endforeach
+                                    
+                                        </ul>
+                                    </div>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 
