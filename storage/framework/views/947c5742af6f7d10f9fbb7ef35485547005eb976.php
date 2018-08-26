@@ -7,35 +7,17 @@
                         <div class="body">
                             <h4 class="widget-title">Featured Products</h4>
                             <ul class="product_list_widget">
-                                <li>
-                                    <a href="single-product.html" title="Tablet Thin EliteBook  Revolve 810 G6">
-                                        <img class="wp-post-image"
-                                             data-echo="<?php echo e(url("front/assets/images/footer/1.jpg")); ?>"
-                                             src="<?php echo e(url("front/assets/images/blank.gif")); ?>" alt="">
-                                        <span class="product-title">Tablet Thin EliteBook  Revolve 810 G6</span>
-                                    </a>
-                                    <span class="electro-price"><span class="amount">&#36;1,300.00</span></span>
-                                </li>
+                                <?php $featuredp = App\Model\Products::inRandomOrder()->take(3)->get(); ?>
+                                <?php $__currentLoopData = $featuredp; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fe): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li>
+                                        <a href="<?php echo e(url('/single_product/'.$fe->id)); ?>" title="<?php echo e($fe->en_title); ?>">
+                                            <img class="wp-post-image" data-echo="<?php echo e(url('upload/products/'.$fe->photo)); ?>" src="<?php echo e(url('upload/products/'.$fe->image)); ?>" alt="">
+                                            <span class="product-title"><?php echo e($fe->en_title); ?></span>
+                                        </a>
+                                        <span class="electro-price"><span class="amount"><?php echo e($fe->price); ?> LE</span>
+                                    </li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                                <li>
-                                    <a href="single-product.html" title="Smartphone 6S 128GB LTE">
-                                        <img class="wp-post-image"
-                                             data-echo="<?php echo e(url("front/assets/images/footer/2.jp")); ?>g"
-                                             src="<?php echo e(url("front/assets/images/blank.gif")); ?>" alt=""><span
-                                                class="product-title">Smartphone 6S 128GB LTE</span>
-                                    </a>
-                                    <span class="electro-price"><span class="amount">&#36;780.00</span></span>
-                                </li>
-
-                                <li>
-                                    <a href="single-product.html" title="Smartphone 6S 64GB LTE">
-                                        <img class="wp-post-image"
-                                             data-echo="<?php echo e(url("front/assets/images/footer/3.jpg")); ?>"
-                                             src="<?php echo e(url("front/assets/images/blank.gif")); ?>" alt="">
-                                        <span class="product-title">Smartphone 6S 64GB LTE</span>
-                                    </a>
-                                    <span class="electro-price"><span class="amount">&#36;1,215.00</span></span>
-                                </li>
                             </ul>
                         </div>
                     </aside>
@@ -44,38 +26,17 @@
                     <aside class="widget clearfix">
                         <div class="body"><h4 class="widget-title">Onsale Products</h4>
                             <ul class="product_list_widget">
-                                <li>
-                                    <a href="single-product.html" title="Notebook Black Spire V Nitro  VN7-591G">
-                                        <img class="wp-post-image"
-                                             data-echo="<?php echo e(url("front/assets/images/footer/3.jpg")); ?>"
-                                             src="<?php echo e(url("front/assets/images/blank.gif")); ?>" alt="">
-                                        <span class="product-title">Notebook Black Spire V Nitro  VN7-591G</span>
-                                    </a>
-                                    <span class="electro-price"><ins><span class="amount">&#36;1,999.00</span></ins> <del><span
-                                                    class="amount">&#36;2,299.00</span></del></span>
-                                </li>
+                                <?php $onsale = App\Model\Products::inRandomOrder()->take(3)->get(); ?>
+                                <?php $__currentLoopData = $onsale; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sale): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li>
+                                        <a href="<?php echo e(url('/single_product/'.$sale->id)); ?>" title="<?php echo e($sale->en_title); ?>">
+                                            <img class="wp-post-image" data-echo="<?php echo e(url('upload/products/'.$sale->photo)); ?>" src="<?php echo e(url('upload/products/'.$sale->photo)); ?>" alt="">
+                                            <span class="product-title"><?php echo e($sale->en_title); ?></span>
+                                        </a>
+                                        <span class="electro-price"><span class="amount"><?php echo e($sale->price); ?> LE</span>
+                                    </li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                                <li>
-                                    <a href="single-product.html" title="Tablet Red EliteBook  Revolve 810 G2">
-                                        <img class="wp-post-image"
-                                             data-echo="<?php echo e(url("front/assets/images/footer/4.jpg")); ?>"
-                                             src="<?php echo e(url("front/assets/images/blank.gif")); ?>" alt="">
-                                        <span class="product-title">Tablet Red EliteBook  Revolve 810 G2</span>
-                                    </a>
-                                    <span class="electro-price"><ins><span class="amount">&#36;1,999.00</span></ins> <del><span
-                                                    class="amount">&#36;2,299.00</span></del></span>
-                                </li>
-
-                                <li>
-                                    <a href="single-product.html" title="Widescreen 4K SUHD TV">
-                                        <img class="wp-post-image"
-                                             data-echo="<?php echo e(url("front/assets/images/footer/5.jpg")); ?>"
-                                             src="<?php echo e(url("front/assets/images/blank.gif")); ?>" alt="">
-                                        <span class="product-title">Widescreen 4K SUHD TV</span>
-                                    </a>
-                                    <span class="electro-price"><ins><span class="amount">&#36;2,999.00</span></ins> <del><span
-                                                    class="amount">&#36;3,299.00</span></del></span>
-                                </li>
                             </ul>
                         </div>
                     </aside>
@@ -85,42 +46,17 @@
                         <div class="body">
                             <h4 class="widget-title">Top Rated Products</h4>
                             <ul class="product_list_widget">
-                                <li>
-                                    <a href="single-product.html" title="Notebook Black Spire V Nitro  VN7-591G">
-                                        <img class="wp-post-image"
-                                             data-echo="<?php echo e(url("front/assets/images/footer/6.jpg")); ?>"
-                                             src="<?php echo e(url("front/assets/images/blank.gif")); ?>" alt="">
-                                        <span class="product-title">Notebook Black Spire V Nitro  VN7-591G</span>
-                                    </a>
-                                    <div class="star-rating" title="Rated 5 out of 5"><span style="width:100%"><strong
-                                                    class="rating">5</strong> out of 5</span></div>
-                                    <span class="electro-price"><ins><span class="amount">&#36;1,999.00</span></ins> <del><span
-                                                    class="amount">&#36;2,299.00</span></del></span>
-                                </li>
+                                <?php $rated = App\Model\Products::inRandomOrder()->take(3)->get(); ?>
+                                <?php $__currentLoopData = $rated; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $rate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li>
+                                        <a href="<?php echo e(url('/single_product/'.$rate->id)); ?>" title="<?php echo e($rate->en_title); ?>">
+                                            <img class="wp-post-image" data-echo="<?php echo e(url('upload/products/'.$rate->photo)); ?>" src="<?php echo e(url('upload/products/'.$rate->photo)); ?>f" alt="">
+                                            <span class="product-title"><?php echo e($rate->en_title); ?></span>
+                                        </a>
+                                        <span class="electro-price"><ins><span class="amount"><?php echo e($rate->price); ?> LE</span>
+                                    </li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                                <li>
-                                    <a href="single-product.html" title="Apple MacBook Pro MF841HN/A 13-inch Laptop">
-                                        <img class="wp-post-image"
-                                             data-echo="<?php echo e(url("front/assets/images/footer/7.jpg")); ?>"
-                                             src="<?php echo e(url("front/assetsimages//blank.gif")); ?>" alt="">
-                                        <span class="product-title">Apple MacBook Pro MF841HN/A 13-inch Laptop</span>
-                                    </a>
-                                    <div class="star-rating" title="Rated 5 out of 5"><span style="width:100%"><strong
-                                                    class="rating">5</strong> out of 5</span></div>
-                                    <span class="electro-price"><span class="amount">&#36;1,800.00</span></span>
-                                </li>
-
-                                <li>
-                                    <a href="single-product.html" title="Tablet White EliteBook Revolve  810 G2">
-                                        <img class="wp-post-image"
-                                             data-echo="<?php echo e(url("front/assets/images/footer/2.jpg")); ?>"
-                                             src="<?php echo e(url("front/assets/images/blank.gif")); ?>" alt="">
-                                        <span class="product-title">Tablet White EliteBook Revolve  810 G2</span>
-                                    </a>
-                                    <div class="star-rating" title="Rated 5 out of 5"><span style="width:100%"><strong
-                                                    class="rating">5</strong> out of 5</span></div>
-                                    <span class="electro-price"><span class="amount">&#36;1,999.00</span></span>
-                                </li>
                             </ul>
                         </div>
                     </aside>
@@ -129,26 +65,7 @@
         </div>
     </div>
 
-    <div class="footer-newsletter">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-7">
-                    <h5 class="newsletter-title">Sign up to Newsletter</h5>
-                    <span class="newsletter-marketing-text">...and receive <strong>$20 coupon for first shopping</strong></span>
-                </div>
-                <div class="col-xs-12 col-sm-5">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Enter your email address">
-                            <span class="input-group-btn">
-                                            <button class="btn btn-secondary" type="button">Sign Up</button>
-                                        </span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 
     <div class="footer-bottom-widgets">
@@ -161,18 +78,13 @@
                                 <h4 class="widget-title">Find It Fast</h4>
                                 <div class="menu-footer-menu-1-container">
                                     <ul id="menu-footer-menu-1" class="menu">
-                                        <li class="menu-item"><a href="single-product.html">Laptops &#038; Computers</a>
-                                        </li>
-                                        <li class="menu-item"><a href="single-product.html">Cameras &#038;
-                                                Photography</a></li>
-                                        <li class="menu-item"><a href="single-product.html">Smart Phones &#038;
-                                                Tablets</a></li>
-                                        <li class="menu-item"><a href="single-product.html">Video Games &#038;
-                                                Consoles</a></li>
+                                        <li class="menu-item"><a href="single-product.html">Laptops &#038; Computers</a></li>
+                                        <li class="menu-item"><a href="single-product.html">Cameras &#038; Photography</a></li>
+                                        <li class="menu-item"><a href="single-product.html">Smart Phones &#038; Tablets</a></li>
+                                        <li class="menu-item"><a href="single-product.html">Video Games &#038; Consoles</a></li>
                                         <li class="menu-item"><a href="single-product.html">TV &#038; Audio</a></li>
                                         <li class="menu-item"><a href="single-product.html">Gadgets</a></li>
-                                        <li class="menu-item "><a href="single-product.html">Car Electronic &#038;
-                                                GPS</a></li>
+                                        <li class="menu-item "><a href="single-product.html">Car Electronic &#038; GPS</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -187,10 +99,8 @@
                                     <ul id="menu-footer-menu-2" class="menu">
                                         <li class="menu-item"><a href="single-product.html">Printers &#038; Ink</a></li>
                                         <li class="menu-item "><a href="single-product.html">Software</a></li>
-                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2742">
-                                            <a href="single-product.html">Office Supplies</a></li>
-                                        <li class="menu-item "><a href="single-product.html">Computer Components</a>
-                                        </li>
+                                        <li  class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2742"><a href="single-product.html">Office Supplies</a></li>
+                                        <li  class="menu-item "><a href="single-product.html">Computer Components</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -222,8 +132,7 @@
                     <div class="footer-logo">
                         <svg version="1.1" x="0px" y="0px" width="156px"
                              height="37px" viewBox="0 0 175.748 42.52" enable-background="new 0 0 175.748 42.52">
-                            <ellipse fill-rule="evenodd" clip-rule="evenodd" fill="#FDD700" cx="170.05" cy="36.341"
-                                     rx="5.32" ry="5.367"/>
+                            <ellipse fill-rule="evenodd" clip-rule="evenodd" fill="#FDD700" cx="170.05" cy="36.341" rx="5.32" ry="5.367"/>
                             <path fill-rule="evenodd" clip-rule="evenodd" fill="#333E48" d="M30.514,0.71c-0.034,0.003-0.066,0.008-0.056,0.056
                                     C30.263,0.995,29.876,1.181,29.79,1.5c-0.148,0.548,0,1.568,0,2.427v36.459c0.265,0.221,0.506,0.465,0.725,0.734h6.187
                                     c0.2-0.25,0.423-0.477,0.669-0.678V1.387C37.124,1.185,36.9,0.959,36.701,0.71H30.514z M117.517,12.731
@@ -280,22 +189,14 @@
 
                     <div class="footer-social-icons">
                         <ul class="social-icons list-unstyled">
-                            <li><a class="fa fa-facebook" href="http://themeforest.net/user/shaikrilwan/portfolio"></a>
-                            </li>
-                            <li><a class="fa fa-twitter" href="http://themeforest.net/user/shaikrilwan/portfolio"></a>
-                            </li>
-                            <li><a class="fa fa-pinterest" href="http://themeforest.net/user/shaikrilwan/portfolio"></a>
-                            </li>
-                            <li><a class="fa fa-linkedin" href="http://themeforest.net/user/shaikrilwan/portfolio"></a>
-                            </li>
-                            <li><a class="fa fa-google-plus"
-                                   href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
-                            <li><a class="fa fa-tumblr" href="http://themeforest.net/user/shaikrilwan/portfolio"></a>
-                            </li>
-                            <li><a class="fa fa-instagram" href="http://themeforest.net/user/shaikrilwan/portfolio"></a>
-                            </li>
-                            <li><a class="fa fa-youtube" href="http://themeforest.net/user/shaikrilwan/portfolio"></a>
-                            </li>
+                            <li><a class="fa fa-facebook" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                            <li><a class="fa fa-twitter" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                            <li><a class="fa fa-pinterest" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                            <li><a class="fa fa-linkedin" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                            <li><a class="fa fa-google-plus" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                            <li><a class="fa fa-tumblr" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                            <li><a class="fa fa-instagram" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                            <li><a class="fa fa-youtube" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
                             <li><a class="fa fa-rss" href="#"></a></li>
                         </ul>
                     </div>
@@ -307,9 +208,7 @@
 
     <div class="copyright-bar">
         <div class="container">
-            <div class="pull-left flip copyright">&copy; <a href="http://demo2.transvelo.in/html/electro/">Electro</a> -
-                All Rights Reserved
-            </div>
+            <div class="pull-left flip copyright">&copy; <a href="http://demo2.transvelo.in/html/electro/">Electro</a> - All Rights Reserved</div>
             <div class="pull-right flip payment">
                 <div class="footer-payment-logo">
                     <ul class="cash-card card-inline">
