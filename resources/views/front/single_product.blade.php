@@ -25,56 +25,54 @@
                 <span class="delimiter"><i class="fa fa-angle-right"></i>
                         </span>Ultra Wireless S50 Headphones S50 with Bluetooth
             </nav><!-- /.woocommerce-breadcrumb -->
+            
+                    <div id="primary" class="content-area">
+                        <main id="main" class="site-main">
 
-            <div id="primary" class="content-area">
-                <main id="main" class="site-main">
+                            <div class="product">
 
-                    <div class="product">
+                                <div class="single-product-wrapper">
+                                    <div class="product-images-wrapper">
+                                        <div class="product-images-wrapper">
+                                            <span class="onsale">Sale!</span>
+                                            <div class="images electro-gallery">
+                                                <div class="thumbnails-single owl-carousel">
+                                                    <a href="{{url('/upload/products/'.$product->photo)}}" class="zoom" title="" data-rel="prettyPhoto[product-gallery]">
+                                                        <img src="assets/images/blank.gif" data-echo="{{url('/upload/products/'.$product->photo)}}" class="wp-post-image" alt=""></a>
 
-                        <div class="single-product-wrapper">
+                                                    @if(!empty($product->products_gallary()->get()))
 
+                                                        @foreach($product->products_gallary()->get() as $media)
+                                                    <a href="{{url('/upload/products/'.$media->media)}}" class="zoom" title="" data-rel="prettyPhoto[product-gallery]">
+                                                        <img src="assets/images/blank.gif" data-echo="{{url('/upload/products/'.$media->media)}}" class="wp-post-image" alt=""></a>
 
-                            <div class="product-images-wrapper">
+                                                        @endforeach
 
-                                <div class="images electro-gallery">
-                                    <div class="thumbnails-single owl-carousel">
-                                        <a href="{{url('/upload/products/'.$product->photo)}}" class="zoom" title=""
-                                           data-rel="prettyPhoto[product-gallery]"><img
-                                                    src="{{url('/upload/products/'.$product->photo)}}"
-                                                    data-echo="{{url('/upload/products/'.$product->photo)}}"
-                                                    class="wp-post-image" alt=""></a>
-                                        @if(!empty($product->products_gallary()->get()))
+                                                    @endif
+                                                </div><!-- .thumbnails-single -->
 
-                                            @foreach($product->products_gallary()->get() as $media)
-                                                <a href="{{url('/upload/products/'.$media->media)}}" class="zoom"
-                                                   title="" data-rel="prettyPhoto[product-gallery]"><img
-                                                            src="{{url('/upload/products/'.$media->media)}}"
-                                                            data-echo="{{url('/upload/products/'.$media->media)}}"
-                                                            class="wp-post-image" alt=""></a>
-                                            @endforeach
+                                                <div class="thumbnails-all columns-5 owl-carousel">
+                                                    <a href="{{url('/upload/products/'.$product->photo)}}"
+                                                       class="first" title=""><img src="assets/images/blank.gif"
+                                                         data-echo="{{url('/upload/products/'.$product->photo)}}"
+                                                             class="wp-post-image" alt=""></a>
+                                                    @if(!empty($product->products_gallary()->get()))
 
-                                        @endif
+                                                        @foreach($product->products_gallary()->get() as $media)
+                                                            <a href="{{url('/upload/products/'.$media->media)}}"class="" title=""><img
+                                                                        src="{{url('/upload/products/'.$media->media)}}"
+                                                                        data-echo="{{url('/upload/products/'.$media->media)}}"
+                                                                        class="wp-post-image" alt=""></a>
+                                                        @endforeach
 
-                                    </div><!-- .thumbnails-single -->
+                                                    @endif
 
-                                    <div class="thumbnails-all columns-5 owl-carousel">
-                                        @if(!empty($product->products_gallary()->get()))
+                                                </div><!-- .thumbnails-all -->
+                                            </div><!-- .electro-gallery -->
+                                        </div><!-- /.product-images-wrapper -->
 
-                                            @foreach($product->products_gallary()->get() as $media)
-                                                <a href="{{url('/upload/products/'.$media->media)}}" class="zoom"
-                                                   title="" data-rel="prettyPhoto[product-gallery]"><img
-                                                            src="{{url('/upload/products/'.$media->media)}}"
-                                                            data-echo="{{url('/upload/products/'.$media->media)}}"
-                                                            class="wp-post-image" alt=""></a>
-                                            @endforeach
-
-                                        @endif
-                                    </div><!-- .thumbnails-all -->
-                                </div><!-- .electro-gallery -->
-                            </div><!-- /.product-images-wrapper -->
-
-
-                            <div class="summary entry-summary">
+                                    </div>
+                                    <div class="summary entry-summary">
 
                                         <span class="loop-product-categories">
                                             <a href="" rel="tag">@if(!empty($product->product_dep()->get()))
@@ -153,7 +151,7 @@
                                 </form>
 
                             </div><!-- .summary -->
-                        </div><!-- /.single-product-wrapper -->
+                                </div><!-- /.single-product-wrapper -->
 
 
                         <div class="related products">
