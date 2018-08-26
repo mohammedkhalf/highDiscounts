@@ -49,12 +49,14 @@ foreach ($singletonarray as $key => $value) {
 
 //////// SingleTon End
 Route::group(['middleware' => 'Maintenance'], function () {
+    Route::get('search_product','SearchController@searchName');
+
     Route::group(['namespace' => 'Web'], function () {
     
         Route::get('/', 'HomeController@index');
 
         Route::get('/single_product/{id}', 'HomeController@single');
-Route::get('/single_dep/{id}', 'HomeController@singledep');
+        Route::get('/single_dep/{id}', 'HomeController@singledep');
         Route::get('/allproducts','HomeController@products');
         Route::get('/alldepartments','HomeController@departments');
 

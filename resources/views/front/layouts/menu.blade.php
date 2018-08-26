@@ -7,7 +7,7 @@
                             <ul id="menu-vertical-menu" class="dropdown-menu yamm departments-menu-dropdown">
                             
 
-                   <?php 
+                   <?php
 $departments= App\Model\DepartmentProducts::where('parent',0)->get();
                      ?>
   @foreach($departments as $department)
@@ -20,12 +20,12 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
                                                     <div class="wpb_column vc_column_container vc_col-sm-12 col-sm-12">
                                                         <div class="vc_column-inner ">
                                                             <div class="wpb_wrapper">
-                                                        
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                    <?php  $parent = App\Model\DepartmentProducts::where('parent','=',$department->id)->get(); ?> 
+                                    <?php  $parent = App\Model\DepartmentProducts::where('parent','=',$department->id)->get(); ?>
                                                 <div class="vc_row row wpb_row vc_row-fluid">
                                                     <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
                                                         <div class="vc_column-inner ">
@@ -41,7 +41,7 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>      
+                                                    </div>
                                                 </div>
                                             </div>
                                         </li>
@@ -53,38 +53,20 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
                             </ul>
                         </li>
                     </ul>
-                    <form class="navbar-search" method="get" action="/">
+                    <form class="navbar-search" method="get" action="{{url('/search_product')}}">
                         <label class="sr-only screen-reader-text" for="search">Search for:</label>
                         <div class="input-group">
-                            <input type="text" id="search" class="form-control search-field" dir="ltr" value="" name="s" placeholder="Search for products" />
+                            <input type="text" id="search" class="form-control search-field" dir="ltr" value="" name="nameSearch" placeholder="Search for products" />
                             <div class="input-group-addon search-categories">
                                 <select name='product_cat' id='product_cat' class='postform resizeselect' >
                                     <option value='0' selected='selected'>All Categories</option>
-                                    <option class="level-0" value="laptops-laptops-computers">Laptops</option>
-                                    <option class="level-0" value="ultrabooks-laptops-computers">Ultrabooks</option>
-                                    <option class="level-0" value="mac-computers-laptops">Mac Computers</option>
-                                    <option class="level-0" value="all-in-one-laptops-computers">All in One</option>
-                                    <option class="level-0" value="servers">Servers</option>
-                                    <option class="level-0" value="peripherals">Peripherals</option>
-                                    <option class="level-0" value="gaming-laptops-computers">Gaming</option>
-                                    <option class="level-0" value="accessories-laptops-computers">Accessories</option>
-                                    <option class="level-0" value="audio-speakers">Audio Speakers</option>
-                                    <option class="level-0" value="headphones">Headphones</option>
-                                    <option class="level-0" value="computer-cases">Computer Cases</option>
-                                    <option class="level-0" value="printers">Printers</option>
-                                    <option class="level-0" value="cameras">Cameras</option>
-                                    <option class="level-0" value="smartphones">Smartphones</option>
-                                    <option class="level-0" value="game-consoles">Game Consoles</option>
-                                    <option class="level-0" value="power-banks">Power Banks</option>
-                                    <option class="level-0" value="smartwatches">Smartwatches</option>
-                                    <option class="level-0" value="chargers">Chargers</option>
-                                    <option class="level-0" value="cases">Cases</option>
-                                    <option class="level-0" value="headphone-accessories">Headphone Accessories</option>
-                                    <option class="level-0" value="headphone-cases">Headphone Cases</option>
-                                    <option class="level-0" value="tablets">Tablets</option>
-                                    <option class="level-0" value="tvs">TVs</option>
-                                    <option class="level-0" value="wearables">Wearables</option>
-                                    <option class="level-0" value="pendrives">Pendrives</option>
+                                    <?php
+                                    $departments= App\Model\DepartmentProducts::where('parent',0)->get();
+                                    ?>
+                                    @foreach($departments as $department)
+                                    <option value='{{$department->id}}'>@if( Lang() =='en' ) {{$department->en_name}}@else{{$department->ar_name}} @endif</option>
+                                    @endforeach
+
                                 </select>
                             </div>
                             <div class="input-group-btn">
