@@ -33,7 +33,7 @@
 
 
            <div class="product-images-wrapper">
-                                        <span class="onsale">Sale!</span>
+                                     
                                         <div class="images electro-gallery">
                                             <div class="thumbnails-single owl-carousel">
                                                 <a href="{{url('/upload/products/'.$product->photo)}}" class="zoom" title="" data-rel="prettyPhoto[product-gallery]"><img src="{{url('/upload/products/'.$product->photo)}}" data-echo="{{url('/upload/products/'.$product->photo)}}" class="wp-post-image" alt=""></a>
@@ -48,17 +48,13 @@
                                             </div><!-- .thumbnails-single -->
 
                                             <div class="thumbnails-all columns-5 owl-carousel">
-                                                <a href="assets/images/single-product/single-thumb1.jpg" class="first" title=""><img src="assets/images/blank.gif" data-echo="assets/images/single-product/single-thumb1.jpg" class="wp-post-image" alt=""></a>
+                                                 @if(!empty($product->products_gallary()->get()))
 
-                                                <a href="assets/images/single-product/single-thumb2.jpg" class="" title=""><img src="assets/images/blank.gif" data-echo="assets/images/single-product/single-thumb2.jpg" class="wp-post-image" alt=""></a>
+                                            @foreach($product->products_gallary()->get() as $media)
+                                                <a href="{{url('/upload/products/'.$media->media)}}" class="zoom" title="" data-rel="prettyPhoto[product-gallery]"><img src="{{url('/upload/products/'.$media->media)}}" data-echo="{{url('/upload/products/'.$media->media)}}" class="wp-post-image" alt=""></a>
+  @endforeach
 
-                                                <a href="assets/images/single-product/single-thumb3.jpg" class="" title=""><img src="assets/images/blank.gif" data-echo="assets/images/single-product/single-thumb3.jpg" class="wp-post-image" alt=""></a>
-
-                                                <a href="assets/images/single-product/single-thumb4.jpg" class="" title=""><img src="assets/images/blank.gif" data-echo="assets/images/single-product/single-thumb4.jpg" class="wp-post-image" alt=""></a>
-
-                                                <a href="assets/images/single-product/single-thumb5.jpg" class="last" title=""><img src="assets/images/blank.gif" data-echo="assets/images/single-product/single-thumb5.jpg" class="wp-post-image" alt=""></a>
-
-                                                <a href="assets/images/single-product/single-thumb6.jpg" class="first" title=""><img src="assets/images/blank.gif" data-echo="assets/images/single-product/single-thumb6.jpg" class="wp-post-image" alt=""></a>
+                                        @endif  
                                             </div><!-- .thumbnails-all -->
                                         </div><!-- .electro-gallery -->
                                     </div><!-- /.product-images-wrapper -->
@@ -66,7 +62,7 @@
 
 
 
-   
+
                                     <div class="summary entry-summary">
 
                                         <span class="loop-product-categories">
