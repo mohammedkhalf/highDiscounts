@@ -137,7 +137,7 @@
                                         <li class="cat-item current-cat"><a href="product-category.html"> All Categories</a> <span class="count">(13)</span>
                                             <ul class='children'>
                                       @foreach($departments as $department)
-                                                <li class="cat-item"><a href="product-category.html">{{$department->en_name}}</a></li>
+                                                <li class="cat-item"><a href="{{url('/single_dep/'.$department->id)}}">{{$department->en_name}}</a></li>
                                       @endforeach
                                             </ul>
                                         </li>
@@ -178,7 +178,7 @@
 @foreach($brands as $brand)
                         <div class="item">
 
-                            <a href="#">
+                            <a href="{{url('/single_dep/'.$brand->id)}}">
 
                                 <figure>
                                     <figcaption class="text-overlay">

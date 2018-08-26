@@ -28,31 +28,45 @@
                             <div class="product">
 
                                 <div class="single-product-wrapper">
-                                    <div class="product-images-wrapper">
-                                      <img src="{{url('/upload/products/'.$product->photo)}}" alt="">
+   
+
+
+
+           <div class="product-images-wrapper">
+                                        <span class="onsale">Sale!</span>
                                         <div class="images electro-gallery">
                                             <div class="thumbnails-single owl-carousel">
-
                                                 <a href="{{url('/upload/products/'.$product->photo)}}" class="zoom" title="" data-rel="prettyPhoto[product-gallery]"><img src="{{url('/upload/products/'.$product->photo)}}" data-echo="{{url('/upload/products/'.$product->photo)}}" class="wp-post-image" alt=""></a>
-                                            </div><!-- .thumbnails-single -->
-
-                                            <div > 
-                                           
-
-                                              @if(!empty($product->products_gallary()->get()))
+          @if(!empty($product->products_gallary()->get()))
 
                                             @foreach($product->products_gallary()->get() as $media)
-                                             <div class="col-md-4">
-     <img src="{{url('/upload/products/'.$media->media)}}"  alt="" style="height: 150px;width: 150px">
-                                                <!-- Modal -->
-                                            </div>
-                                            @endforeach
+                                                <a href="{{url('/upload/products/'.$media->media)}}" class="zoom" title="" data-rel="prettyPhoto[product-gallery]"><img src="{{url('/upload/products/'.$media->media)}}" data-echo="{{url('/upload/products/'.$media->media)}}" class="wp-post-image" alt=""></a>
+  @endforeach
 
-                                        @endif
+                                        @endif  
+                                 
+                                            </div><!-- .thumbnails-single -->
+
+                                            <div class="thumbnails-all columns-5 owl-carousel">
+                                                <a href="assets/images/single-product/single-thumb1.jpg" class="first" title=""><img src="assets/images/blank.gif" data-echo="assets/images/single-product/single-thumb1.jpg" class="wp-post-image" alt=""></a>
+
+                                                <a href="assets/images/single-product/single-thumb2.jpg" class="" title=""><img src="assets/images/blank.gif" data-echo="assets/images/single-product/single-thumb2.jpg" class="wp-post-image" alt=""></a>
+
+                                                <a href="assets/images/single-product/single-thumb3.jpg" class="" title=""><img src="assets/images/blank.gif" data-echo="assets/images/single-product/single-thumb3.jpg" class="wp-post-image" alt=""></a>
+
+                                                <a href="assets/images/single-product/single-thumb4.jpg" class="" title=""><img src="assets/images/blank.gif" data-echo="assets/images/single-product/single-thumb4.jpg" class="wp-post-image" alt=""></a>
+
+                                                <a href="assets/images/single-product/single-thumb5.jpg" class="last" title=""><img src="assets/images/blank.gif" data-echo="assets/images/single-product/single-thumb5.jpg" class="wp-post-image" alt=""></a>
+
+                                                <a href="assets/images/single-product/single-thumb6.jpg" class="first" title=""><img src="assets/images/blank.gif" data-echo="assets/images/single-product/single-thumb6.jpg" class="wp-post-image" alt=""></a>
                                             </div><!-- .thumbnails-all -->
                                         </div><!-- .electro-gallery -->
                                     </div><!-- /.product-images-wrapper -->
 
+
+
+
+   
                                     <div class="summary entry-summary">
 
                                         <span class="loop-product-categories">
@@ -214,3 +228,17 @@
 
 
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
