@@ -88,6 +88,9 @@ Route::group(['middleware' => 'Maintenance'], function () {
     Route::get('/register', function () {
 
         return view('auth.register');
+    });  Route::get('/registervendor', function () {
+
+        return view('auth.register_vendor');
     });
 
     Route::post('/register', 'SessionController@store');
