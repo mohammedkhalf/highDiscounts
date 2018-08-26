@@ -27,17 +27,17 @@ class HomeController extends Controller
 
     public function index()
     {
-$slider = 
+        $slider =
         $allproducts = SliderImage::orderBy('id','desc')->get();
         $featured = Products::inRandomOrder()->take(6)->get();
         $onsale = Products::inRandomOrder()->take(6)->get();
         $toprate = Products::inRandomOrder()->take(6)->get();
         $best = Products::inRandomOrder()->take(4)->get();
         $best2 = Products::inRandomOrder()->take(4)->get();
-         $laptops = Products::inRandomOrder()->take(8)->get();
+        $laptops = Products::inRandomOrder()->take(8)->get();
         $widget = Products::orderBy('id','desc')->take(5)->get();
         $department = Dep::where('parent','=',0)->take(3)->get();
-         $brands=Dep::where('parent','>',0)->get();
+        $brands=Dep::where('parent','>',0)->get();
 
         return view(app('f').'.home',['allproducts'=>$allproducts , 'department'=>$department, 'featured'=>$featured, 'onsale'=>$onsale, 'toprate'=>$toprate, 'best'=>$best, 'best2'=>$best2, 'widget'=>$widget, 'brands'=>$brands,'laptops'=>$laptops]);
     }
@@ -62,7 +62,7 @@ $slider =
         $adde->vendor_id = $product->user_id;
         $adde->vendor_type = $product->user_type;
         $adde->save();
-        
+
         return back();
     }
     public function getCart()
@@ -102,7 +102,7 @@ $slider =
             'name' => 'required',
             'address' => 'required',
             'email' => 'required|email',
-            'phone' => 'required|numeric', 
+            'phone' => 'required|numeric',
         ];
         $Validator   = Validator::make($request->all(),$rules);
         $Validator->SetAttributeNames ([
@@ -127,7 +127,7 @@ $slider =
             $add->code               = '#'.time().rand(11,00).$add->id;
             $add->price               = $total;
             $add->save();
-            
+
             $lastid = $add->id;
             $product  = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
             foreach ($product as $item) {
@@ -135,7 +135,7 @@ $slider =
                 $addOrderItems->order_id = $lastid;
                 $addOrderItems->product_id = $item->product_id;
                 $addOrderItems->item_price = $item->price;
-                 $addOrderItems->vendor_id = $item->vendor_id;
+                $addOrderItems->vendor_id = $item->vendor_id;
                 $addOrderItems->vendor_type = $item->vendor_type;
                 $addOrderItems->save();
                 $item->delete();
@@ -144,12 +144,12 @@ $slider =
         }
         return back();
     }
-    
+
     public function products()
     {
         $brands=Dep::where('parent','>',0)->get();
         $departments=Dep::where('parent',0)->get();
-         $widget = Products::orderBy('id','desc')->take(5)->get();
+        $widget = Products::orderBy('id','desc')->take(5)->get();
         $products=Products::paginate(12);
         return view('front.shop', ['products'=>$products , 'departments'=>$departments ,'widget'=>$widget ,'brands'=> $brands]);
     }
@@ -179,7 +179,7 @@ $slider =
     }
     public function singleProduct(Request $request)
     {
-       // return "welcome";
+        // return "welcome";
         $data=url('/single_product/'.$request->id);
         return response()->json($data);
 //        $product  = Products::find($request->id);
@@ -191,10 +191,10 @@ $slider =
     }
     public function singledep(Request $request,$id)
     {
-         $brands=Dep::where('parent','>',0)->get();
+        $brands=Dep::where('parent','>',0)->get();
         $departments=Dep::where('parent',0)->get();
-         $widget = Products::orderBy('id','desc')->take(5)->get();
-         $department  = Dep::find($id);
+        $widget = Products::orderBy('id','desc')->take(5)->get();
+        $department  = Dep::find($id);
         $products = Products::where('dep_id','=',$department->id)->get();
         $similarProduct = Products::where('dep_id',$department->id)->take(3)->orderBy('id','desc')->get();
         $ratedProduct = Products::where('dep_id',$department->id)->get();
