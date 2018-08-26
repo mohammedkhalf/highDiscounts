@@ -42,13 +42,15 @@ class SessionController extends Controller
         $data->level = $request->level;
         if($request->level == 'vendor'){
             $data->status= 0;
+            session()->flash('success', 'Vendor has been added');
          
         }else{
+            session()->flash('success', 'User has been added');
             $data->status= 1;
         }
 
         $data->save();
-        session()->flash('success', 'User has been added');
+
         return redirect(url('login'));
 
     }

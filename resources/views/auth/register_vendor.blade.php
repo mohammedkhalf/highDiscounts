@@ -8,7 +8,7 @@
                     <div class="panel-heading">Register</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ url('/storeregister') }}">
+                        <form class="form-horizontal" method="POST" action="{{ url('register') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -62,25 +62,19 @@
                                 </div>
                             </div>
 
-                            <input id="level" type="hidden" class="form-control" name="level" value="vendor" required>
+                            <div  class=" hidden form-group{{ $errors->has('level') ? ' has-error' : '' }}">
+                                <label for="level" class="col-md-4 control-label">user Type</label>
 
-                            {{--<div class="form-group{{ $errors->has('level') ? ' has-error' : '' }}">--}}
-                            {{--<label for="level" class="col-md-4 control-label">user Type</label>--}}
+                                <div class="col-md-6">
+                                    <input  type="hidden" value="vendor" name="level">
 
-                            {{--<div class="col-md-6">--}}
-
-                            {{--<select id="level" class="form-control" name="level" required>--}}
-                            {{--<option value="">Please select user type</option>--}}
-                            {{--<option value="user">User</option>--}}
-                            {{--<option value="vendor">Vendor</option>--}}
-                            {{--</select>--}}
-                            {{--@if ($errors->has('level'))--}}
-                            {{--<span class="help-block">--}}
-                            {{--<strong>{{ $errors->first('level') }}</strong>--}}
-                            {{--</span>--}}
-                            {{--@endif--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
+                                    @if ($errors->has('level'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('level') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
