@@ -62,16 +62,12 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('level') ? ' has-error' : '' }}">
+                        <div  class=" hidden form-group{{ $errors->has('level') ? ' has-error' : '' }}">
                             <label for="level" class="col-md-4 control-label">user Type</label>
 
                             <div class="col-md-6">
+                            <input  type="hidden" value="user" name="level">
 
-                                <select id="level" class="form-control" name="level" required>
-                                    <option value="">Please select user type</option>
-                                    <option value="user">User</option>
-                                    <option value="vendor">Vendor</option>
-                                </select>
                                 @if ($errors->has('level'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('level') }}</strong>
