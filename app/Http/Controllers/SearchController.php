@@ -11,7 +11,8 @@ class SearchController extends Controller
 {
     public function searchName(Request $request){
  $id = $request['product_cat'];
-        if($id == '0'){
+        if($request['product_cat'] == '0'){
+
             $ProductName =  Products::where('ar_title', $request['nameSearch'])
                 ->orWhere('ar_title', 'like', '%' . $request['nameSearch'] . '%')->get();
 
@@ -35,7 +36,45 @@ class SearchController extends Controller
               return view('front.search_product')->with(['lastPosted'=>$lastPosted , 'departments'=>$departments ,'widget'=>$widget ,'brands'=> $brands ,'ProductName' => $ProductName ,'brands'=> $brands ]);
           }
         }else{
-            return $id;
+
+ $sub  = Dep::where('parent',$request['product_cat'])->select('id')->get();
+
+  if (count($sub) > 0 ){
+          
+ 
+  if( $request['nameSearch'] != ''){
+
+                      $ProductName =  Products::Where('en_title', $request['nameSearch'])
+                ->orWhere('en_title', 'like', '%' . $request['nameSearch'] . '%')->
+                orWhere('ar_title', $request['nameSearch'])
+                ->orWhere('ar_title', 'like', '%' . $request['nameSearch'] . '%')->get();
+               
+                }else{ 
+
+            $ProductName = Products::orderBy('id','desc')->take(9)->get();
+
+               
+
+
+
+
+             
+ 
+                 
+
+              }
+
+            $brands=Dep::where('parent','>',0)->get();
+            $departments=Dep::where('parent',0)->get();
+            $widget = Products::orderBy('id','desc')->take(5)->get();
+            $department  = Dep::find($id);
+            $lastPosted = Products::take(5)->orderBy('id','desc')->get();
+                              return view('front.search_product')->with(['lastPosted'=>$lastPosted , 'departments'=>$departments ,'widget'=>$widget ,'brands'=> $brands ,'ProductName' => $ProductName ,'brands'=> $brands ]);
+        
+             
+           
+         }
+ 
+   }             
         }
     }
-}
