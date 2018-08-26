@@ -36,6 +36,9 @@
 
                             <div class="product-images-wrapper">
 
+
+
+                                
                                 <div class="images electro-gallery">
                                     <div class="thumbnails-single owl-carousel">
                                         <a href="{{url('/upload/products/'.$product->photo)}}" class="zoom" title=""
@@ -57,7 +60,7 @@
 
                                     </div><!-- .thumbnails-single -->
 
-                                    <div class="thumbnails-all columns-5 owl-carousel">
+                                    <div class="thumbnails-all columns-3 owl-carousel">
                                         @if(!empty($product->products_gallary()->get()))
 
                                             @foreach($product->products_gallary()->get() as $media)
