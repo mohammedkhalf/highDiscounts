@@ -97,6 +97,7 @@
                                 <h4 class="widget-title">&nbsp;</h4>
                                 <div class="menu-footer-menu-2-container">
                                     <ul id="menu-footer-menu-2" class="menu">
+                                        <li class="menu-item"><a href="{{url('/registervendor')}}">Register as vendor</a></li>
                                         <li class="menu-item"><a href="single-product.html">Printers &#038; Ink</a></li>
                                         <li class="menu-item "><a href="single-product.html">Software</a></li>
                                         <li  class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2742"><a href="single-product.html">Office Supplies</a></li>
