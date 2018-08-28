@@ -95,6 +95,8 @@ class ProductsController extends Controller
             if($request->has('parent') && $request->input('parent') !== null)
             {
             $add->dep_id              = $request->input('parent');
+            $main_dep  = Dep::where('id','=',$request->input('parent'))->select('parent')->get();
+            $add->main_dep_id = $main_dep;
           }
             $add->en_title            = $request->input('en_name');
             $add->ar_title            = $request->input('ar_name');
@@ -247,6 +249,8 @@ class ProductsController extends Controller
             if($request->has('parent') && $request->input('parent') !== null)
             {
                 $update->dep_id = $request->input('parent');
+                  $main_dep  = Dep::where('id','=',$request->input('parent'))->select('parent')->get();
+            $update->main_dep_id = $main_dep;
             }
 
             $update->en_title            = $request->input('en_name');

@@ -38,6 +38,7 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor'], function () {
         Route::resource('department_product','DepProductController');
         Route::post('department_product/check/parent','DepProductController@check_parent');
         Route::get('/orders','OrderController@index');
+        Route::post('/orders/status/{id}','OrderController@status');
      });
     });
 

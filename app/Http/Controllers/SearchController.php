@@ -51,7 +51,7 @@ class SearchController extends Controller
                
                 }else{ 
 
-            $ProductName = Products::orderBy('id','desc')->take(9)->get();
+            $ProductName = Products::Where('main_dep_id', $request['product_cat'])->get();
 
                
 

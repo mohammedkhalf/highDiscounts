@@ -12,6 +12,7 @@ use App\Model\ProductsColor ;
 use App\Model\ProductsSize ;
 use App\Model\AboutUs;
 use App\Model\ShoppingCart ;
+use App\Model\Wishlist ;
 use App\Model\Country ;
 use App\Model\Order ;
 use App\Model\OrderItem ;
@@ -65,6 +66,9 @@ class HomeController extends Controller
 
         return back();
     }
+
+
+
     public function getCart()
     {
         $product = ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
@@ -79,6 +83,32 @@ class HomeController extends Controller
      */
     public function destroyitem($id) {
         $delete = ShoppingCart::find($id);
+        $delete->delete();
+        return back();
+    }
+
+    
+    public function addtowishlist(Request $request, $id)
+    {
+        $product  = Products::find($id);
+        $adde = new Wishlist;
+        $adde->user_id    = Auth::user()->id;
+        $adde->product_id = $product->id;
+        $adde->save();
+
+        return back();
+    }
+
+      public function getWishlist()
+    {
+        $product = Wishlist::where('user_id','=',Auth::user()->id)->get()->all();
+       
+        return view(app('f').'.wishlist' , ['product'=>$product]);
+    }
+
+
+      public function DestroyItemFromWishlist($id) {
+        $delete = Wishlist::find($id);
         $delete->delete();
         return back();
     }

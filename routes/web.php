@@ -161,8 +161,19 @@ Route::group(['middleware' => 'Maintenance'], function () {
             'uses' => 'HomeController@getAddToCart',
             'as' => 'product.addToCart',
         ]);
-        Route::get('/shopping-cart', 'HomeController@getCart' );
+         Route::get('/shopping-cart', 'HomeController@getCart' );
         Route::delete('/destroy_item/{id}', 'HomeController@destroyitem');
+
+        
+          Route::get('/wishlist/{id}',[
+            'uses' => 'HomeController@addtowishlist',
+            'as' => 'product.wishlist',
+        ]);
+        Route::delete('/destroy_item_from_wishlist/{id}', 'HomeController@DestroyItemFromWishlist');
+        Route::get('/wishlist', 'HomeController@getWishlist' );
+
+
+       
         Route::get('/checkout', 'HomeController@checkout' );
         Route::post('/place', 'HomeController@PlaceOrder' );
         

@@ -75,20 +75,23 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
                             </div>
                         </div>
                     </form>
-                <?php if (Auth::user()) {
+              
+                    <ul class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
+   
+            
+        
+                        <li class="nav-item dropdown">
+                            <a href="cart.html" class="nav-link" data-toggle="dropdown">
+                                <i class="ec ec-shopping-bag"></i>
+                                    <?php if (Auth::user()) {
                 # code...
              $product = App\Model\ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
         $total =  App\Model\ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');  ?>
 @if ( $product != null)
-                    <ul class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
-   
-            
-          
-                        <li class="nav-item dropdown">
-                            <a href="cart.html" class="nav-link" data-toggle="dropdown">
-                                <i class="ec ec-shopping-bag"></i>
                                 <span class="cart-items-count count">{{ count ($product)}}</span>
                                 <span class="cart-items-total-price total-price"><span class="amount">&#36;{{$total}}</span></span>
+                                               @endif
+            <?php } ?>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-mini-cart">
                                 <li>
@@ -134,8 +137,8 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
 
 
                                         <p class="buttons">
-                                            <a class="button wc-forward" href="cart.html">View Cart</a>
-                                            <a class="button checkout wc-forward" href="checkout.html">Checkout</a>
+                                            <a class="button wc-forward" href="{{url('/shopping-cart')}}">View Cart</a>
+                                            <a class="button checkout wc-forward" href="{{url('/checkout')}}">Checkout</a>
                                         </p>
 
 
@@ -143,47 +146,16 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
                                 </li>
                             </ul>
                         </li>
-               
+                  
                     </ul>
 
                     <ul class="navbar-wishlist nav navbar-nav pull-right flip">
                         <li class="nav-item">
-                            <a href="wishlist.html" class="nav-link"><i class="ec ec-favorites"></i></a>
+                            <a href="{{url('/wishlist')}}" class="nav-link"><i class="ec ec-favorites"></i></a>
                         </li>
                     </ul>
-                    <ul class="navbar-compare nav navbar-nav pull-right flip">
-                        <li class="nav-item">
-                            <a href="compare.html" class="nav-link"><i class="ec ec-compare"></i></a>
-                        </li>
-                    </ul>
-                                @endif
-            <?php } ?>
+                  
+              
                 </div>
             </nav>
 
-<div class="mainmenu-area">
-    <div class="container">
-        <div class="row">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li {{{ (Request::is('/') ? ' class=active' : '') }}}><a href="{{url('/')}}">Home</a></li>
-                    <li {{{ (Request::is('allproducts') ? ' class=active' : '') }}}><a href="{{url('/allproducts')}}">Products</a></li>
-                    <li {{{ (Request::is('shopping-cart') ? ' class=active' : '') }}}><a href="{{url('/shopping-cart')}}">Cart</a></li>
-                    <li {{{ (Request::is('aboutus') ? ' class=active' : '') }}}><a href="{{url('/aboutus')}}">About Us</a></li>
-                    <li {{{ (Request::is('checkout') ? ' class=active' : '') }}}><a href="{{url('/checkout')}}">Checkout</a></li>
-                    <li{{{ (Request::is('alldepartments') ? ' class=active' : '') }}}><a href="{{url('/alldepartments')}}">Category</a></li>
-                    <li><a href="#">Others</a></li>
-                    <li{{{ (Request::is('contactus') ? ' class=active' : '') }}}><a href="{{url('/contactus')}}">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div> <!-- End mainmenu area -->

@@ -106,6 +106,15 @@
                                 <div class="availability in-stock">Availablity:
                                     <span>In stock</span> {{$product->stock}} Item(s)
                                 </div><!-- .availability -->
+                           <div class="action-buttons">
+
+                                            <a href="{{route('product.wishlist' , ['id' => $product->id])}}" class="add_to_wishlist" >
+                                                Wishlist
+                                            </a>
+
+
+                                            
+                                        </div><!-- .action-buttons -->
 
                                 <hr class="single-product-title-divider"/>
 

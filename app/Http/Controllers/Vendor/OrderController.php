@@ -34,6 +34,16 @@ $orderItem  = OrderItem::where('order_id','=',$id)->get()->all();
  return view(app('at').'.orders.details', ['order'=>$order , 'orderItem'=>$orderItem]);
           }
 
+
+   public function status(Request $request, $id)
+    {
+        $order = Order::find($id); 
+        $order->level           = $request->input('level');
+
+        $order->save();
+        return back();
+    }
+
     /**
      * Store a newly created resource in storage.
      *

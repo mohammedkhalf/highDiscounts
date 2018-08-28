@@ -11,29 +11,6 @@
 
 
 
-    <div id="page" class="hfeed site">
-        <a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
-        <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
-
-        <div class="top-bar hidden-md-down">
-            <div class="container">
-                <nav>
-                    <ul id="menu-top-bar-left" class="nav nav-inline pull-left animate-dropdown flip">
-                        <li class="menu-item animate-dropdown"><a title="Welcome to Worldwide Electronics Store" href="#">Welcome to Worldwide Electronics Store</a></li>
-                    </ul>
-                </nav>
-
-                <nav>
-                    <ul id="menu-top-bar-right" class="nav nav-inline pull-right animate-dropdown flip">
-                        <li class="menu-item animate-dropdown"><a title="Store Locator" href="#"><i class="ec ec-map-pointer"></i>Store Locator</a></li>
-                        <li class="menu-item animate-dropdown"><a title="Track Your Order" href="track-your-order.html"><i class="ec ec-transport"></i>Track Your Order</a></li>
-                        <li class="menu-item animate-dropdown"><a title="Shop" href="shop.html"><i class="ec ec-shopping-bag"></i>Shop</a></li>
-                        <li class="menu-item animate-dropdown"><a title="My Account" href="my-account.html"><i class="ec ec-user"></i>My Account</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div><!-- /.top-bar -->
-
 
 
         <div id="content" class="site-content" tabindex="-1">
@@ -133,9 +110,9 @@
 
                                                                     <div class="hover-area">
                                                                         <div class="action-buttons">
-
-                                                                            <p>IN Stock : {{$fe->stock}}</p>
-                                                                        </div>
+                                                                  <a href="{{route('product.wishlist' , ['id' => $fe->id])}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                                <a class="add-to-compare-link">IN Stock : {{$fe->stock}} </a>
+                                                            </div>
                                                                     </div>
                                                                 </div><!-- /.product-inner -->
                                                             </div><!-- /.product-outer -->
@@ -186,10 +163,10 @@
                                                                     </div><!-- /.price-add-to-cart -->
 
                                                                     <div class="hover-area">
-                                                                        <div class="action-buttons">
-
-                                                                            <p>IN Stock : {{$fe->stock}}</p>
-                                                                        </div>
+                                                                         <div class="action-buttons">
+                                                                  <a href="{{route('product.wishlist' , ['id' => $fe->id])}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                                <a class="add-to-compare-link">IN Stock : {{$fe->stock}} </a>
+                                                            </div>
                                                                     </div>
                                                                 </div><!-- /.product-inner -->
                                                             </div><!-- /.product-outer -->
@@ -242,9 +219,9 @@
 
                                                                     <div class="hover-area">
                                                                         <div class="action-buttons">
-
-                                                                            <p>IN Stock : {{$fe->stock}}</p>
-                                                                        </div>
+                                                                  <a href="{{route('product.wishlist' , ['id' => $fe->id])}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                                <a class="add-to-compare-link">IN Stock : {{$fe->stock}} </a>
+                                                            </div>
                                                                     </div>
                                                                 </div><!-- /.product-inner -->
                                                             </div><!-- /.product-outer -->
@@ -316,10 +293,10 @@
                                                             </div><!-- /.price-add-to-cart -->
 
                                                             <div class="hover-area">
-                                                                <div class="action-buttons">
-
-                                                                    <p>IN Stock : {{$fe->stock}}</p>
-                                                                </div>
+                                                                  <div class="action-buttons">
+                                                                  <a href="{{route('product.wishlist' , ['id' => $fe->id])}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                                <a class="add-to-compare-link">IN Stock : {{$fe->stock}} </a>
+                                                            </div>
                                                             </div>
 
                                                         </div>
@@ -369,9 +346,9 @@
 
                                                             <div class="hover-area">
                                                                 <div class="action-buttons">
-
-                                                                    <p>IN Stock : {{$fe->stock}}</p>
-                                                                </div>
+                                                                  <a href="{{route('product.wishlist' , ['id' => $fe->id])}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                                <a class="add-to-compare-link">IN Stock : {{$fe->stock}} </a>
+                                                            </div>
                                                             </div>
 
                                                         </div>
@@ -441,8 +418,8 @@
 
                                                         <div class="hover-area">
                                                             <div class="action-buttons">
-
-                                                                <p>IN Stock : {{$fe->stock}} </p>
+                                                                  <a href="{{route('product.wishlist' , ['id' => $fe->id])}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                                <a class="add-to-compare-link">IN Stock : {{$fe->stock}} </a>
                                                             </div>
                                                         </div>
                                                     </div><!-- /.product-inner -->

@@ -82,13 +82,15 @@
                                                     <a rel="nofollow" href="{{route('product.addToCart' , ['id' => $product->id])}}" class="button add_to_cart_button">Add to cart</a>
                                                 </div><!-- /.price-add-to-cart -->
 
+
+
                                                 <div class="hover-area">
                                                     <div class="action-buttons">
-
+<a href="{{route('product.wishlist' , ['id' => $product->id])}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
                                                         @if( $product->stock >= 1)
-                                                            <p>In Stock : {{ $product->stock }}</p>
+                                                            <a class="add-to-compare-link">In Stock : {{ $product->stock }}</a>
                                                         @else
-                                                            <p>Unavailable In Stock </p>
+                                                            <a class="add-to-compare-link">Unavailable In Stock </a>
                                                         @endif
                                                     </div>
                                                 </div>

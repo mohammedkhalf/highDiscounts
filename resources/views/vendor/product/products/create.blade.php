@@ -36,6 +36,7 @@
      </div>
       <div class="form-group col-sm-12">
           {!! Form::label('photo',trans('admin.photo')) !!}
+          <p style="color: blue">{{trans('admin.photo')}} must be 250 * 232</p>
           {!! Form::file('photo',['class'=>'form-control'],'multiple') !!}
           <p class="help-block">{{$errors->first('photo')}}</p>
       </div>
@@ -47,6 +48,7 @@
           <div class="inputDiv">
               <div class="col-sm-10">
                       {!! Form::label('media[]',trans('admin.media')) !!}
+                      <p style="color: blue">{{trans('admin.media')}} must be 180 * 180</p>
                       {!! Form::file('media[]',['class'=>'form-control']) !!}
                       <p class="help-block">{{$errors->first('media')}}</p>
               </div>

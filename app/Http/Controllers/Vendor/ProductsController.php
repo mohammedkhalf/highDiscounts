@@ -83,7 +83,12 @@ class ProductsController extends Controller
            
             $add->user_id            = Auth::user()->id;
             $add->user_type            = 'vendor';
+              if($request->has('parent') && $request->input('parent') !== null)
+            {
             $add->dep_id              = $request->input('parent');
+            $main_dep  = Dep::where('id','=',$request->input('parent'))->select('parent')->get();
+            $add->main_dep_id = $main_dep;
+          }
             $add->en_title            = $request->input('en_name');
             $add->ar_title            = $request->input('ar_name');
             $add->en_content          = $request->input('en_content');
@@ -96,7 +101,8 @@ class ProductsController extends Controller
 
              $lastid = $add->id;
 
-         //multiupload photos to table product_gallary
+     //multiupload photos to table product_gallary
+             if ($request->hasFile('media.*')) {
          $multifile     = $request->file('media');
           foreach ($multifile as $files)
            {
@@ -110,7 +116,10 @@ class ProductsController extends Controller
                  }
 
            }
+         }
      //multiadd color to table product_color
+           if($request->input('colorx') > 0 && $request->input('colorx') !== null)
+            {
             $multicolor    = $request->input('colorx');
              foreach ($multicolor as $colors) 
               {
@@ -119,7 +128,10 @@ class ProductsController extends Controller
                 $multiaddcolors->color = $colors;
                 $multiaddcolors->save();
               }
+            }
       //multiadd size to table product_size
+              if($request->input('sizex') > 0 && $request->input('sizex') !== null)
+            {
             $multisize    = $request->input('sizex');
              foreach ($multisize as $sizes)
               {
@@ -128,6 +140,7 @@ class ProductsController extends Controller
                 $multiaddsize->size = $sizes;
                 $multiaddsize->save();
               }
+            }
             session()->flash('success',trans('admin.added'));
         }
         return back();
@@ -216,9 +229,11 @@ class ProductsController extends Controller
                     $update->photo = $filename;
                 }
             }
-            if($request->has('parent'))
+               if($request->has('parent') && $request->input('parent') !== null)
             {
                 $update->dep_id = $request->input('parent');
+                  $main_dep  = Dep::where('id','=',$request->input('parent'))->select('parent')->get();
+            $update->main_dep_id = $main_dep;
             }
 
             $update->en_title            = $request->input('en_name');
@@ -233,19 +248,10 @@ class ProductsController extends Controller
               $update->stock                = $request->input('stock');
             $update->save();
 
-            /** update multiphotos in ProductsGallary table**/
+         /** update multiphotos in ProductsGallary table**/
             $path     = public_path().'/upload/products';
             $multifile     = $request->file('media');
-            if($request->hasFile('media')) {
-
-                $affected = ProductsGallary::where('product_id', '=', $id)->get()->all();
-                foreach ($affected as $affectedRows){
-                    if (!empty($affectedRows->media) and file_exists(public_path() . '/upload/products/' . $affectedRows->media)) {
-                        @unlink(public_path() . '/upload/products/' . $affectedRows->media);
-                          $affectedRows->delete();
-                    }
-            }
-              
+            if($request->hasFile('media.*')) {
                 foreach ($multifile as $files)
                 {
                     $extension = $files->getClientOriginalExtension();
@@ -260,47 +266,33 @@ class ProductsController extends Controller
                 }
 
             }
+        //update color in table product_color
 
-      //update color in table product_color
-
-             if($request->has('colorx')) {
-
-                $affectedcolors = ProductsColor::where('product_id', '=', $id)->get()->all();
-                foreach ($affectedcolors as $affectedRowss)
-                {
-                  $affectedRowss->delete();  
-                }
+             if( $request->input('colorx') > 0 && $request->input('colorx') !== null) {
             $multicolor    = $request->input('colorx');
              foreach ($multicolor as $colors) 
               {
                 $multiupdatecolors = new ProductsColor;
-                $multiupdatecolors->product_id  = $id;
+                $multiupdatecolors->product_id  = $lastid;
                 $multiupdatecolors->color = $colors;
                 $multiupdatecolors->save();
               } }
       //update size in table product_size
-                if($request->has('sizex')) {
-
-                $affectedsizess = ProductsSize::where('product_id', '=', $id)->get()->all();
-                foreach ($affectedsizess as $affectedRowss)
-                {
-                  $affectedRowss->delete();  
-                }
+        if($request->input('sizex') > 0 && $request->input('sizex') !== null) {
             $multisize    = $request->input('sizex');
              foreach ($multisize as $sizes)
               {
                 $multiupdatesize = new ProductsSize;
-                $multiupdatesize->product_id = $id;
+                $multiupdatesize->product_id = $lastid;
                 $multiupdatesize->size = $sizes;
                 $multiupdatesize->save();
               }
-}
+           }
 
             session()->flash('success', trans('admin.updated'));
         }
         return back();
     }
-
     /**
      * Remove the specified sub-image from posts_gallary.
      *

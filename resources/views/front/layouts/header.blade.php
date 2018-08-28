@@ -16,7 +16,7 @@
                         <ul id="menu-top-bar-right" class="nav nav-inline pull-right animate-dropdown flip">
                             <li class="menu-item animate-dropdown"><a title="Store Locator" href="#"><i class="ec ec-map-pointer"></i>Store Locator</a></li>
                             <li class="menu-item animate-dropdown"><a title="Track Your Order" href="track-your-order.html"><i class="ec ec-transport"></i>Track Your Order</a></li>
-                            <li class="menu-item animate-dropdown"><a title="Shop" href="shop.html"><i class="ec ec-shopping-bag"></i>Shop</a></li>
+                            <li class="menu-item animate-dropdown"><a title="Shop" href="{{url('/shopping-cart')}}"><i class="ec ec-shopping-bag"></i>Shop</a></li>
                           
                                       <li class="menu-item dropdown dropdown-small">
                             <a class="dropdown-toggle" data-toggle="dropdown">
@@ -39,7 +39,7 @@
                             </ul>
                         </li>
 
- @guest
+                         @guest
                             <li class="menu-item animate-dropdown"><a href="{{ url('/login') }}"><i class="fa fa-user"></i> Login</a></li>
                             <li class="menu-item animate-dropdown"><a href="{{ url('/register') }}"><i class="fa fa-user"></i> Register</a></li>
                         @else

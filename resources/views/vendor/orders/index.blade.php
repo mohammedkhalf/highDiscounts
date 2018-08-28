@@ -50,7 +50,16 @@
                             <td>{{$products->item_price}} LE</td>
                             
                      
-                      <td>{{$products->order_dd()->first()->level}}</td>
+                     {!! Form::open(['url'=>app('aurl').'/orders/status/'.$products->id,'method'=>'post']) !!}
+                        <td> <select style="width: 100px" class="form-control" name="level">
+                          <option value="prepare" @if($products->level == 'prepare') selected @endif>Prepare</option>
+                          <option value="ship" @if($products->level == 'ship') selected @endif>Shipping</option>
+                          <option value="done" @if($products->level == 'done') selected @endif>Done</option>
+                          <option value="reject" @if($products->level == 'reject') selected @endif>Reject</option>
+                             </select></td>                  
+                        <td><button type="submit"><i class="icon-basket"></i> <span>Apply</span></button></td>
+
+                   {!! Form::close() !!} 
                         </tr>
                     @endforeach
                     </tbody>

@@ -16,6 +16,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('user_type');
+            $table->integer('main_dep_id');
             $table->integer('dep_id');
             $table->string('ar_title');
             $table->string('en_title');

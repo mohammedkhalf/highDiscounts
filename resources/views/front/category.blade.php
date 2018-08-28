@@ -95,14 +95,14 @@
                                                     </div><!-- /.price-add-to-cart -->
 
                                                     <div class="hover-area">
-                                                        <div class="action-buttons">
-                                                    
-                                                              @if( $product->stock >= 1)
-                                <p>In Stock : {{ $product->stock }}</p>
-                                @else
-                                <p>Unavailable In Stock </p>
-                                @endif
-                                                        </div>
+                                                                 <div class="action-buttons">
+<a href="{{route('product.wishlist' , ['id' => $product->id])}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                        @if( $product->stock >= 1)
+                                                            <a class="add-to-compare-link">In Stock : {{ $product->stock }}</a>
+                                                        @else
+                                                            <a class="add-to-compare-link">Unavailable In Stock </a>
+                                                        @endif
+                                                    </div>
                                                     </div>
                                                 </div>
                                                 <!-- /.product-inner -->
