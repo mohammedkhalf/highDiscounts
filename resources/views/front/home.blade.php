@@ -9,11 +9,12 @@
 @section('content')
     @include('front.layouts.menu')
 
-
+{{--home--}}
 
     <div id="page" class="hfeed site">
         <a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
         <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+{{--
 
         <div class="top-bar hidden-md-down">
             <div class="container">
@@ -34,6 +35,7 @@
             </div>
         </div><!-- /.top-bar -->
 
+--}}
 
 
         <div id="content" class="site-content" tabindex="-1">

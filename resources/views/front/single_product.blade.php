@@ -25,7 +25,7 @@
                 <span class="delimiter"><i class="fa fa-angle-right"></i>
                         </span>Ultra Wireless S50 Headphones S50 with Bluetooth
             </nav><!-- /.woocommerce-breadcrumb -->
-            
+
                     <div id="primary" class="content-area">
                         <main id="main" class="site-main">
 

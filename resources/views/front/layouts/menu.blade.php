@@ -81,11 +81,9 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
         $total =  App\Model\ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');  ?>
 @if ( $product != null)
                     <ul class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
-   
-            
-          
+
                         <li class="nav-item dropdown">
-                            <a href="cart.html" class="nav-link" data-toggle="dropdown">
+                            <a href="{{url('/shopping-cart')}}" class="nav-link" data-toggle="dropdown">
                                 <i class="ec ec-shopping-bag"></i>
                                 <span class="cart-items-count count">{{ count ($product)}}</span>
                                 <span class="cart-items-total-price total-price"><span class="amount">&#36;{{$total}}</span></span>
@@ -143,7 +141,7 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
                                 </li>
                             </ul>
                         </li>
-               
+
                     </ul>
 
                     <ul class="navbar-wishlist nav navbar-nav pull-right flip">
@@ -160,7 +158,7 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
             <?php } ?>
                 </div>
             </nav>
-
+{{--
 <div class="mainmenu-area">
     <div class="container">
         <div class="row">
@@ -186,4 +184,4 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
             </div>
         </div>
     </div>
-</div> <!-- End mainmenu area -->
+</div>--}} <!-- End mainmenu area -->
