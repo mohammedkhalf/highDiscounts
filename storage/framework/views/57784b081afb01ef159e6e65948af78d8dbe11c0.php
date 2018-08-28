@@ -39,7 +39,7 @@
                             </ul>
                         </li>
 
- <?php if(auth()->guard()->guest()): ?>
+                         <?php if(auth()->guard()->guest()): ?>
                             <li class="menu-item animate-dropdown"><a href="<?php echo e(url('/login')); ?>"><i class="fa fa-user"></i> Login</a></li>
                             <li class="menu-item animate-dropdown"><a href="<?php echo e(url('/register')); ?>"><i class="fa fa-user"></i> Register</a></li>
                         <?php else: ?>

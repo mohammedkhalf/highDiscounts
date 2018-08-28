@@ -15,7 +15,7 @@
         <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 
 
-        <div class="top-bar hidden-md-down">
+    {{--    <div class="top-bar hidden-md-down">
             <div class="container">
                 <nav>
                     <ul id="menu-top-bar-left" class="nav nav-inline pull-left animate-dropdown flip">
@@ -34,7 +34,7 @@
             </div>
         </div><!-- /.top-bar -->
 
-
+--}}
 
 
         <div id="content" class="site-content" tabindex="-1">

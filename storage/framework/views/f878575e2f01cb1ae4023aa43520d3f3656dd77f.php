@@ -9,11 +9,12 @@
     <?php echo $__env->make('front.layouts.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 
-
     <div id="page" class="hfeed site">
         <a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
         <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 
+
+    
 
 
         <div id="content" class="site-content" tabindex="-1">
@@ -116,9 +117,9 @@
 
                                                                     <div class="hover-area">
                                                                         <div class="action-buttons">
-
-                                                                            <p>IN Stock : <?php echo e($fe->stock); ?></p>
-                                                                        </div>
+                                                                  <a href="<?php echo e(route('product.wishlist' , ['id' => $fe->id])); ?>" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                                <a class="add-to-compare-link">IN Stock : <?php echo e($fe->stock); ?> </a>
+                                                            </div>
                                                                     </div>
                                                                 </div><!-- /.product-inner -->
                                                             </div><!-- /.product-outer -->
@@ -170,10 +171,10 @@
                                                                     </div><!-- /.price-add-to-cart -->
 
                                                                     <div class="hover-area">
-                                                                        <div class="action-buttons">
-
-                                                                            <p>IN Stock : <?php echo e($fe->stock); ?></p>
-                                                                        </div>
+                                                                         <div class="action-buttons">
+                                                                  <a href="<?php echo e(route('product.wishlist' , ['id' => $fe->id])); ?>" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                                <a class="add-to-compare-link">IN Stock : <?php echo e($fe->stock); ?> </a>
+                                                            </div>
                                                                     </div>
                                                                 </div><!-- /.product-inner -->
                                                             </div><!-- /.product-outer -->
@@ -227,9 +228,9 @@
 
                                                                     <div class="hover-area">
                                                                         <div class="action-buttons">
-
-                                                                            <p>IN Stock : <?php echo e($fe->stock); ?></p>
-                                                                        </div>
+                                                                  <a href="<?php echo e(route('product.wishlist' , ['id' => $fe->id])); ?>" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                                <a class="add-to-compare-link">IN Stock : <?php echo e($fe->stock); ?> </a>
+                                                            </div>
                                                                     </div>
                                                                 </div><!-- /.product-inner -->
                                                             </div><!-- /.product-outer -->
@@ -302,10 +303,10 @@
                                                             </div><!-- /.price-add-to-cart -->
 
                                                             <div class="hover-area">
-                                                                <div class="action-buttons">
-
-                                                                    <p>IN Stock : <?php echo e($fe->stock); ?></p>
-                                                                </div>
+                                                                  <div class="action-buttons">
+                                                                  <a href="<?php echo e(route('product.wishlist' , ['id' => $fe->id])); ?>" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                                <a class="add-to-compare-link">IN Stock : <?php echo e($fe->stock); ?> </a>
+                                                            </div>
                                                             </div>
 
                                                         </div>
@@ -356,9 +357,9 @@
 
                                                             <div class="hover-area">
                                                                 <div class="action-buttons">
-
-                                                                    <p>IN Stock : <?php echo e($fe->stock); ?></p>
-                                                                </div>
+                                                                  <a href="<?php echo e(route('product.wishlist' , ['id' => $fe->id])); ?>" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                                <a class="add-to-compare-link">IN Stock : <?php echo e($fe->stock); ?> </a>
+                                                            </div>
                                                             </div>
 
                                                         </div>
@@ -429,8 +430,8 @@
 
                                                         <div class="hover-area">
                                                             <div class="action-buttons">
-
-                                                                <p>IN Stock : <?php echo e($fe->stock); ?> </p>
+                                                                  <a href="<?php echo e(route('product.wishlist' , ['id' => $fe->id])); ?>" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                                <a class="add-to-compare-link">IN Stock : <?php echo e($fe->stock); ?> </a>
                                                             </div>
                                                         </div>
                                                     </div><!-- /.product-inner -->
