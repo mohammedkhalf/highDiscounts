@@ -20,7 +20,7 @@
             <nav class="woocommerce-breadcrumb">
                 <a href="home.html">Home</a>
                 <span class="delimiter"><i class="fa fa-angle-right"></i></span>
-                <a href="#">@if(!empty($product->product_dep()->get()))
+                <a href="#">@if(!empty($product->product_dep_main()->get()))
                                                     @foreach($product->product_dep_main()->get() as $dep)
                                                         {!! $dep->en_name!!}
                                                     @endforeach
