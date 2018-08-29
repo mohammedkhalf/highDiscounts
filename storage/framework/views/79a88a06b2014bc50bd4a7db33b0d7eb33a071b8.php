@@ -75,18 +75,21 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
                             </div>
                         </div>
                     </form>
-                <?php if (Auth::user()) {
-                # code...
-             $product = App\Model\ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
-        $total =  App\Model\ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');  ?>
-<?php if( $product != null): ?>
+              
                     <ul class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
 
                         <li class="nav-item dropdown">
                             <a href="<?php echo e(url('/shopping-cart')); ?>" class="nav-link" data-toggle="dropdown">
                                 <i class="ec ec-shopping-bag"></i>
+                                    <?php if (Auth::user()) {
+                # code...
+             $product = App\Model\ShoppingCart::where('user_id','=',Auth::user()->id)->get()->all();
+        $total =  App\Model\ShoppingCart::where('user_id','=',Auth::user()->id)->sum('price');  ?>
+<?php if( $product != null): ?>
                                 <span class="cart-items-count count"><?php echo e(count ($product)); ?></span>
                                 <span class="cart-items-total-price total-price"><span class="amount">&#36;<?php echo e($total); ?></span></span>
+                                               <?php endif; ?>
+            <?php } ?>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-mini-cart">
                                 <li>
@@ -132,8 +135,8 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
 
 
                                         <p class="buttons">
-                                            <a class="button wc-forward" href="cart.html">View Cart</a>
-                                            <a class="button checkout wc-forward" href="checkout.html">Checkout</a>
+                                            <a class="button wc-forward" href="<?php echo e(url('/shopping-cart')); ?>">View Cart</a>
+                                            <a class="button checkout wc-forward" href="<?php echo e(url('/checkout')); ?>">Checkout</a>
                                         </p>
 
 
@@ -146,16 +149,11 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
 
                     <ul class="navbar-wishlist nav navbar-nav pull-right flip">
                         <li class="nav-item">
-                            <a href="wishlist.html" class="nav-link"><i class="ec ec-favorites"></i></a>
+                            <a href="<?php echo e(url('/wishlist')); ?>" class="nav-link"><i class="ec ec-favorites"></i></a>
                         </li>
                     </ul>
-                    <ul class="navbar-compare nav navbar-nav pull-right flip">
-                        <li class="nav-item">
-                            <a href="compare.html" class="nav-link"><i class="ec ec-compare"></i></a>
-                        </li>
-                    </ul>
-                                <?php endif; ?>
-            <?php } ?>
+                  
+              
                 </div>
             </nav>
- <!-- End mainmenu area -->
+

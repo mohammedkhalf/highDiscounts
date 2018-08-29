@@ -16,6 +16,7 @@ class Products extends Model
             'photo',
             'user_id',
             'dep_id',
+            'main_dep_id',
             'en_content',
             'ar_content',
             'size',
@@ -43,5 +44,10 @@ class Products extends Model
 
         return $this->belongsTo('App\Model\DepartmentProducts', 'dep_id', 'id');
     }
+          public function product_dep_main() {
+
+        return $this->belongsTo('App\Model\DepartmentProducts', 'main_dep_id', 'id');
+    }
+
 
 }

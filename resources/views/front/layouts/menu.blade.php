@@ -156,6 +156,7 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
               
                 </div>
             </nav>
+{{--
 
 <div class="mainmenu-area">
     <div class="container">
@@ -183,3 +184,4 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
         </div>
     </div>
 </div>
+--}}
