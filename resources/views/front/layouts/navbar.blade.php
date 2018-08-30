@@ -67,9 +67,8 @@
                                     <ul id="menu-main-menu" class="nav nav-inline yamm">
                                          <li class="menu-item" title="Home" {{{ (Request::is('/') ? ' class=active' : '') }}}><a href="{{url('/')}}">Home</a></li>
                     <li class="menu-item" title="Shop" {{{ (Request::is('allproducts') ? ' class=active' : '') }}}><a href="{{url('/allproducts')}}">Shop</a></li>
-                    <li class="menu-item" title="Cart" {{{ (Request::is('shopping-cart') ? ' class=active' : '') }}}><a href="{{url('/shopping-cart')}}">Cart</a></li>
+             
                  
-                    <li  class="menu-item" title="Checkout" {{{ (Request::is('checkout') ? ' class=active' : '') }}}><a href="{{url('/checkout')}}">Checkout</a></li>
               <li  class="menu-item" title="About Us" {{{ (Request::is('aboutus') ? ' class=active' : '') }}}><a href="{{url('/aboutus')}}">About Us</a></li>
                     <li class="menu-item" title="Contact Us" {{{ (Request::is('contactus') ? ' class=active' : '') }}}><a href="{{url('/contactus')}}">Contact Us</a></li>
                                  
@@ -443,4 +442,6 @@
 
             </header><!-- #masthead -->
 
-   
+     <nav class="navbar navbar-primary navbar-full hidden-md-down">
+                <div class="container">
+        

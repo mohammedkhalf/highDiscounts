@@ -7,6 +7,7 @@
     {{trans('front.home')}}
 @endsection
 @section('content')
+ @include('front.layouts.catwidget')
 @include('front.layouts.menu')
      @if ( $product != null)
 

@@ -42,9 +42,12 @@
             </thead>
             <tbody>
             @foreach($orders as $order)
-           
-                <tr>
-                     
+           @if($order->seen == 0)
+                <tr class="success">
+                   @else 
+
+                  <tr >
+                    @endif  
                     
                     <td>{{$order->code}}</td>
                    @if(!empty( $order->user()->get()))

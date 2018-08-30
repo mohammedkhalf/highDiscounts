@@ -7,6 +7,7 @@
     {{trans('front.home')}}
 @endsection
 @section('content')
+ @include('front.layouts.catwidget')
     @include('front.layouts.menu')
 
 
@@ -576,39 +577,7 @@
             </div><!-- .container -->
         </div><!-- #content -->
 
-        <section class="brands-carousel">
-            <h2 class="sr-only">Brands Carousel</h2>
-            <div class="container">
-                <div id="owl-brands" class="owl-brands owl-carousel unicase-owl-carousel owl-outer-nav">
-                    @foreach($brands as $brand)
-                        <div class="item">
-
-                            <a href="{{url('/single_dep/'.$brand->id)}}" rel="tag">
-
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>{{$brand->en_name}}</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="{{url('upload/products/'.$brand->image)}}" data-echo="{{url('upload/products/'.$brand->image)}}" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-
-                        </div><!-- /.item -->
-
-                    @endforeach
-
-
-
-
-                </div><!-- /.owl-carousel -->
-
-            </div>
-        </section>
+    
 
 
 

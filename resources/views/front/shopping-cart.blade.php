@@ -22,7 +22,7 @@
                             
 
                                     <table class="shop_table shop_table_responsive cart">
-                                        <thead>
+                                        <thead> 
                                             <tr>
                                                 <th class="product-remove">Remove</th>
                                                 <th class="product-thumbnail">Image</th>

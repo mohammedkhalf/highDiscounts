@@ -7,6 +7,7 @@
     {{trans('front.home')}}
 @endsection
 @section('content')
+ @include('front.layouts.menu')
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">

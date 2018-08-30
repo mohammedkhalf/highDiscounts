@@ -7,6 +7,7 @@
     {{trans('front.home')}}
 @endsection
 @section('content')
+ @include('front.layouts.menu')
 @if ( $product != null)
         <div id="content" class="site-content" tabindex="-1">
                 <div class="container">

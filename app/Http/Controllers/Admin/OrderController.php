@@ -15,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::orderBy('id','desc')->get();
+        $orders = Order::orderBy('id','desc')->get()->all();
         return view(app('at').'.orders.index')->with('orders',$orders);
     }
 
@@ -27,6 +27,9 @@ class OrderController extends Controller
     public function details($id)
     {
        $order = Order::find($id); 
+         $order->seen           = 1;
+
+        $order->save();
 $orderItem  = OrderItem::where('order_id','=',$id)->get()->all();
  return view(app('at').'.orders.details', ['order'=>$order , 'orderItem'=>$orderItem]);
           }

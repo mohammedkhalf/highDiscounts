@@ -8,7 +8,7 @@
     {{trans('front.home')}}
 @endsection
 @section('content')
-
+@include('front.layouts.menu')
     <style>
         .owl-carousel {
             display: block;
@@ -19,12 +19,13 @@
 
             <nav class="woocommerce-breadcrumb">
                 <a href="home.html">Home</a>
-                <span class="delimiter"><i class="fa fa-angle-right"></i></span>
-                <a href="#">@if(!empty($product->product_dep_main()->get()))
+             @if(!empty($product->product_dep_main()->get()))
                                                     @foreach($product->product_dep_main()->get() as $dep)
-                                                        {!! $dep->en_name!!}
+                                                       <span class="delimiter"><i class="fa fa-angle-right"></i></span>
+                <a href="#">
+                                                        {!! $dep->en_name!!}</a>
                                                     @endforeach
-                                                @endif</a>
+                                                @endif
                 <span class="delimiter"><i class="fa fa-angle-right"></i></span>
                                                   @if(!empty($product->product_dep()->get()))
                                                     @foreach($product->product_dep()->get() as $dep) 
@@ -75,11 +76,13 @@
                             <div class="summary entry-summary">
 
                                         <span class="loop-product-categories">
-                                            <a href="" rel="tag">@if(!empty($product->product_dep()->get()))
+                                            @if(!empty($product->product_dep()->get()))
                                                     @foreach($product->product_dep()->get() as $dep)
+                                                    <a href="{{url('/single_dep/'.$dep->id)}}" rel="tag">
                                                         {!! $dep->en_name!!}
+                                                        </a>
                                                     @endforeach
-                                                @endif</a>
+                                                @endif
                                         </span><!-- /.loop-product-categories -->
 
                                 <h1 itemprop="name" class="product_title entry-title">{{$product->en_title}}</h1>
@@ -101,15 +104,15 @@
 
                                 <div class="brand">
 
-                                    <a href="product-category.html">
+                                    
                                         @if(!empty($product->product_dep()->get()))
                                             @foreach($product->product_dep()->get() as $dep)
-
+                                            <a href="{{url('/single_dep/'.$dep->id)}}">
                                                 <img src="{{url('/upload/products/'.$dep->image)}}"
                                                      alt="{{$dep->en_name}}"/>
-
+                                             </a>
                                             @endforeach
-                                        @endif                                    </a>
+                                        @endif                                
                                 </div><!-- .brand -->
 
 
@@ -206,34 +209,7 @@
 
 
 
-    <section class="brands-carousel">
-        <h2 class="sr-only">Brands Carousel</h2>
-        <div class="container">
-            <div id="owl-brands" class="owl-brands owl-carousel unicase-owl-carousel owl-outer-nav">
-
-                <div class="item">
-
-                    <a href="#">
-
-                        <figure>
-                            <figcaption class="text-overlay">
-                                <div class="info">
-                                    <h4>Acer</h4>
-                                </div><!-- /.info -->
-                            </figcaption>
-
-                            <img src="assets/images/blank.gif" data-echo="assets/images/brands/1.png"
-                                 class="img-responsive" alt="">
-
-                        </figure>
-                    </a>
-                </div><!-- /.item -->
-
-
-            </div><!-- /.owl-carousel -->
-
-        </div>
-    </section>
+ 
 
 
 
