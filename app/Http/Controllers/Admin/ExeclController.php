@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Excel;
 class ExeclController extends Controller
 {
     public function importExportExcelORCSV()
@@ -18,9 +18,10 @@ class ExeclController extends Controller
             $path = $request->file('sample_file')->getRealPath();
             $data = \Excel::load($path)->get();
             if ($data->count()) {
-                foreach ($data as $key => $value) {
+               return $data;
+                /*foreach ($data as $key => $value) {
                     $arr[] = ['name' => $value->name, 'details' => $value->details];
-                }
+                }*/
                /* if (!empty($arr)) {
                     \DB::table('products')->insert($arr);
                     dd('Insert Record successfully.');

@@ -62,7 +62,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         /*        Route::resource('admins','AdminController');*/
 
         Route::get('import-export-csv-excel','ExeclController@importExportExcelORCSV');
-        Route::post('import-csv-excel','ExeclController@login');
+        Route::post('import-csv-excel','ExeclController@importFileIntoDB');
 
 
         Route::any('logout', 'AdminAuthController@logout');

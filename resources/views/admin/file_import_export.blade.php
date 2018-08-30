@@ -14,7 +14,7 @@
                 <a href="{{ route('excel-file',['type'=>'csv']) }}">Download CSV</a>
             </div>--}}
         </div>
-        {!! Form::open(array('url' => '/import-csv-excel','method'=>'POST','files'=>'true')) !!}
+        {!! Form::open(array('url' => 'admin/import-csv-excel','method'=>'POST','files'=>'true')) !!}
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
