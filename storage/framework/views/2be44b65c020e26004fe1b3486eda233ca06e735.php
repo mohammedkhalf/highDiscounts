@@ -70,6 +70,10 @@
                                         <li>
                                     </ul>
                                 </li>
+           <li <?php echo e((Request::is('admin/slider') ? ' class=active' : '')); ?>>
+                                    <a href="<?php echo e(aurl('slider')); ?>"><i class="  icon-price-tags"></i> <span><?php echo e(trans('admin.slider')); ?></span></a>
+                                </li>
+                       
                                 <li>
                                     <a href="#"><i class="icon-sync icon-pen"></i>
                                         <span><?php echo e(trans('admin.admins')); ?></span></a>
