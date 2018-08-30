@@ -21,10 +21,10 @@ class ExeclController extends Controller
                 foreach ($data as $key => $value) {
                     $arr[] = ['name' => $value->name, 'details' => $value->details];
                 }
-                if (!empty($arr)) {
+               /* if (!empty($arr)) {
                     \DB::table('products')->insert($arr);
                     dd('Insert Record successfully.');
-                }
+                }*/
             }
         }
         dd('Request data does not have any files to import.');
