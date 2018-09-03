@@ -1,3 +1,37 @@
+    <section class="brands-carousel">
+            <h2 class="sr-only">Brands Carousel</h2>
+            <div class="container">
+                <div id="owl-brands" class="owl-brands owl-carousel unicase-owl-carousel owl-outer-nav">
+                    <?php $brands=App\Model\DepartmentProducts::where('parent','>',0)->get(); ?>
+                    <?php $__currentLoopData = $brands; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="item">
+
+                            <a href="<?php echo e(url('/single_dep/'.$brand->id)); ?>" rel="tag">
+
+
+                                <figure>
+                                    <figcaption class="text-overlay">
+                                        <div class="info">
+                                            <h4><?php echo e($brand->en_name); ?></h4>
+                                        </div><!-- /.info -->
+                                    </figcaption>
+
+                                    <img src="<?php echo e(url('upload/products/'.$brand->image)); ?>" data-echo="<?php echo e(url('upload/products/'.$brand->image)); ?>" class="img-responsive" alt="">
+
+                                </figure>
+                            </a>
+
+                        </div><!-- /.item -->
+
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+
+
+
+                </div><!-- /.owl-carousel -->
+
+            </div>
+        </section>
 <footer id="colophon" class="site-footer">
     <div class="footer-widgets">
         <div class="container">

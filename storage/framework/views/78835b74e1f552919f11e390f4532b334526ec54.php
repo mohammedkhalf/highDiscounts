@@ -67,9 +67,8 @@
                                     <ul id="menu-main-menu" class="nav nav-inline yamm">
                                          <li class="menu-item" title="Home" <?php echo e((Request::is('/') ? ' class=active' : '')); ?>><a href="<?php echo e(url('/')); ?>">Home</a></li>
                     <li class="menu-item" title="Shop" <?php echo e((Request::is('allproducts') ? ' class=active' : '')); ?>><a href="<?php echo e(url('/allproducts')); ?>">Shop</a></li>
-                    <li class="menu-item" title="Cart" <?php echo e((Request::is('shopping-cart') ? ' class=active' : '')); ?>><a href="<?php echo e(url('/shopping-cart')); ?>">Cart</a></li>
+             
                  
-                    <li  class="menu-item" title="Checkout" <?php echo e((Request::is('checkout') ? ' class=active' : '')); ?>><a href="<?php echo e(url('/checkout')); ?>">Checkout</a></li>
               <li  class="menu-item" title="About Us" <?php echo e((Request::is('aboutus') ? ' class=active' : '')); ?>><a href="<?php echo e(url('/aboutus')); ?>">About Us</a></li>
                     <li class="menu-item" title="Contact Us" <?php echo e((Request::is('contactus') ? ' class=active' : '')); ?>><a href="<?php echo e(url('/contactus')); ?>">Contact Us</a></li>
                                  
@@ -443,4 +442,6 @@
 
             </header><!-- #masthead -->
 
-   
+     <nav class="navbar navbar-primary navbar-full hidden-md-down">
+                <div class="container">
+        
