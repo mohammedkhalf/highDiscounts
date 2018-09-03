@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Excel;
+use DB;
+use App\Model\Products;
+
 class ExeclController extends Controller
 {
     public function importExportExcelORCSV()
@@ -14,21 +16,31 @@ class ExeclController extends Controller
 
     public function importFileIntoDB(Request $request)
     {
-        if ($request->hasFile('sample_file')) {
-            $path = $request->file('sample_file')->getRealPath();
-            $data = \Excel::load($path)->get();
-            if ($data->count()) {
-               return $data;
-                /*foreach ($data as $key => $value) {
-                    $arr[] = ['name' => $value->name, 'details' => $value->details];
-                }*/
-               /* if (!empty($arr)) {
-                    \DB::table('products')->insert($arr);
-                    dd('Insert Record successfully.');
-                }*/
-            }
-        }
-        dd('Request data does not have any files to import.');
-    }
 
+        if ($request->hasFile('sample_file')) {
+
+            $path = $request->file('sample_file')->getRealPath();
+
+            $data = \Excel::load($path, function($reader) {
+            })->get();
+
+            if ($data->count()) {
+
+               /* foreach ($data as $key => $value) {
+
+                    $arr[] = ['title' => $value->title, 'body' => $value->body];
+
+                }
+
+                if (!empty($arr)) {*/
+
+                    return $data;
+
+/*                }*/
+
+            }
+
+        }
+
+    }
 }
