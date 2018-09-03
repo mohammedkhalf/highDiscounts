@@ -34,12 +34,12 @@
                                             <div class="panel-heading" role="tab" id="headingOne{{$faqs->id}}">
                                                 <div class="vc_toggle_title">
                                                     <h4 class="panel-title">
-                                                        <a data-toggle="collapse" style="color: #434343;" data-parent="#accordion" href="#collapseOne{{$faqs->id}}" aria-expanded="true" aria-controls="collapseOne{{$faqs->id}}">{{$faqs->en_question}}</a>
+                                                        <a data-toggle="collapse" style="color: #434343;" data-parent="#accordion" href="#collapseOne{{$faqs->id}}" aria-expanded="false" aria-controls="collapseOne{{$faqs->id}}">{{$faqs->en_question}}</a>
                                                     </h4>
                                                     <i class="vc_toggle_icon"></i>
                                                 </div>
                                             </div>
-                                            <div id="collapseOne{{$faqs->id}}" class="vc_toggle_content panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne{{$faqs->id}}">
+                                            <div id="collapseOne{{$faqs->id}}" class="vc_toggle_content panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne{{$faqs->id}}">
                                                 <p>{{$faqs->en_answer}}</p>
                                             </div>
                                         </div>

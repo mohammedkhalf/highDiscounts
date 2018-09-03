@@ -1,20 +1,29 @@
-@extends('layouts.app')
+@extends('front.index')
 
+@section('title')
+    LOGIN
+@endsection
+@section('up')
+    {{trans('front.home')}}
+@endsection
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+ @include('front.layouts.menu') 
 
-                <div class="panel-body">
+   <div id="content" class="site-content" tabindex="-1">
+                <div class="container">
+
+                              <header class="entry-header">
+                                    <h1 itemprop="name" class="entry-title">Register</h1>
+                                    <p class="entry-subtitle">Create your very own account</p>
+                                  
+                                </header><!-- .entry-header --> 
                     <form class="form-horizontal" method="POST" action="{{ url('register') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" >Name*</label>
 
-                            <div class="col-md-6">
+                            <div >
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('name'))
@@ -26,9 +35,9 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class=" control-label">E-Mail Address</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
@@ -40,9 +49,9 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <label for="password" class="control-label">Password</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <input id="password" type="password" class="form-control" name="password" required>
 
                                 @if ($errors->has('password'))
@@ -55,17 +64,17 @@
 
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            <label for="password-confirm" class=" control-label">Confirm Password</label>
 
-                            <div class="col-md-6">
+                            <div class="">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
 
                         <div  class=" hidden form-group{{ $errors->has('level') ? ' has-error' : '' }}">
-                            <label for="level" class="col-md-4 control-label">user Type</label>
+                         
 
-                            <div class="col-md-6">
+                            <div class="">
                             <input  type="hidden" value="user" name="level">
 
                                 @if ($errors->has('level'))
@@ -77,7 +86,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="">
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>
@@ -90,3 +99,16 @@
     </div>
 </div>
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+

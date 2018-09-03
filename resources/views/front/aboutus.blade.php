@@ -7,30 +7,54 @@
     {{trans('front.home')}}
 @endsection
 @section('content')
- @include('front.layouts.menu')
-    <div class="single-product-area">
-        <div class="zigzag-bottom"></div>
+ @include('front.layouts.menu') 
+   <style>
+        .owl-carousel {
+            display: block;
+        }
+    </style>
+   <div id="content" class="site-content" tabindex="-1">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
 
-                    <div class="single-sidebar">
-                        <h2 class="sidebar-title">About Us</h2>
-                        <div class="thubmnail-recent">
-                            @if(lang() == 'ar')
+
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+
+                    <div class="product">
+
+                        <div class="single-product-wrapper">
+                            <div class="product-images-wrapper">
+                               
+                                <div class="images electro-gallery">
+                                    <div class="thumbnails-single owl-carousel">
+                                        <a href="{{url('/upload/products/'.$about->image)}}" class="zoom" title=""
+                                           data-rel="prettyPhoto[product-gallery]">
+                                            <img src="assets/images/blank.gif"
+                                                 data-echo="{{url('/upload/products/'.$about->image)}}"
+                                                 class="wp-post-image"
+                                                 alt=""></a>
+
+                                    </div><!-- .thumbnails-single -->
+
+
+
+                                                 <div class="summary entry-summary">
+                                <div itemprop="description">
+                                    <p>      @if(lang() == 'ar')
                                 <h2>{{$about->ar_content}}</h2>
                                 @else
                                 <h2>{{$about->en_content}}</h2>
-                                @endif
+                                @endif</p>
+                                    
+                                </div><!-- .description -->
 
-                        </div>
-                    </div>
 
-                </div>
-                <div class="col-md-4">
-                    <img  src="{{url('/upload/products/'.$about->image)}}">
-                </div>
-            </div>
-        </div>
-    </div>
+
+                            </div><!-- .summary -->
+                        </div><!-- /.single-product-wrapper -->
+
+</div>
+</div>
+</div>
+
 @endsection
