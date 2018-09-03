@@ -19,6 +19,7 @@ use App\Model\OrderItem ;
 use App\Model\DepartmentProducts as Dep;
 use App\Model\ContactUs;
 use App\Model\SliderImage;
+use App\Model\Faq ;
 use Validator;
 use Session;
 use Auth;
@@ -156,6 +157,7 @@ class HomeController extends Controller
             $add->level               = 'prepare';
             $add->code               = '#'.time().rand(11,00).$add->id;
             $add->price               = $total;
+            $add->seen               = 0;
             $add->save();
 
             $lastid = $add->id;
@@ -182,6 +184,14 @@ class HomeController extends Controller
         $widget = Products::orderBy('id','desc')->take(5)->get();
         $products=Products::paginate(12);
         return view('front.shop', ['products'=>$products , 'departments'=>$departments ,'widget'=>$widget ,'brands'=> $brands]);
+    }
+     public function faq()
+    {
+ 
+         $faq = Faq::orderBy('id','desc')->get();
+//        return $departments;
+//        die();
+        return view('front.faq')->with('faq',$faq);
     }
 
     public function departments()

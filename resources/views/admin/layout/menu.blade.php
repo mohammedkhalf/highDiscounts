@@ -73,6 +73,9 @@
            <li {{{ (Request::is('admin/slider') ? ' class=active' : '') }}}>
                                     <a href="{{aurl('slider')}}"><i class="  icon-price-tags"></i> <span>{{trans('admin.slider')}}</span></a>
                                 </li>
+                                 <li {{{ (Request::is('admin/faq') ? ' class=active' : '') }}}>
+                                    <a href="{{aurl('faq')}}"><i class="  icon-price-tags"></i> <span>{{trans('admin.faq')}}</span></a>
+                                </li>
                        
                                 <li>
                                     <a href="#"><i class="icon-sync icon-pen"></i>

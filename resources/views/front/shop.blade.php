@@ -7,7 +7,8 @@
     {{trans('front.home')}}
 @endsection
 @section('content')
-  @include('front.layouts.menu')
+ @include('front.layouts.catwidget')
+    @include('front.layouts.menu')
 
             <div id="content" class="site-content" tabindex="-1">
                 <div class="container">
@@ -66,11 +67,11 @@
                                         <li class="product ">
                                             <div class="product-outer">
                                                 <div class="product-inner">
-                                                    <span class="loop-product-categories"><a href="product-category.html" rel="tag">@if(!empty($product->product_dep()->get()))
-                                    @foreach($product->product_dep()->get() as $dep)
-                                        {!! $dep->en_name!!}
-                                    @endforeach
-                                @endif</a></span>
+          
+
+
+
+
                                                     <a href="{{url('/single_product/'.$product->id)}}">
                                                         <h3>     @if(lang() == 'ar')
                                 {{$product->ar_title}}
@@ -129,22 +130,7 @@
                     </div><!-- #primary -->
 
                     <div id="sidebar" class="sidebar" role="complementary">
-                        <aside class="widget woocommerce widget_product_categories electro_widget_product_categories">
-                            <ul class="product-categories category-single">
-                                <li class="product_cat">
-                                 
-                                    <ul>
-                                        <li class="cat-item current-cat"><a href="product-category.html"> All Categories</a> <span class="count">(13)</span>
-                                            <ul class='children'>
-                                      @foreach($departments as $department)
-                                                <li class="cat-item"><a href="{{url('/single_dep/'.$department->id)}}">{{$department->en_name}}</a></li>
-                                      @endforeach
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </aside>
+                  
                       
                            
                         <aside class="widget widget_text">
