@@ -79,13 +79,36 @@ class HomeController extends Controller
 
 
 
-       public function track()
+       public function billing()
     {
-        $order = Order::where('user_id','=',Auth::user()->id)->get()->all();
         
-        return view(app('f').'.track' , ['order'=>$order]);
+        
+        return view(app('f').'.track');
     }
+     public function track(Request $request)
+    {
+            $rules = [
+            'code' => 'required',
+            'email' => 'required',
+            ];
+        $Validator   = Validator::make($request->all(),$rules);
+        $Validator->SetAttributeNames ([
+            'code' => trans('admin.code'),
+            'email' => trans('admin.email'),
+         
+        ]);
+        if($Validator->fails())
+        {
+            return back()->withInput()->withErrors($Validator);
+        }else{
+        $order = Order::where('code','=',$request->input('code'))->get();
+        foreach ($order as $orders) {
+            $orderItem  = OrderItem::where('order_id','=',$orders->id)->get()->all();
+        }
 
+        return view(app('f').'.track')->with('order',$order)->with('orderItem',$orderItem);
+    }
+    }
     /**
      * Remove the specified item from shopping_cart.
      *
