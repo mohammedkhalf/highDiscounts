@@ -77,6 +77,15 @@ class HomeController extends Controller
         return view(app('f').'.shopping-cart' , ['product'=>$product , 'total'=>$total]);
     }
 
+
+
+       public function track()
+    {
+        $order = Order::where('user_id','=',Auth::user()->id)->get()->all();
+        
+        return view(app('f').'.track' , ['order'=>$order]);
+    }
+
     /**
      * Remove the specified item from shopping_cart.
      *

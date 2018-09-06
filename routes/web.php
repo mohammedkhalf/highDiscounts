@@ -173,7 +173,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
         Route::delete('/destroy_item_from_wishlist/{id}', 'HomeController@DestroyItemFromWishlist');
         Route::get('/wishlist', 'HomeController@getWishlist' );
 
-
+        Route::get('/track', 'HomeController@track' );
        
         Route::get('/checkout', 'HomeController@checkout' );
         Route::post('/place', 'HomeController@PlaceOrder' );

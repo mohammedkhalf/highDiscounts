@@ -301,7 +301,7 @@
                                                                 @endif
                                                             </span>
 
-                                                            <a href="single-product.html">
+                                                            <a href="{{url('/single_product/'.$fe->id)}}">
                                                                 <h3>{{$fe->en_title}}</h3>
                                                             </a>
 
@@ -353,7 +353,7 @@
                                                                 @endif
                                                             </span>
 
-                                                            <a href="single-product.html">
+                                                            <a href="{{url('/single_product/'.$fe->id)}}">
                                                                 <h3>{{$fe->en_title}}</h3>
                                                             </a>
 
