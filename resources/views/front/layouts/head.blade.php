@@ -27,10 +27,14 @@
     @endif
 
     {{Html::style('front/assets/css/colors/yellow.css') }}
-
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,700italic,800,800italic,600italic,400italic,300italic'
+@if(lang() == 'ar')
+<link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+  <style type="text/css">body {font-family: 'Cairo', sans-serif;} </style>
+          @else
+            <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,700italic,800,800italic,600italic,400italic,300italic'
           rel='stylesheet' type='text/css'>
 
+ @endif
     <link rel="shortcut icon" href="{{url('front/assets/images/fav-icon.png')}}">
 </head>
 

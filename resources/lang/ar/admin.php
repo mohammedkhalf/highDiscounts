@@ -68,4 +68,21 @@ return [
     'forge' => 'نسيت كلمه المرور ?',
     'loginsubmit' => 'تسجيل الدخول',
 
+    //Front End Home Page 
+    'shop'=>'منتجاتنا',
+    'faq'=>'الاسئلة شائعة',
+    'about'=>'عن الشركة',
+    'contact'=>'اتصل بنا',
+    'support'=>'للدعم الفنى',
+    'shop_by_dep'=>'البحث بالاصناف',
+    'search_for'=>' البحث عن منتج',
+    'all_cat'=>'كل الاصناف',
+    'start_buying'=>'بدأ الشراء',
+    'featured'=>'منتجات مميزة',
+    'on_sale'=>'الكثر اعجابا',
+    'top_rated'=>'الاكثر تقييما',
+    'wishlist'=>'مفضلة',
+    'add_to_cart'=>'اضافة اللى السلة',
+    'in_stock'=>'متوفر',
+
 ];

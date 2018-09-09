@@ -1,11 +1,11 @@
        
                     <form class="navbar-search" method="get" action="{{url('/search_product')}}">
-                        <label class="sr-only screen-reader-text" for="search">Search for:</label>
+                        <label class="sr-only screen-reader-text" for="search">{{trans('admin.search_for')}}</label>
                         <div class="input-group">
-                            <input type="text" id="search" class="form-control search-field" dir="ltr" value="" name="nameSearch" placeholder="Search for products" />
+                            <input type="text" id="search" class="form-control search-field" dir="ltr" value="" name="nameSearch" placeholder="{{trans('admin.search_for')}}" />
                             <div class="input-group-addon search-categories">
                                 <select name='product_cat' id='product_cat' class='postform resizeselect' >
-                                    <option value='0' selected='selected'>All Categories</option>
+                                    <option value='0' selected='selected'>{{trans('admin.all_cat')}}</option>
                                     <?php
                                     $departments= App\Model\DepartmentProducts::where('parent',0)->get();
                                     ?>

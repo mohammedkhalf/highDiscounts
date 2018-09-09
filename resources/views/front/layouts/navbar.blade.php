@@ -82,7 +82,7 @@
                                 <span class="media-left support-icon media-middle"><i class="ec ec-support"></i></span>
                                 <div class="media-body">
                                     <span class="support-number"><strong>{{trans('admin.support')}}</strong> (+800) 856 800 604</span><br/>
-                                    <span class="support-email">Email: info@electro.com</span>
+                                    <span class="support-email"><strong>{{trans('admin.emaillogin')}}:</strong> info@electro.com</span>
                                 </div>
                             </div>
                         </div>

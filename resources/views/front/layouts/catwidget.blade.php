@@ -1,7 +1,7 @@
             <ul class="nav navbar-nav departments-menu animate-dropdown">
                         <li class="nav-item dropdown ">
 
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="departments-menu-toggle" >Shop by Department</a>
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="departments-menu-toggle" >{{trans('admin.shop_by_dep')}}</a>
                             <ul id="menu-vertical-menu" class="dropdown-menu yamm departments-menu-dropdown">
                             
 
@@ -10,7 +10,7 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
                      ?>
   @foreach($departments as $department)
                                 <li class="yamm-tfw menu-item menu-item-has-children animate-dropdown menu-item-2585 dropdown">
-                                    <a title="Cameras, Audio &amp; Video"  data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">{{$department->en_name}}</a>
+                                    <a title="Cameras, Audio &amp; Video"  data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">@if( Lang() =='en' ) {{$department->en_name}}@else{{$department->ar_name}} @endif</a>
                                     <ul role="menu" class=" dropdown-menu">
                                         <li class="menu-item animate-dropdown menu-item-object-static_block">
                                             <div class="yamm-content">
@@ -32,7 +32,7 @@ $departments= App\Model\DepartmentProducts::where('parent',0)->get();
                                                                     <div class="wpb_wrapper">
                                                                         <ul>
                                                                         @foreach($parent as $parents)
-                                                                         <a href="{{url('/single_dep/'.$parents->id)}}">   <li class="nav-title">{{$parents->en_name}}</li></a>
+                                                                         <a href="{{url('/single_dep/'.$parents->id)}}">   <li class="nav-title">@if( Lang() =='en' ) {{$parents->en_name}}@else{{$parents->ar_name}} @endif</li></a>
                                                                              @endforeach
                                                                         </ul>
                                                                     </div>

@@ -151,6 +151,21 @@ return [
     'aboutus'=>'About Us Page ',
     'inbox'=>'Inbox',
   
-
-
+//Front End Home Page 
+    'shop'=>'Shop',
+    'faq'=>'FAQ',
+    'about'=>'About Us',
+    'contact'=>'Contact Us',
+    'support'=>'Support ',
+    
+    'shop_by_dep'=>'Shop by Department',
+    'search_for'=>'Search For Product',
+    'all_cat'=>'All Categories',
+    'start_buying'=>'Start Buying',
+    'featured'=>'Featured',
+    'on_sale'=>'Most Liked',
+    'top_rated'=>'Top Rated',
+    'wishlist'=>'Wishlist',
+    'add_to_cart'=>'Add To Cart',
+    'in_stock'=>'In Stock',
 ];
