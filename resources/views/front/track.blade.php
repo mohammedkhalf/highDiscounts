@@ -59,7 +59,7 @@
                                              @foreach($orderItem as $products)
                                                 <tr>
                                                     <td>
-                                                        <a class="product" href="#">
+                                                        <a class="product" href="{{url('/single_product/'.$products->shoppings()->first()->id)}}">
                                                             <div class="product-image">
                                                                 <div class="">
                                                                     <img width="250" height="232" alt="1" class="wp-post-image" src="{{url('/upload/products/'.$products->shoppings()->first()->photo)}}">

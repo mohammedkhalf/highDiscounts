@@ -65,12 +65,12 @@
                             <div class="collapse navbar-toggleable-xs" id="default-header">
                                 <nav>
                                     <ul id="menu-main-menu" class="nav nav-inline yamm">
-                                         <li class="menu-item" title="Home" {{{ (Request::is('/') ? ' class=active' : '') }}}><a href="{{url('/')}}">Home</a></li>
-                    <li class="menu-item" title="Shop" {{{ (Request::is('allproducts') ? ' class=active' : '') }}}><a href="{{url('/allproducts')}}">Shop</a></li>
-              <li class="menu-item" title="Frequently Asked Questions" {{{ (Request::is('faq') ? ' class=active' : '') }}}><a href="{{url('/faq')}}">FAQ</a></li>
+                                         <li class="menu-item" title="Home" {{{ (Request::is('/') ? ' class=active' : '') }}}><a href="{{url('/')}}">{{trans('admin.home')}}</a></li>
+                    <li class="menu-item" title="Shop" {{{ (Request::is('allproducts') ? ' class=active' : '') }}}><a href="{{url('/allproducts')}}">{{trans('admin.shop')}}</a></li>
+              <li class="menu-item" title="Frequently Asked Questions" {{{ (Request::is('faq') ? ' class=active' : '') }}}><a href="{{url('/faq')}}">{{trans('admin.faq')}}</a></li>
                  
-              <li  class="menu-item" title="About Us" {{{ (Request::is('aboutus') ? ' class=active' : '') }}}><a href="{{url('/aboutus')}}">About Us</a></li>
-                    <li class="menu-item" title="Contact Us" {{{ (Request::is('contactus') ? ' class=active' : '') }}}><a href="{{url('/contactus')}}">Contact Us</a></li>
+              <li  class="menu-item" title="About Us" {{{ (Request::is('aboutus') ? ' class=active' : '') }}}><a href="{{url('/aboutus')}}">{{trans('admin.about')}}</a></li>
+                    <li class="menu-item" title="Contact Us" {{{ (Request::is('contactus') ? ' class=active' : '') }}}><a href="{{url('/contactus')}}">{{trans('admin.contact')}}</a></li>
                                  
                                     </ul>
                                 </nav>   
@@ -81,7 +81,7 @@
                             <div class="media">
                                 <span class="media-left support-icon media-middle"><i class="ec ec-support"></i></span>
                                 <div class="media-body">
-                                    <span class="support-number"><strong>Support</strong> (+800) 856 800 604</span><br/>
+                                    <span class="support-number"><strong>{{trans('admin.support')}}</strong> (+800) 856 800 604</span><br/>
                                     <span class="support-email">Email: info@electro.com</span>
                                 </div>
                             </div>

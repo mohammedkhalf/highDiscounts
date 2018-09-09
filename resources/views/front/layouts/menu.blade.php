@@ -50,6 +50,8 @@
                                                  {!! Form::close() !!}
                                                 <a href="single_product/{{ $products->shoppings()->first()->id }}">
                                                     <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="{{url('/upload/products/'.$products->shoppings()->first()->photo)}}" alt="">{{$products->shoppings()->first()->en_title}}
+
+                                                    @if( Lang() =='en' ) {{$products->shoppings()->first()->en_title}}@else{{$products->shoppings()->first()->ar_title}} @endif
                                                 </a>
 
                                                 <span class="quantity"> <span class="amount"></span></span>
