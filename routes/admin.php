@@ -30,7 +30,7 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor'], function () {
     Route::group(['middleware' => ['VendorMiddleware', 'auth']], function () {
 
         Route::POST('/logout', 'SessionController@destroy');
-
+        
         Route::resource('products','ProductsController');
         Route::delete('products/destroyimage/{id}', 'ProductsController@destroyimage');
         Route::delete('products/destroysize/{id}', 'ProductsController@destroysize');
@@ -63,7 +63,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::get('import-export-csv-excel','ExeclController@importExportExcelORCSV');
         Route::post('import-csv-excel','ExeclController@importFileIntoDB');
-
+ Route::resource('department_news','DepNews');
+         Route::resource('news','NewsController');
 
         Route::any('logout', 'AdminAuthController@logout');
         Route::get('/admins', 'AdminController@index');
@@ -91,6 +92,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('department_product/check/parent','DepProductController@check_parent');
        
         Route::resource('products','ProductsController');
+        
+        Route::post('products/import_products','ProductsController@import_products');
         Route::post('products/check/parent','ProductsController@check_parent');
         Route::delete('products/destroyimage/{id}', 'ProductsController@destroyimage');
         Route::delete('products/destroysize/{id}', 'ProductsController@destroysize');

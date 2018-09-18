@@ -112,13 +112,11 @@
                                 <h4 class="widget-title">Find It Fast</h4>
                                 <div class="menu-footer-menu-1-container">
                                     <ul id="menu-footer-menu-1" class="menu">
-                                        <li class="menu-item"><a href="single-product.html">Laptops &#038; Computers</a></li>
-                                        <li class="menu-item"><a href="single-product.html">Cameras &#038; Photography</a></li>
-                                        <li class="menu-item"><a href="single-product.html">Smart Phones &#038; Tablets</a></li>
-                                        <li class="menu-item"><a href="single-product.html">Video Games &#038; Consoles</a></li>
-                                        <li class="menu-item"><a href="single-product.html">TV &#038; Audio</a></li>
-                                        <li class="menu-item"><a href="single-product.html">Gadgets</a></li>
-                                        <li class="menu-item "><a href="single-product.html">Car Electronic &#038; GPS</a></li>
+                                        <?php $footer_dep=App\Model\DepartmentProducts::where('parent','>',0)->take(7)->get(); ?>
+                                       @foreach($footer_dep as $brand)
+                                        <li class="menu-item"><a href="{{url('/single_dep/'.$brand->id)}}"> 
+                                        @if( Lang() =='en' ) {{$brand->en_name}}@else{{$brand->ar_name}} @endif</a></li>
+                                       @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -132,10 +130,10 @@
                                 <div class="menu-footer-menu-2-container">
                                     <ul id="menu-footer-menu-2" class="menu">
                                         <li class="menu-item"><a href="{{url('/registervendor')}}">Register as vendor</a></li>
-                                        <li class="menu-item"><a href="single-product.html">Printers &#038; Ink</a></li>
-                                        <li class="menu-item "><a href="single-product.html">Software</a></li>
-                                        <li  class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2742"><a href="single-product.html">Office Supplies</a></li>
-                                        <li  class="menu-item "><a href="single-product.html">Computer Components</a></li>
+                                        <li class="menu-item"><a href="{{url('/faq')}}">{{trans('admin.faq')}}</a></li>
+                                        <li class="menu-item "><a href="{{url('/aboutus')}}">{{trans('admin.about')}}</a></li>
+                                        <li  class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2742"><a href="{{url('/contactus')}}">{{trans('admin.contact')}}</a></li>
+                                       
                                     </ul>
                                 </div>
                             </div>
@@ -149,12 +147,12 @@
                                 <div class="menu-footer-menu-3-container">
                                     <ul id="menu-footer-menu-3" class="menu">
                                         <li class="menu-item"><a href="single-product.html">My Account</a></li>
-                                        <li class="menu-item"><a href="single-product.html">Track your Order</a></li>
-                                        <li class="menu-item"><a href="single-product.html">Wishlist</a></li>
-                                        <li class="menu-item"><a href="single-product.html">Customer Service</a></li>
-                                        <li class="menu-item"><a href="single-product.html">Returns/Exchange</a></li>
-                                        <li class="menu-item"><a href="single-product.html">FAQs</a></li>
-                                        <li class="menu-item"><a href="hsingle-product.html">Product Support</a></li>
+                                        <li class="menu-item"><a href="{{url('/track')}}">Track your Order</a></li>
+                                        <li class="menu-item"><a href="{{url('/wishlist')}}">Wishlist</a></li>
+                                        <li class="menu-item"><a href="{{url('/contactus')}}">Customer Service</a></li>
+                                        
+                                        <li class="menu-item"><a href="{{url('/faq')}}">FAQs</a></li>
+                                        <li class="menu-item"><a href="{{url('/track')}}">Product Support</a></li>
                                     </ul>
                                 </div>
                             </div>

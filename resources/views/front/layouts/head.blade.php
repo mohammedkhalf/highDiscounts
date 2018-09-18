@@ -16,7 +16,7 @@
 
     @endif
     {{Html::style('front/assets/css/font-awesome.min.css') }}
-    {{Html::style('front/assets/css/animate.min.css') }}
+    {{Html::style('front/assets/css/extras/animate.min.css') }}
     {{Html::style('front/assets/css/font-electro.css') }}
     {{Html::style('front/assets/css/owl-carousel.css') }}
     @if(lang() == 'ar')

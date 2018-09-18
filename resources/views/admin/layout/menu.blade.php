@@ -114,28 +114,29 @@
 
                                 </li>
 
-                                <li>
-                                    <a href="#"><i class="icon-stack2"></i>
-                                        <span>{{trans('admin.categories')}}</span></a>
-                                    <ul>
-                                        <li {{{ (Request::is('admin/product/department') ? ' class=active' : '') }}}><a
-                                                    href="{{aurl('department_product')}}">{{trans('admin.allcategories')}}</a>
-                                        </li>
-                                        <li {{{ (Request::is('admin/product/department') ? ' class=active' : '') }}}><a
-                                                    href="{{aurl('department_product/create')}}">{{trans('admin.addcategories')}}</a>
-                                        </li>
-                                    </ul>
-
-                                </li>
+                          
 
                                 <li>
                                     <a href="#"><i class="icon-cart2"></i> <span>{{trans('admin.products')}}</span></a>
                                     <ul>
+                                           <li {{{ (Request::is('admin/product/department') ? ' class=active' : '') }}}><a
+                                                    href="{{aurl('department_product')}}">{{trans('admin.allcategories')}}</a>
+                                        </li>
                                         <li {{{ (Request::is('admin/product/department') ? ' class=active' : '') }}}><a
                                                     href="{{aurl('products')}}">{{trans('admin.allproducts')}}</a></li>
-                                        <li {{{ (Request::is('admin/product/department') ? ' class=active' : '') }}}><a
-                                                    href="{{aurl('products/create')}}">{{trans('admin.addproducts')}}</a>
+                                    
+                                    </ul>
+
+                                </li>
+                                  <li>
+                                    <a href="#"><i class="icon-newspaper"></i> <span>{{trans('admin.news')}}</span></a>
+                                    <ul>
+                                         <li {{{ (Request::is('admin/news/department') ? ' class=active' : '') }}}><a
+                                                    href="{{aurl('department_news')}}">{{trans('admin.department_news')}}</a>
                                         </li>
+                                        <li {{{ (Request::is('admin/news/department') ? ' class=active' : '') }}}><a
+                                                    href="{{aurl('news')}}">{{trans('admin.allnews')}}</a></li>
+                                       
                                     </ul>
 
                                 </li>

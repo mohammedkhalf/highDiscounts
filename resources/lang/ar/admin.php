@@ -17,6 +17,7 @@ return [
     'allusers' => 'كل الاعضاء',
     'addusers' => 'إضافه عضو',
     'settings' => 'إعدادات الموقع',
+    'updateabout' => 'عن الشركة',
     /*
      *
      *

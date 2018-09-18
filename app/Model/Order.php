@@ -18,6 +18,7 @@ class Order extends Model
             'email',
             'phone',
             'price',
+            'code',
         ];
     public function user()
 {

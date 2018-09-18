@@ -384,4 +384,73 @@ class ProductsController extends Controller
         session()->flash('success',trans('admin.deleted'));
         return back();
     }
+
+
+
+    public function import_products(Request $request)
+    {
+     $rules = [
+           'excel_file' => 'required|mimes:csv,txt,xlsx',
+        ];
+   $Validator   = Validator::make($request->all(),$rules);
+        $Validator->SetAttributeNames ([
+            'excel_file' => trans('admin.excel_file'),
+        ]);
+        if ($Validator->fails()) 
+        {
+            return back()->withInput()->withErrors($Validator);
+        } else 
+        {
+            if (($handle = fopen($_FILES['excel_file']['tmp_name'],"r")) !== FALSE ) 
+                {
+              fgetcsv($handle); //remove first row in excel sheet
+             while (($data = fgetcsv($handle,1000,",")) !== FALSE)
+                  {
+
+              
+                 $add = new Products;
+                 $add->en_title = $data[0];
+                 $add->ar_title = $data[1];
+                 $add->user_id = admin()->user()->id;
+                 $add->user_type = "admin";
+                 $add->dep_id = $data[2];
+                 $add->main_dep_id = $data[3];
+                 $add->price = $data[4];
+                 $add->ar_content = $data[5];
+                 $add->en_content = $data[6];
+                 $add->stock = $data[7];
+                 $add->photo = $data[8];
+                 $add->color = $data[9];
+                 $add->size = $data[10];
+                 $add->created_at = time();
+                 $add->updated_at = time();
+                 $add->save();
+
+                 $lastid= $add->id;
+
+                $addsize = new ProductsSize;
+                $addsize->product_id = $lastid;
+                $addsize->size = $data[11];
+                $addsize->save();
+
+                $addcolor = new ProductsColor;
+                $addcolor->product_id = $lastid;
+                $addcolor->color = $data[12];
+                $addcolor->save();
+        
+
+                $addmedia = new ProductsGallary;
+                $addmedia->product_id = $lastid;
+                $addmedia->media = $data[13];
+                $addmedia->save();
+
+                   }
+                }
+       }
+             return back();
+    }
+
+
+
+
 }
