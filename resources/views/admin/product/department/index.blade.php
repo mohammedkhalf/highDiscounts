@@ -49,7 +49,7 @@
 									{{ $dep->ar_name }}
 								@endif
 							</td>
-							<td><img src="{{url('/upload/products/'.$dep->image)}}" style="width: 150px;height: 100px;" />
+							<td><img src="{{url('public/upload/products/'.$dep->image)}}" style="width: 150px;height: 100px;" />
 							</td>
 						<td>
 						<a href="{{url(app('aurl').'/department_product/'.$dep->id.'/edit')}}" class="btn btn-info">{{trans('admin.edit')}}</a>
@@ -58,10 +58,10 @@
 
 						</td>
 						<td>
-						<a type="button" href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
+						<a type="button" href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger{{$dep->id}}">
 								{{trans('admin.delete')}}
 							</a>
-							<div class="modal modal-danger fade" id="modal-danger">
+							<div class="modal modal-danger fade" id="modal-danger{{$dep->id}}">
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">

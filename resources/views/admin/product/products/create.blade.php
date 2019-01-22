@@ -30,6 +30,11 @@
          <p class="help-block">{{$errors->first('stock')}}</p>
      </div>
       <div class="form-group col-sm-12">
+        {!! Form::label('weight',trans('admin.weight')) !!}
+        {!! Form::text('weight',old('weight'),['class'=>'form-control']) !!}
+         <p class="help-block">{{$errors->first('weight')}}</p>
+     </div>
+      <div class="form-group col-sm-12">
 
           {!! Form::label('photo',trans('admin.photo')) !!}
           <p style="color: blue">{{trans('admin.photo')}} must be 250 * 232</p>

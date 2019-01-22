@@ -32,7 +32,7 @@
                                             <p class="form-row form-row-last">
                                                 <label for="order_email">Billing Email</label>
                                                 <input class="input-text" type="text" name="email" id="order_email" placeholder="Email you used during checkout." />
-                                                <p class="help-block">{{$errors->first('email')}}</p>
+                                                {{-- <p class="help-block">{{$errors->first('email')}}</p> --}}
                                             </p>
 
                                             <div class="clear"></div>
@@ -62,7 +62,7 @@
                                                         <a class="product" href="{{url('/single_product/'.$products->shoppings()->first()->id)}}">
                                                             <div class="product-image">
                                                                 <div class="">
-                                                                    <img width="250" height="232" alt="1" class="wp-post-image" src="{{url('/upload/products/'.$products->shoppings()->first()->photo)}}">
+                                                                    <img width="50" height="100" alt="1" class="wp-post-image" src="{{url('/upload/products/'.$products->shoppings()->first()->photo)}}">
                                                                 </div>
                                                             </div>
                                                             <div class="product-info">
@@ -80,18 +80,18 @@
                                             @endforeach
                                                <tr>
                                                    <td>
-                                                    <h2>Total Due : {{$order->first()->price}} LE</h2>   
-                                                    <h2>Ordered at : {{$order->first()->created_at}}</h2> 
-                                                    @if($order->first()->level == 'reject') 
+                                                    <h2>Total Due : {{$order->price}} LE</h2>   
+                                                    <h2>Ordered at : {{$order->created_at}}</h2> 
+                                                    @if($order->level == 'reject') 
                                                     <h2 style="color: red">Order Status : We Are Sorry Your Order Has Been Rejected.</h2> 
                                                     @endif
-                                                      @if($order->first()->level == 'prepare') 
+                                                      @if($order->level == 'prepare') 
                                                     <h2 style="color: blue">Order Status : We Are Preparing Your Order.</h2> 
                                                     @endif
-                                                      @if($order->first()->level == 'ship') 
+                                                      @if($order->level == 'ship') 
                                                     <h2 style="color: #ffc700">Order Status : We Are Shipping Your Order Now. </h2> 
                                                     @endif
-                                                          @if($order->first()->level == 'done') 
+                                                          @if($order->level == 'done') 
                                                     <h2 style="color: green">Order Status : Your Order Done! </h2> 
                                                     @endif
                                                    </td>
@@ -101,7 +101,15 @@
                                     </div><!-- /.table-responsive -->
                                 </div><!-- .entry-content -->
                             </article><!-- #post-## -->
-                            @endif
+                            <div class="wc-proceed-to-checkout">
+
+                                <a class="checkout-button button alt wc-forward" href="{{url('/allproducts')}}">Continue Shopping</a>
+
+                            </div>
+                        @endif
+
+                            
+
                         </main><!-- #main -->
                     </div><!-- #primary -->
                 </div><!-- .col-full -->

@@ -29,6 +29,22 @@
                                             <h2>My wishlist on Electro</h2>
                                         </div>
 
+                                         
+                                        @if(session()->has('success'))
+                                        <div class="alert alert-info">
+                                            <span class="help-block">
+                                                <small class="text-success">
+                                                    <button type="button" class="close" data-dismiss="alert">×</button> 
+                                                    <h6>{{session('success')}}</h6>
+                                                </small>
+                                            </span>
+                                        </div>
+                                        @endif
+
+                                            
+                                      
+
+
                                         <!-- WISHLIST TABLE -->
                                         <table data-token="" data-id="" data-page="1" data-per-page="5" data-pagination="no" class="shop_table cart wishlist_table">
 
@@ -68,7 +84,7 @@
                                                     </td>
 
                                                     <td class="product-thumbnail">
-                                                        <a href="single_product/{{ $products->wishlist()->first()->id }}"><img width="180" height="180" alt="1" class="wp-post-image" src="{{url('/upload/products/'.$products->wishlist()->first()->photo)}}"></a>
+                                                        <a href="single_product/{{ $products->wishlist()->first()->id }}"><img width="180" height="180" alt="1" class="wp-post-image" src="{{url('public/upload/products/'.$products->wishlist()->first()->photo)}}"></a>
                                                     </td>
 
                                                     <td class="product-name">

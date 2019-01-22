@@ -4,7 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Model\Cart ;
-//use App\Model\DepartmentProducts;
+use App\User;
 use App\Model\Products ;
 use App\Model\ProductsGallary ;
 use App\Model\ProductsColor ;
@@ -20,7 +20,7 @@ use Validator;
 use Session;
 use Auth;
 
-class HomeController extends Controller
+class HomeApi extends Controller
 {
 
     public function index()
@@ -209,5 +209,19 @@ return response(['status' => true,  'allproducts'=>$allproducts, 'department'=>$
         $about=AboutUs::find(1);
         return view('front.aboutus')->with('about',$about);
     }
+
+
+public function categories ()
+{
+            $departments=Dep::where('parent',0)->get();
+              responses( false, [],[$departments]);
+
+}
+public function cities()
+{
+    $cities= Country::where('parent','>',0)->get();
+       response(responses( true,null,['cities'=>$cities]));
+    
+}
 
 }

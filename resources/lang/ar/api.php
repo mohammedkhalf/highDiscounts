@@ -67,5 +67,7 @@ return [
     'remember' => 'تذكرنى',
     'forge' => 'نسيت كلمه المرور ?',
     'loginsubmit' => 'تسجيل الدخول',
+    'pleaseloginagain'     =>'حدث خطأ يرجى تسجيل الدخول من جديد',
+    'passworddontmatch'    =>'خطا ! الرقم السرى غير متطابق',
 
 ];

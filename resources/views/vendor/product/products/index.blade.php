@@ -50,7 +50,7 @@
                           <td>{{ $products->color }}</td>
                           <td>{{ $products->size }}</td>
                           <td>{{ $products->price }}</td>
-								<td><img src="{{url('/upload/products/'.$products->photo)}}" style="width: 150px;height: 100px;" /></td>
+								<td><img src="{{url('public/upload/products/'.$products->photo)}}" style="width: 150px;height: 100px;" /></td>
 								<td>
 		 							<a href="{{url(app('v').'/products/'.$products->id.'/edit')}}" class="btn btn-info">{{trans('admin.edit')}}</a>
 		 							{!! Form::open(['method'=>'delete','url'=>app('v').'/products/'.$products->id,'style'=>'display:inline','class'=>'form'.$products->id]) !!} 

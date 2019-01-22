@@ -28,6 +28,19 @@ class Products extends Model
         return $this->belongsTo('App\Model\DepartmentProducts');
 
     }
+       public function product_vendor()
+    {
+
+        return $this->belongsTo('App\User');
+
+    }
+         public function product_admin()
+    {
+
+        return $this->belongsTo('App\Admin');
+
+    }
+    
    public function products_gallary()
     {
         return $this->hasMany('App\Model\ProductsGallary', 'product_id', 'id');
@@ -47,6 +60,10 @@ class Products extends Model
           public function product_dep_main() {
 
         return $this->belongsTo('App\Model\DepartmentProducts', 'main_dep_id', 'id');
+    }
+    public function wishlist() {
+
+        return $this->hasMany('App\Model\Wishlist', 'product_id', 'id');
     }
 
 

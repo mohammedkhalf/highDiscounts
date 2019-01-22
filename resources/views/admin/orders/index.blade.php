@@ -46,23 +46,23 @@
                 <tr class="success">
                    @else 
 
-                  <tr >
+                  <tr>
                     @endif  
                     
                     <td>{{$order->code}}</td>
-                   @if(!empty( $order->user()->get()))
+                   
                        @foreach($order->user()->get() as $user)
                        
                             <td>{{ $user->name}}</td>
 
                            @endforeach
-                       @endif
+                     
 
-                     @if(!empty( $order->country()->get()))
+                    
                        @foreach($order->country()->get() as $country)
                             <td>{{ $country->country_name_en}}</td>
                            @endforeach
-                       @endif
+                      
                    
                    
                     <td>{{$order->phone}}</td>

@@ -39,15 +39,18 @@ Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor'], function () {
         Route::post('department_product/check/parent','DepProductController@check_parent');
         Route::get('/orders','OrderController@index');
         Route::post('/orders/status/{id}','OrderController@status');
+
+        //complain
+        Route::get('/complain', 'ComplainController@index');
+        //vendor profile
+        Route::get('/profile' , 'ComplainController@Vendorprofile');
+        Route::post('/save_vendor' , 'ComplainController@store');
+
      });
     });
 
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
-
-
-
-
 
 
     Config::set('auth.defines', 'admin');
@@ -102,19 +105,23 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('/setting', 'SettingsController@setting_save');
         Route::post('/users', 'UserController@store');
 
-
         ////order///
         Route::get('/orders','OrderController@index');
         Route::get('/orders/details/{id}','OrderController@details');
         Route::post('/orders/status/{id}','OrderController@status');
-
         ////contactus
         Route::get('/allcontact','AdminController@allContact');
         Route::get('/deletecontact/{id}','AdminController@deleteContact');
-
         ///aboutUs
         Route::get('/updateabout','AdminController@updateAboutUs');
         Route::post('/editabout','AdminController@editAbout');
+        //complain
+        Route::get('/complain', 'ComplainController@index');
+        Route::post('/post_action' , 'ComplainController@store');
+        //social 
+        Route::get('/social' , 'SettingsController@indexSocial');
+        Route::post('/saveSocial' , 'SettingsController@saveSocial');
+
 
         Route::get('lang/{lang}', function ($lang) {
             session()->has('lang') ? session()->forget('lang') : '';

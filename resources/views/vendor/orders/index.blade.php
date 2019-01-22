@@ -38,29 +38,25 @@
                     </thead>
                     <tbody>
                       @foreach($orderItem as $products)
+                       <?php $detail=App\Model\Products::where('id','=',$products->product_id)->get(); ?>
+                      @foreach($detail as $details)
                         <tr>
                             <td>{{$products->order_dd()->first()->code}}</td>
+                    
                        <td class="product-thumbnail">
-                        <img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{url('/upload/products/'.$products->shoppings()->first()->photo)}}">
+                        <img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{url('public/upload/products/'.$details->photo)}}">
                        </td>
                             <td>
-                              <h6 class="no-margin">{{$products->shoppings()->first()->en_title}}</h6>
+                              <h6 class="no-margin">{{$details->en_title}}</h6>
                              
                             </td>
+                            
                             <td>{{$products->item_price}} LE</td>
                             
-                     
-                     {!! Form::open(['url'=>app('aurl').'/orders/status/'.$products->id,'method'=>'post']) !!}
-                        <td> <select style="width: 100px" class="form-control" name="level">
-                          <option value="prepare" @if($products->level == 'prepare') selected @endif>Prepare</option>
-                          <option value="ship" @if($products->level == 'ship') selected @endif>Shipping</option>
-                          <option value="done" @if($products->level == 'done') selected @endif>Done</option>
-                          <option value="reject" @if($products->level == 'reject') selected @endif>Reject</option>
-                             </select></td>                  
-                        <td><button type="submit"><i class="icon-basket"></i> <span>Apply</span></button></td>
-
-                   {!! Form::close() !!} 
+                     <td>{{$products->order_dd()->first()->level}}</td>
+               
                         </tr>
+                        @endforeach
                     @endforeach
                     </tbody>
                 </table>

@@ -25,6 +25,9 @@ class CreateSettingsTable extends Migration
             $table->longText('keywords')->nullable();
             $table->enum('status',['open','close'])->default('open');
             $table->longText('message_mentenance')->nullable();
+            $table->string('facebook');
+            $table->string('twitter');
+            $table->string('youtube');
             $table->timestamps();
         });
     }

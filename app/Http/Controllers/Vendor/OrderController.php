@@ -16,8 +16,7 @@ class OrderController extends Controller
     public function index()
     {
         $vendor =    Auth::user()->id;
-
-        $orderItem = OrderItem::where('vendor_id', '=', $vendor)->get()->all();
+        $orderItem = OrderItem::where('vendor_id', '=', $vendor)->get();
 
         return view(app('v').'.orders.index', [ 'orderItem'=>$orderItem]);
     }

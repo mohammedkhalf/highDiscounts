@@ -51,11 +51,11 @@
 		 							{!! Form::open(['method'=>'delete','url'=>app('aurl').'/faq/'.$sliders->id,'style'=>'display:inline','class'=>'form'.$sliders->id]) !!} 
 		 						</td>
 		 						<td>
-									<a type="button" href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
+									<a type="button" href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger{{$sliders->id}}">
 										{{trans('admin.delete')}}
 									</a>
 
-									<div class="modal modal-danger fade" id="modal-danger">
+									<div class="modal modal-danger fade" id="modal-danger{{$sliders->id}}">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">

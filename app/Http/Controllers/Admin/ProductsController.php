@@ -57,7 +57,7 @@ class ProductsController extends Controller
             'size' => 'required',
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
-   
+           
 
         ];
    $Validator   = Validator::make($request->all(),$rules);
@@ -72,7 +72,7 @@ class ProductsController extends Controller
             'size' => trans('admin.size'),
             'price' => trans('admin.price'),
             'stock' => trans('admin.stock'),
-          
+            'weight' => trans('admin.weight'),
 
         ]);
         if($Validator->fails())
@@ -95,8 +95,11 @@ class ProductsController extends Controller
             if($request->has('parent') && $request->input('parent') !== null)
             {
             $add->dep_id              = $request->input('parent');
-            $main_dep  = Dep::where('id','=',$request->input('parent'))->select('parent')->get();
-            $add->main_dep_id = $main_dep;
+            $main_dep  = Dep::where('id','=',$request->input('parent'))->pluck('parent');
+           foreach ($main_dep as $files)
+           {
+            $add->main_dep_id = $files;
+           }
           }
             $add->en_title            = $request->input('en_name');
             $add->ar_title            = $request->input('ar_name');
@@ -106,6 +109,7 @@ class ProductsController extends Controller
             $add->color               = $request->input('color');
             $add->size                = $request->input('size');
             $add->stock                = $request->input('stock');
+            $add->weight                = $request->input('weight');
             $add->save();
 
              $lastid = $add->id;
@@ -216,6 +220,7 @@ class ProductsController extends Controller
             'size' => 'required',
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
+            'weight' => 'required|numeric',
          
 
         ];
@@ -231,7 +236,8 @@ class ProductsController extends Controller
             'size' => trans('admin.size'),
             'price' => trans('admin.price'),
             'stock' => trans('admin.stock'),
-            'media.*' => trans('admin.stock'),
+            'media.*' => trans('admin.media'),
+            'weight' => trans('admin.weight'),
         ]);
         if ($Validator->fails()) {
             return back()->withInput()->withErrors($Validator);
@@ -248,9 +254,14 @@ class ProductsController extends Controller
             }
             if($request->has('parent') && $request->input('parent') !== null)
             {
-                $update->dep_id = $request->input('parent');
-                  $main_dep  = Dep::where('id','=',$request->input('parent'))->select('parent')->get();
-            $update->main_dep_id = $main_dep;
+                   $update->dep_id              = $request->input('parent');
+            $main_dep  = Dep::where('id','=',$request->input('parent'))->pluck('parent');
+           foreach ($main_dep as $files)
+           {
+            $update->main_dep_id = $files;
+           }
+           
+            
             }
 
             $update->en_title            = $request->input('en_name');
@@ -263,6 +274,7 @@ class ProductsController extends Controller
             $update->color               = $request->input('color');
             $update->size                = $request->input('size');
             $update->stock                = $request->input('stock');
+            $update->weight                = $request->input('weight');
             $update->save();
  $lastid = $update->id;
             /** update multiphotos in ProductsGallary table**/
@@ -443,6 +455,36 @@ class ProductsController extends Controller
                 $addmedia->product_id = $lastid;
                 $addmedia->media = $data[13];
                 $addmedia->save();
+
+
+
+           /** update multiphotos in ProductsGallary table**/
+            $path     = public_path().'/upload/products';
+            $multifile     = $request->file('media');
+            if($request->hasFile('media.*')) {
+                foreach ($multifile as $files)
+                {
+                    $extension = $files->getClientOriginalExtension();
+                    $fileName = str_random(5)."-".time()."-".str_random(3).".".$extension;
+                    if($files->move($path,$fileName))
+                    {
+                        $multiupdate = new ProductsGallary;
+                        $multiupdate->product_id = $id;
+                        $multiupdate->media = $fileName;
+                        $multiupdate->save();
+                    }
+                }
+
+            }
+
+
+
+
+
+
+
+
+
 
                    }
                 }

@@ -35,6 +35,7 @@ class CountriesController extends Controller
                 'country_name_ar' => 'required',
                 'country_name_en' => 'required',
                 'mob' => 'required',
+                'shipping' => 'required',
                 'code' => 'sometimes|nullable',
                 'logo' => 'sometimes|nullable|' . v_image(),
                 'parent' => 'sometimes|nullable|integer',
@@ -42,6 +43,7 @@ class CountriesController extends Controller
                 'country_name_ar' => trans('admin.country_name_ar'),
                 'country_name_en' => trans('admin.country_name_en'),
                 'mob' => trans('admin.mob'),
+                'shipping' => trans('admin.shipping'),
                 'code' => trans('admin.code'),
                 'logo' => trans('admin.logo')
             ]);
@@ -84,13 +86,15 @@ class CountriesController extends Controller
                 'country_name_en' => 'required',
                 'mob' => 'required',
                 'code' => 'required',
+                'shipping' => 'required',
                 'logo' => 'sometimes|nullable|' . v_image(),
             ], [], [
                 'country_name_ar' => trans('admin.country_name_ar'),
                 'country_name_en' => trans('admin.country_name_en'),
                 'mob' => trans('admin.mob'),
                 'code' => trans('admin.code'),
-                'logo' => trans('admin.logo')
+                'logo' => trans('admin.logo'),
+                'shipping' => trans('admin.shipping'),
             ]);
         if (request()->hasFile('logo')) {
 

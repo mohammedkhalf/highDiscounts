@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use App\Model\Setting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,8 +16,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        $social_links = Setting::find(1);
+        view()->share('social_links' , $social_links);
     }
-
     /**
      * Register any application services.
      *

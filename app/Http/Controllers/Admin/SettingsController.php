@@ -60,4 +60,31 @@ class SettingsController extends Controller
         session()->flash('success', 'settings has been edit');
         return redirect(aurl('setting'));
     }
+
+    //khalf
+    public function indexSocial()
+    {
+        return view('admin.social.index');
+    }
+    //khalf
+    public function saveSocial (Request $request)
+    {
+        // echo "<pre>"; print_r($request->all()); echo "</pre>"; die;
+        $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+        $this->validate(request(),
+        [
+            'facebook' => 'nullable|regex:' . $regex,
+            'twitter' => 'nullable|regex:' . $regex,
+            'youtube' => 'nullable|regex:' . $regex,
+        ]);
+
+        $set_social = Setting::find(1);
+        //  echo "<pre>"; print_r($set_social); echo "</pre>"; die;
+        $set_social->facebook = $request->facebook;
+        $set_social->twitter = $request->twitter;
+        $set_social->youtube = $request->youtube;
+        $set_social->save();
+        session()->flash('success' , trans('admin.social_success'));
+        return back();
+    }
 }

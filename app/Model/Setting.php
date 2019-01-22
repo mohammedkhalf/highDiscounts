@@ -20,5 +20,8 @@ class Setting extends Model
             'keywords',
             'status',
             'message_mentenance',
+            'facebook',
+            'twitter',
+            'youtube'
         ];
 }

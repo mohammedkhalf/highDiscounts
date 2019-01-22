@@ -102,7 +102,18 @@
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+
+                    @if(Auth::user() && Auth::user()->level == 'admin')
+
+                        <li><a href="#"><i class="icon-user-plus"></i> Update Profile</a></li>
+
+                    @elseif (Auth::user() && Auth::user()->level == 'vendor')
+
+                         <li><a href="{{ url('vendor/profile') }}"><i class="icon-user-plus"></i> Update Profile</a></li>
+
+                    @endif
+
+
                     <li><a href="#"><i class="icon-coins"></i> My balance</a></li>
                     <li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i
                                     class="icon-comment-discussion"></i> Messages</a></li>

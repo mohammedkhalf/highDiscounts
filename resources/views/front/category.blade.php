@@ -7,7 +7,7 @@
     {{trans('front.home')}}
 @endsection
 @section('content')
-  
+  @include('front.layouts.catwidget')
  @include('front.layouts.menu')
             <div id="content" class="site-content" tabindex="-1">
                 <div class="container">
@@ -23,39 +23,7 @@
                                 <p class="woocommerce-result-count">Showing 1&ndash;15 of 20 results</p>
                             </header>
 
-                            <div class="shop-control-bar">
-                                <ul class="shop-view-switcher nav nav-tabs" role="tablist">
-                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" title="Grid View" href="#grid"><i class="fa fa-th"></i></a></li>
-                                    <li class="nav-item"><a class="nav-link " data-toggle="tab" title="Grid Extended View" href="#grid-extended"><i class="fa fa-align-justify"></i></a></li>
-                                    <li class="nav-item"><a class="nav-link " data-toggle="tab" title="List View" href="#list-view"><i class="fa fa-list"></i></a></li>
-                                    <li class="nav-item"><a class="nav-link " data-toggle="tab" title="List View Small" href="#list-view-small"><i class="fa fa-th-list"></i></a></li>
-                                </ul>
-                                <form class="woocommerce-ordering" method="get">
-                                    <select name="orderby" class="orderby">
-                                        <option value="menu_order"  selected='selected'>Default sorting</option>
-                                        <option value="popularity" >Sort by popularity</option>
-                                        <option value="rating" >Sort by average rating</option>
-                                        <option value="date" >Sort by newness</option>
-                                        <option value="price" >Sort by price: low to high</option>
-                                        <option value="price-desc" >Sort by price: high to low</option>
-                                    </select>
-                                </form>
-                                <form class="form-electro-wc-ppp"><select name="ppp" onchange="this.form.submit()" class="electro-wc-wppp-select c-select"><option value="15"  selected='selected'>Show 15</option><option value="-1" >Show All</option></select></form>
-                                <nav class="electro-advanced-pagination">
-                                    <form method="post" class="form-adv-pagination"><input id="goto-page" size="2" min="1" max="2" step="1" type="number" class="form-control" value="1" /></form> of 2<a class="next page-numbers" href="#">&rarr;</a>         <script>
-                                    jQuery(document).ready(function($){
-                                        $( '.form-adv-pagination' ).on( 'submit', function() {
-                                            var link        = '#',
-                                            goto_page   = $( '#goto-page' ).val(),
-                                            new_link    = link.replace( '%#%', goto_page );
-
-                                            window.location.href = new_link;
-                                            return false;
-                                        });
-                                    });
-                                    </script>
-                                </nav>
-                            </div>
+                        
 
                             <div class="tab-content">
 
@@ -66,11 +34,13 @@
                                         <li class="product ">
                                             <div class="product-outer">
                                                 <div class="product-inner">
-                                                    <span class="loop-product-categories"><a href="product-category.html" rel="tag">@if(!empty($product->product_dep()->get()))
+                                                   @if(!empty($product->product_dep()->get()))
                                     @foreach($product->product_dep()->get() as $dep)
+                                     <span class="loop-product-categories"><a href="{{url('/single_dep/'.$dep->id)}}" rel="tag">
                                         {!! $dep->en_name!!}
+                                        </a></span>
                                     @endforeach
-                                @endif</a></span>
+                                @endif
                                                     <a href="{{url('/single_product/'.$product->id)}}">
                                                         <h3>     @if(lang() == 'ar')
                                 {{$product->ar_title}}
@@ -79,7 +49,7 @@
                                     @endif</h3>
                                                         <div class="product-thumbnail">
 
-                                                            <img data-echo="{{url('upload/products/'.$product->photo)}}" src="{{url('upload/products/'.$product->photo)}}" alt="{{$product->en_title}}">
+                                                            <img data-echo="{{url('public/upload/products/'.$product->photo)}}" src="{{url('public/upload/products/'.$product->photo)}}" alt="{{$product->en_title}}">
 
                                                         </div>
                                                     </a>
@@ -129,22 +99,7 @@
                     </div><!-- #primary -->
 
                     <div id="sidebar" class="sidebar" role="complementary">
-                        <aside class="widget woocommerce widget_product_categories electro_widget_product_categories">
-                            <ul class="product-categories category-single">
-                                <li class="product_cat">
-                                 
-                                    <ul>
-                                        <li class="cat-item current-cat"><a href="product-category.html"> All Categories</a> <span class="count">(13)</span>
-                                            <ul class='children'>
-                                      @foreach($departments as $department)
-                                                <li class="cat-item"><a href="product-category.html">{{$department->en_name}}</a></li>
-                                      @endforeach
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </aside>
+               
                       
                            
                         <aside class="widget widget_text">

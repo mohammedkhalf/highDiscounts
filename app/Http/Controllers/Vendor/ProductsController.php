@@ -45,14 +45,19 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-      $rules = [
+   $rules = [
             'en_name' => 'required',
             'ar_name' => 'required',
             'en_content' => 'required',
             'ar_content' => 'required',
+            'parent' => 'required',
             'photo' => 'required|image|mimes:gif,jpeg,jpg,png',
             'color' => 'required',
-             'stock' => 'required|numeric',
+            'size' => 'required',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric',
+            
+
         ];
    $Validator   = Validator::make($request->all(),$rules);
         $Validator->SetAttributeNames ([
@@ -63,15 +68,18 @@ class ProductsController extends Controller
             'parent' => trans('admin.department'),
             'photo' => trans('admin.photo'),
             'color' => trans('admin.color'),
+            'size' => trans('admin.size'),
+            'price' => trans('admin.price'),
             'stock' => trans('admin.stock'),
+            
 
         ]);
         if($Validator->fails())
         {
             return back()->withInput()->withErrors($Validator);
         }else{
-            $add = new Products ;
-
+            $add = new Products;
+         
             $file     = $request->file('photo');
             $path     = public_path().'/upload/products';
             $filename = time().rand(11111,00000).'.'.$file->getClientOriginalExtension();
@@ -79,15 +87,18 @@ class ProductsController extends Controller
             {
                 $add->photo = $filename;
             }
-           
-           
-            $add->user_id            = Auth::user()->id;
-            $add->user_type            = 'vendor';
-              if($request->has('parent') && $request->input('parent') !== null)
+          
+          
+            $add->user_id             = Auth::user()->id;
+            $add->user_type           = 'vendor';
+            if($request->has('parent') && $request->input('parent') !== null)
             {
             $add->dep_id              = $request->input('parent');
-            $main_dep  = Dep::where('id','=',$request->input('parent'))->select('parent')->get();
-            $add->main_dep_id = $main_dep;
+            $main_dep  = Dep::where('id','=',$request->input('parent'))->pluck('parent');
+           foreach ($main_dep as $files)
+           {
+            $add->main_dep_id = $files;
+           }
           }
             $add->en_title            = $request->input('en_name');
             $add->ar_title            = $request->input('ar_name');
@@ -97,11 +108,12 @@ class ProductsController extends Controller
             $add->color               = $request->input('color');
             $add->size                = $request->input('size');
             $add->stock                = $request->input('stock');
+            $add->weight                = 0.0050;
             $add->save();
 
              $lastid = $add->id;
 
-     //multiupload photos to table product_gallary
+         //multiupload photos to table product_gallary
              if ($request->hasFile('media.*')) {
          $multifile     = $request->file('media');
           foreach ($multifile as $files)

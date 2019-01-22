@@ -29,7 +29,7 @@ class OrderController extends Controller
        $order = Order::find($id); 
          $order->seen           = 1;
         $order->save();
-$orderItem  = OrderItem::where('order_id','=',$id)->get()->all();
+$orderItem  = OrderItem::where('order_id','=',$id)->get();
  return view(app('at').'.orders.details', ['order'=>$order , 'orderItem'=>$orderItem]);
           }
 

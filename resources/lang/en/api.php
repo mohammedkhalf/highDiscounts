@@ -45,6 +45,9 @@ return [
     'close'                =>'Close',
     'deleted'              =>'The Record Is Deleted',
     'delete_photo'         =>'Are You sure To delete this  Photo ?',
+    'pleaseloginagain'     =>'Error!! please Login Again',
+    'passworddontmatch'    =>'Error!! Password is Not Match',
+    
 
 
 
@@ -87,6 +90,7 @@ return [
     'remember'             => 'Remember',
     'forge'                => 'Forgot password ?',
     'loginsubmit'          => 'Login',
+    'logoutmessage'               => 'You Successfully Logged out',
     'loginerror'          => 'The Email Or Password Is not Correct',
     'loginsuccess'          => 'You Successfully Login To Your Account',
   'registersuccess'          => 'You Successfully Register Your Account',

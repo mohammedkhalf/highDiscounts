@@ -15,19 +15,34 @@
             	{!! Form::open(['url'=>app('aurl').'/products/import_products','id'=>'review-form','class'=>'smart-form','files'=>true]) !!}
 
 
-      <div style="margin-right: 300px">
+      <div class="col-sm-12" style="margin-right: 300px">
 
           {!! Form::label('excel_file',trans('admin.excel_file')) !!}
           {{csrf_field()}}
           <p style="color: red">{{trans('admin.excel_file')}} must be same as a documentation you have</p>
           {!! Form::file('excel_file',['class'=>'form-control'],'multiple') !!}
-          <p class="help-block">{{$errors->first('excel_file')}}</p>
+          
 
+ 
+         
+          
 
-           {!! Form::label('excel_photos',trans('admin.excel_photos')) !!}
-          <p style="color: red">{{trans('admin.excel_photos')}} must be same as a documentation you have</p>
-          {!! Form::file('excel_photos',['class'=>'form-control'],'multiple') !!}
-          <p class="help-block">{{$errors->first('excel_photos')}}</p>
+           <div class="imageUpload col-sm-12 form-group">
+          <div class="col-sm-1 pull-right" style="margin-top: 50px">
+              <a class="btn btn-info btn-rounded  addInput">Add</a>
+          </div>
+          <div class="inputDiv">
+              <div class="col-sm-10">
+                      {!! Form::label('excel_photos',trans('admin.excel_photos')) !!}
+                      <p style="color: red">{{trans('admin.excel_photos')}} must be same as a documentation you have</p>
+                      {!! Form::file('excel_photos[]',['class'=>'form-control']) !!}
+                     <p class="help-block">{{$errors->first('excel_file')}}</p>
+              </div>
+              <div class="col-sm-1 pull-right" style="margin-top: 50px">
+                  <a class="btn btn-danger btn-rounded removeInput">Remove</a>
+              </div>
+          </div>
+      </div>
           	<button type="submit" class="btn btn-primary" style="display: inline;">
 									{{trans('admin.add')}}
 								</button>
@@ -73,18 +88,18 @@
                           <td>{{ $products->color }}</td>
                           <td>{{ $products->size }}</td>
                           <td>{{ $products->price }}</td>
-								<td><img src="{{url('/upload/products/'.$products->photo)}}" style="width: 150px;height: 100px;" />
+								<td><img src="{{url('public/upload/products/'.$products->photo)}}" style="width: 150px;height: 100px;" />
 								</td>
 								<td>
 		 							<a href="{{url(app('aurl').'/products/'.$products->id.'/edit')}}" class="btn btn-info">{{trans('admin.edit')}}</a>
 		 							{!! Form::open(['method'=>'delete','url'=>app('aurl').'/products/'.$products->id,'style'=>'display:inline','class'=>'form'.$products->id]) !!} 
 		 						</td>
 		 						<td>
-									<a type="button" href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
+									<a type="button" href="#" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger{{$products->id}}">
 										{{trans('admin.delete')}}
 									</a>
 
-									<div class="modal modal-danger fade" id="modal-danger">
+									<div class="modal modal-danger fade" id="modal-danger{{$products->id}}">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">

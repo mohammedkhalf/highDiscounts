@@ -7,13 +7,13 @@
     {{trans('front.home')}}
 @endsection
 @section('content')
- @include('front.layouts.menu')
+    @include('front.layouts.menu')
 
 
     <div id="content" class="site-content" tabindex="-1">
         <div class="container">
 
-            <nav class="woocommerce-breadcrumb" ><a href="home.html">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>All Products</nav>
+            <nav class="woocommerce-breadcrumb" ><a href="{{url('/')}}">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>All Products</nav>
 
             <div id="primary" class="content-area">
                 <main id="main" class="site-main">
@@ -43,7 +43,7 @@
                         </form>
                         <form class="form-electro-wc-ppp"><select name="ppp" onchange="this.form.submit()" class="electro-wc-wppp-select c-select"><option value="15"  selected='selected'>Show 15</option><option value="-1" >Show All</option></select></form>
                         <nav class="electro-advanced-pagination">
-                            </nav>
+                        </nav>
                     </div>
 
                     <div class="tab-content">
@@ -55,11 +55,13 @@
                                     <li class="product ">
                                         <div class="product-outer">
                                             <div class="product-inner">
-                                                    <span class="loop-product-categories"><a href="product-category.html" rel="tag">@if(!empty($product->product_dep()->get()))
+                                                    @if(!empty($product->product_dep()->get()))
                                                                 @foreach($product->product_dep()->get() as $dep)
+                                                                <span class="loop-product-categories"><a href="{{url('/single_dep/'.$dep->id)}}" rel="tag">
                                                                     {!! $dep->en_name!!}
+                                                                    </a></span>
                                                                 @endforeach
-                                                            @endif</a></span>
+                                                            @endif
                                                 <a href="{{url('/single_product/'.$product->id)}}">
                                                     <h3>     @if(lang() == 'ar')
                                                             {{$product->ar_title}}
@@ -68,7 +70,7 @@
                                                         @endif</h3>
                                                     <div class="product-thumbnail">
 
-                                                        <img data-echo="{{url('upload/products/'.$product->photo)}}" src="{{url('upload/products/'.$product->photo)}}" alt="{{$product->en_title}}">
+                                                        <img data-echo="{{url('public/upload/products/'.$product->photo)}}" src="{{url('public/upload/products/'.$product->photo)}}" alt="{{$product->en_title}}">
 
                                                     </div>
                                                 </a>
@@ -87,7 +89,7 @@
 
                                                 <div class="hover-area">
                                                     <div class="action-buttons">
-<a href="{{route('product.wishlist' , ['id' => $product->id])}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                                                        <a href="{{route('product.wishlist' , ['id' => $product->id])}}" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
                                                         @if( $product->stock >= 1)
                                                             <a class="add-to-compare-link">In Stock : {{ $product->stock }}</a>
                                                         @else
@@ -104,11 +106,11 @@
                             </ul>
                             <div class="shop-control-bar-bottom">
                                 <nav class="woocommerce-pagination">
-                                  {{--  <ul >
-
-                                        {!! str_replace('/?','?',$ProductName->render()) !!}
-
-                                    </ul>--}}
+                                    {{--  <ul >
+  
+                                          {!! str_replace('/?','?',$ProductName->render()) !!}
+  
+                                      </ul>--}}
                                 </nav>
                             </div>
                         </div>
@@ -125,10 +127,15 @@
                         <li class="product_cat">
 
                             <ul>
-                                <li class="cat-item current-cat"><a href="product-category.html"> All Categories</a> <span class="count">(13)</span>
+                                <li class="cat-item current-cat"><a href="product-category.html"> All Categories</a> <span class="count">({{count($departments)}})</span>
                                     <ul class='children'>
                                         @foreach($departments as $department)
-                                            <li class="cat-item"><a href="{{url('/single_dep/'.$department->id)}}">{{$department->en_name}}</a></li>
+                                        <li class="cat-item">
+                                              <form  method="get" action="{{url('/search_product')}}">
+                                         <input type="hidden"  name="product_cat" value="{{$department->id}}" />
+                                            <button style="background-color: transparent;border-color: transparent;" class="ff" type="submit">@if( Lang() =='en' ) {{$department->en_name}}@else{{$department->ar_name}} @endif</button>
+                                        </form>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </li>
@@ -136,11 +143,19 @@
                         </li>
                     </ul>
                 </aside>
-
+<style>.ff:hover {
+    
+    color: #FED700!important;
+}</style>
 
                 <aside class="widget widget_text">
                     <div class="textwidget">
-                        <a href="#"><img src="assets/images/banner/ad-banner-sidebar.jpg" alt="Banner"></a>
+                              @if(lang() == 'ar')
+                                  <img src="{{url('public/upload/products/2.jpg')}}" alt="Banner">
+                                @else
+                                  <img src="{{url('public/upload/products/1.jpg')}}" alt="Banner">
+                                @endif
+                              
                     </div>
                 </aside>
                 <aside class="widget widget_products">
@@ -149,7 +164,7 @@
                         @foreach($widget as $pro)
                             <li>
                                 <a href="{{url('/single_product/'.$pro->id)}}" title="{{$pro->en_title}}">
-                                    <img width="180" height="180" src="{{url('upload/products/'.$pro->photo)}}" class="wp-post-image" alt=""/><span class="product-title">{{$pro->en_title}}</span>
+                                    <img width="180" height="180" src="{{url('public/upload/products/'.$pro->photo)}}" class="wp-post-image" alt=""/><span class="product-title">{{$pro->en_title}}</span>
                                 </a>
                                 <span class="electro-price"><ins><span class="amount">{{$pro->price}} LE</span></ins>
                             </li>

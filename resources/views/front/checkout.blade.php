@@ -8,7 +8,7 @@
 @endsection
 @section('content')
  @include('front.layouts.menu')
-@if ( $product != null)
+@if ( $product != null )
         <div id="content" class="site-content" tabindex="-1">
                 <div class="container">
 
@@ -44,7 +44,7 @@
                                                   <select rel="calc_shipping_state" class="country_to_state" id="calc_shipping_country" name="city"> 
                                                     <option value="">Select a City…</option>
                                                    @foreach($cities as $city)
-                                                    <option value="{{$city->id}}">{{$city->country_name_en}}</option>
+                                                    <option value="{{$city->id}}" data-title=" {{ $city->shipping }} ">{{$city->country_name_en}}</option>
                                                    @endforeach
                                                 </select></p><div class="clear"></div>
 
@@ -65,14 +65,16 @@
                                         <table class="shop_table woocommerce-checkout-review-order-table">
                                             <thead>
                                                 <tr>
-                                                     <th class="product-thumbnail">&nbsp;</th>
-                                                    <th class="product-name">Product</th>
+                                                    <th class="product-thumbnail">Product Image</th>
+                                                    <th class="product-name">Product Name </th>
                                                     <th class="product-total">Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                          @foreach($product as $products)
                                             <tr class="cart_item">
+                                                   
+
                                                  <td class="product-thumbnail">
                                                 <img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{url('/upload/products/'.$products->shoppings()->first()->photo)}}">
                                                  </td>
@@ -88,17 +90,20 @@
 
                                                 <tr class="cart-subtotal">
                                                     <th>Subtotal</th>
-                                                    <td><span class="amount">{{$total}} LE</span></td>
+                                                <td><span class="amount"   ><span id="sub_total" >{{$total}} </span> LE</span></td>
                                                 </tr>
-
+                                                <tr class="shipping">
+                                                    <th>Cart Weight</th>
+                                                    <td data-title="Shipping"> <span class="amount">  {{$totalweight}} KG</span> <input type="hidden" class="shipping_method" value="international_delivery" id="shipping_method_0" data-index="0" name="shipping_method[0]"></td>
+                                                </tr>
                                                 <tr class="shipping">
                                                     <th>Shipping</th>
-                                                    <td data-title="Shipping"> <span class="amount">  Free Shipping</span> <input type="hidden" class="shipping_method" value="international_delivery" id="shipping_method_0" data-index="0" name="shipping_method[0]"></td>
+                                                    <td data-title="Shipping"> <span class="amount" id="ship_value" >  Depending On Your City And Cart Weight</span> <input type="hidden" class="shipping_method" value="international_delivery" id="shipping_method_0" data-index="0" name="shipping_method[0]"></td>
                                                 </tr>
 
                                                 <tr class="order-total">
                                                     <th>Total</th>
-                                                    <td><strong><span class="amount">{{$total}} LE</span></strong> </td>
+                                                    <td><strong><span class="amount"  id="total_shipping" >   </span></strong> </td>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -119,23 +124,35 @@
                 </div><!-- .container -->
             </div><!-- #content -->
 
-    @else 
-<div class="single-product-area">
-        <div class="zigzag-bottom"></div>
-        <div class="container">
-            <div class="row">
-                @if(session()->has('success'))
-    <div class="alert alert-info">
-        <span class="help-block">
-            <small class="text-success">
-                <h4>{{session('success')}}</h4>
-            </small>
-        </span>
-    </div>
-      @endif
-                <h2>Now Items In The Cart!</h2>
-                </div>
-            </div>
-        </div>
-@endif
+           
+
+   
+     @endif
+   
+   @endsection
+
+
+   @section('customJS')
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+
+            $('#calc_shipping_country').on('change', function(){
+                var shipping = $("option:selected" , this);
+                var  cost = shipping.attr('data-title');
+                $('#ship_value').text(cost);
+                
+                //calculate total + cost
+                var total = $('#sub_total').text();
+                var f_total = parseFloat(total);
+                var f_shipping = parseFloat(cost); 
+                var ship_total = f_shipping + f_total ;
+                $('#total_shipping').text(ship_total);
+            })
+            
+        
+        </script>
+            
+
+
    @endsection

@@ -16,7 +16,7 @@
                                         </div><!-- /.info -->
                                     </figcaption>
 
-                                    <img src="{{url('upload/products/'.$brand->image)}}" data-echo="{{url('upload/products/'.$brand->image)}}" class="img-responsive" alt="">
+                                    <img src="{{url('/upload/products/'.$brand->image)}}" data-echo="{{url('/upload/products/'.$brand->image)}}" class="img-responsive" alt="">
 
                                 </figure>
                             </a>
@@ -39,13 +39,13 @@
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <aside class="widget clearfix">
                         <div class="body">
-                            <h4 class="widget-title">Featured Products</h4>
+                            <h4 class="widget-title">{{trans('admin.latest')}}</h4>
                             <ul class="product_list_widget">
                                 <?php $featuredp = App\Model\Products::inRandomOrder()->take(3)->get(); ?>
                                 @foreach($featuredp as $fe )
                                     <li>
                                         <a href="{{url('/single_product/'.$fe->id)}}" title="{{$fe->en_title}}">
-                                            <img class="wp-post-image" data-echo="{{url('upload/products/'.$fe->photo)}}" src="{{url('upload/products/'.$fe->image)}}" alt="">
+                                            <img class="wp-post-image" data-echo="{{url('/upload/products/'.$fe->photo)}}" src="{{url('/upload/products/'.$fe->image)}}" alt="">
                                             <span class="product-title">{{$fe->en_title}}</span>
                                         </a>
                                         <span class="electro-price"><span class="amount">{{$fe->price}} LE</span>
@@ -58,13 +58,13 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <aside class="widget clearfix">
-                        <div class="body"><h4 class="widget-title">Onsale Products</h4>
+                        <div class="body"><h4 class="widget-title">{{trans('admin.onsale')}}</h4>
                             <ul class="product_list_widget">
                                 <?php $onsale = App\Model\Products::inRandomOrder()->take(3)->get(); ?>
                                 @foreach($onsale as $sale )
                                     <li>
                                         <a href="{{url('/single_product/'.$sale->id)}}" title="{{$sale->en_title}}">
-                                            <img class="wp-post-image" data-echo="{{url('upload/products/'.$sale->photo)}}" src="{{url('upload/products/'.$sale->photo)}}" alt="">
+                                            <img class="wp-post-image" data-echo="{{url('/upload/products/'.$sale->photo)}}" src="{{url('/upload/products/'.$sale->photo)}}" alt="">
                                             <span class="product-title">{{$sale->en_title}}</span>
                                         </a>
                                         <span class="electro-price"><span class="amount">{{$sale->price}} LE</span>
@@ -78,13 +78,13 @@
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <aside class="widget clearfix">
                         <div class="body">
-                            <h4 class="widget-title">Top Rated Products</h4>
+                            <h4 class="widget-title">{{trans('admin.rated')}}</h4>
                             <ul class="product_list_widget">
                                 <?php $rated = App\Model\Products::inRandomOrder()->take(3)->get(); ?>
                                 @foreach($rated as $rate )
                                     <li>
                                         <a href="{{url('/single_product/'.$rate->id)}}" title="{{$rate->en_title}}">
-                                            <img class="wp-post-image" data-echo="{{url('upload/products/'.$rate->photo)}}" src="{{url('upload/products/'.$rate->photo)}}f" alt="">
+                                            <img class="wp-post-image" data-echo="{{url('/upload/products/'.$rate->photo)}}" src="{{url('/upload/products/'.$rate->photo)}}f" alt="">
                                             <span class="product-title">{{$rate->en_title}}</span>
                                         </a>
                                         <span class="electro-price"><ins><span class="amount">{{$rate->price}} LE</span>
@@ -109,7 +109,7 @@
                     <div class="columns">
                         <aside id="nav_menu-2" class="widget clearfix widget_nav_menu">
                             <div class="body">
-                                <h4 class="widget-title">Find It Fast</h4>
+                                <h4 class="widget-title">{{trans('admin.find')}}</h4>
                                 <div class="menu-footer-menu-1-container">
                                     <ul id="menu-footer-menu-1" class="menu">
                                         <?php $footer_dep=App\Model\DepartmentProducts::where('parent','>',0)->take(7)->get(); ?>
@@ -129,11 +129,15 @@
                                 <h4 class="widget-title">&nbsp;</h4>
                                 <div class="menu-footer-menu-2-container">
                                     <ul id="menu-footer-menu-2" class="menu">
-                                        <li class="menu-item"><a href="{{url('/registervendor')}}">Register as vendor</a></li>
+                                        <li class="menu-item"><a href="{{url('/registervendor')}}">{{trans('admin.register')}} </a></li>
                                         <li class="menu-item"><a href="{{url('/faq')}}">{{trans('admin.faq')}}</a></li>
                                         <li class="menu-item "><a href="{{url('/aboutus')}}">{{trans('admin.about')}}</a></li>
-                                        <li  class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2742"><a href="{{url('/contactus')}}">{{trans('admin.contact')}}</a></li>
-                                       
+                                        <li  class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2742"><a href="{{ url('/contactus') }}">{{trans('admin.contact')}}</a></li>
+
+                                        @if (Auth::check())
+                                        <li  class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2742"><a href="{{ url ('/helpCenter') }}">{{trans('admin.help')}}</a></li>
+                                        @endif
+
                                     </ul>
                                 </div>
                             </div>
@@ -143,16 +147,16 @@
                     <div class="columns">
                         <aside id="nav_menu-4" class="widget clearfix widget_nav_menu">
                             <div class="body">
-                                <h4 class="widget-title">Customer Care</h4>
+                                <h4 class="widget-title">{{trans('admin.customer_care')}}</h4>
                                 <div class="menu-footer-menu-3-container">
                                     <ul id="menu-footer-menu-3" class="menu">
-                                        <li class="menu-item"><a href="single-product.html">My Account</a></li>
-                                        <li class="menu-item"><a href="{{url('/track')}}">Track your Order</a></li>
-                                        <li class="menu-item"><a href="{{url('/wishlist')}}">Wishlist</a></li>
-                                        <li class="menu-item"><a href="{{url('/contactus')}}">Customer Service</a></li>
                                         
-                                        <li class="menu-item"><a href="{{url('/faq')}}">FAQs</a></li>
-                                        <li class="menu-item"><a href="{{url('/track')}}">Product Support</a></li>
+                                        <li class="menu-item"><a href="{{url('/track')}}">{{trans('admin.track')}}</a></li>
+                                        <li class="menu-item"><a href="{{url('/wishlist')}}">{{trans('admin.wishlist')}}</a></li>
+                                        <li class="menu-item"><a href="{{url('/contactus')}}">{{trans('admin.customer_service')}}</a></li>
+                                        
+                                        <li class="menu-item"><a href="{{url('/faq')}}">{{trans('admin.faq')}}</a></li>
+                                        <li class="menu-item"><a href="{{url('/track')}}">{{trans('admin.product_support')}}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -219,18 +223,23 @@
                         <strong class="footer-address-title">Contact Info</strong>
                         <address>17 Princess Road, London, Greater London NW1 8JR, UK</address>
                     </div><!-- /.footer-address -->
-
+{{-- 
+                    @php
+                        echo "<pre>"; print_r($social_links->facebook); echo "</pre>"; die;
+                    @endphp --}}
+       
                     <div class="footer-social-icons">
                         <ul class="social-icons list-unstyled">
-                            <li><a class="fa fa-facebook" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
-                            <li><a class="fa fa-twitter" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
-                            <li><a class="fa fa-pinterest" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
+                        <li><a class="fa fa-facebook" href="{{$social_links->facebook}}"></a></li>
+                        <li><a class="fa fa-twitter" href="{{$social_links->twitter}}"></a></li>
+                        <li><a class="fa fa-youtube" href="{{$social_links->youtube }}"></a></li>
+
+                            {{-- <li><a class="fa fa-pinterest" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
                             <li><a class="fa fa-linkedin" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
                             <li><a class="fa fa-google-plus" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
                             <li><a class="fa fa-tumblr" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
-                            <li><a class="fa fa-instagram" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
-                            <li><a class="fa fa-youtube" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li>
-                            <li><a class="fa fa-rss" href="#"></a></li>
+                            <li><a class="fa fa-instagram" href="http://themeforest.net/user/shaikrilwan/portfolio"></a></li> --}}
+                            {{-- <li><a class="fa fa-rss" href="#"></a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -269,6 +278,22 @@
 {{Html::script('front/assets/js/jquery.waypoints.min.js')}}
 {{Html::script('front/assets/js/electro.js')}}
 
+@yield('customJS')
 
 </body>
 </html>
+<script>
+    $(function () {
+        // setTimeout() function will be fired after page is loaded
+        // it will wait for 5 sec. and then will fire
+        // $("#successMessage").hide() function
+        setTimeout(function () {
+            $(".alert").hide('blind', {}, 200)
+        }, 3000);
+
+
+        $('.alert').delay(3000).fadeOut('slow');
+
+
+    });
+</script>

@@ -47,6 +47,8 @@ foreach ($singletonarray as $key => $value) {
     });
 }
 
+
+
 //////// SingleTon End
 Route::group(['middleware' => 'Maintenance'], function () {
     Route::get('search_product','SearchController@searchName');
@@ -57,6 +59,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
 
         Route::get('/single_product/{id}', 'HomeController@single');
         Route::get('/single_dep/{id}', 'HomeController@singledep');
+         Route::post('/owner', 'HomeController@owner');
         Route::get('/allproducts','HomeController@products');
         Route::get('/faq','HomeController@faq');
         Route::get('/alldepartments','HomeController@departments');
@@ -68,6 +71,8 @@ Route::group(['middleware' => 'Maintenance'], function () {
         Route::get('/contactus','HomeController@contactus');
         Route::POST('/insertcontactus','HomeController@addContact');
         Route::get('/aboutus','HomeController@aboutus');
+
+           
 
 
     });
@@ -120,7 +125,7 @@ Route::group(['middleware' => 'Maintenance'], function () {
             if (Auth::user()->level == 'vendor') {
                 return redirect('/vendor/products');
             } elseif (Auth::user()->level == 'user') {
-                return redirect('/');
+                return back();
             } else {
                 auth()->logout();
                 return redirect('/');
@@ -162,7 +167,8 @@ Route::group(['middleware' => 'Maintenance'], function () {
             'uses' => 'HomeController@getAddToCart',
             'as' => 'product.addToCart',
         ]);
-         Route::get('/shopping-cart', 'HomeController@getCart' );
+
+        Route::get('/shopping-cart', 'HomeController@getCart' );
         Route::delete('/destroy_item/{id}', 'HomeController@destroyitem');
 
         
@@ -170,6 +176,9 @@ Route::group(['middleware' => 'Maintenance'], function () {
             'uses' => 'HomeController@addtowishlist',
             'as' => 'product.wishlist',
         ]);
+
+        Route::Post('/add_to_wishlist_from_card/{id}' , 'HomeController@AddCardToWish');
+
         Route::delete('/destroy_item_from_wishlist/{id}', 'HomeController@DestroyItemFromWishlist');
         Route::get('/wishlist', 'HomeController@getWishlist' );
 
@@ -178,14 +187,26 @@ Route::group(['middleware' => 'Maintenance'], function () {
         Route::post('/store_track', 'HomeController@track' );
        
         Route::get('/checkout', 'HomeController@checkout' );
+        Route::get('/done', 'HomeController@done' );
         Route::post('/place', 'HomeController@PlaceOrder' );
         
-        });
+        //khalaf
+        Route::get('/profile' , 'HomeController@profile');
+        Route::post('/update_profile' , 'HomeController@UpdateProfile');
+
+        //khalaf
+        Route::get('/helpCenter' , 'HomeController@help');
+        Route::post('/send-complain' , 'HomeController@complain');
+
+     
+        
+        }); //web
+
         Route::get('user', function () {
             return 'welcome user';
         });
 
-    });
+    }); //UserMiddleware
 
 });
 
@@ -197,3 +218,5 @@ Route::get('maintenance', function () {
     }
 });
 
+Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');

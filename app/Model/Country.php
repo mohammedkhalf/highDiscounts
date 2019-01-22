@@ -17,4 +17,11 @@ class Country extends Model
             'parent',
         ];
 
+    // public function prices ()
+    // {
+    //     return $this->hasOne('App\Price' , 'countery_id');
+    // }
+
+    
+
 }

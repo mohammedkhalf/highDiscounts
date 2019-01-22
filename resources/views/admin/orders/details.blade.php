@@ -28,15 +28,15 @@
                     window.print();
                 }
                 </script>
-                 @foreach($order as $orders)
+                
             <div class="panel-body no-padding-bottom">
               <div class="row">
             
                 <div class="col-sm-6 content-group">
                   <div class="invoice-details">
-                    <h5 class="text-uppercase text-semibold">Order : {{$orders->code}}</h5>
+                    <h5 class="text-uppercase text-semibold">Order : {{$order->code}}</h5>
                     <ul class="list-condensed list-unstyled">
-                      <li>Date: <span class="text-semibold">{{$orders->created_at}}</span></li>
+                      <li>Date: <span class="text-semibold">{{$order->created_at}}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -46,31 +46,31 @@
                 <div class="col-md-6 col-lg-9 content-group">
                   <span class="text-muted">Order To:</span>
                   <ul class="list-condensed list-unstyled">
-                    <li><h5>{{$orders->name}}</h5></li>
+                    <li><h5>{{$order->name}}</h5></li>
                     <span class="text-muted">Address:</span>
-                    <li><span class="text-semibold"><h5>{{$orders->address}}</h5></span></li>
-                     @if(!empty( $orders->country()->get()))
-                       @foreach($orders->country()->get() as $country)
+                    <li><span class="text-semibold"><h5>{{$order->address}}</h5></span></li>
+                     @if(!empty( $order->country()->get()))
+                       @foreach($order->country()->get() as $country)
                             <li><h5>{{ $country->country_name_en}}</h5></li>
                            @endforeach
                        @endif
                     <li><h5>Egypt</h5></li>
                    <span class="text-muted">Email:</span>
-                    <li><a href="#"><h5>{{$orders->email}}</h5></a></li>
+                    <li><a href="#"><h5>{{$order->email}}</h5></a></li>
                   </ul>
                 </div>
 
                 <div class="col-md-6 col-lg-3 content-group">
                          <span class="text-muted">Order Details</span>
                   <ul class="list-condensed list-unstyled invoice-payment-details">
-                    <li><h5>Order ID: <span class="text-right text-semibold">{{$orders->id}}</span></h5></li>
-                    <li><h5>Order Code: <span class="text-right text-semibold">{{$orders->code}}</span></h5></li>
-                   <li><h5>Order Status: <span class="text-right text-semibold">{{$orders->level}}</span></h5></li>
+                    <li><h5>Order ID: <span class="text-right text-semibold">{{$order->id}}</span></h5></li>
+                    <li><h5>Order Code: <span class="text-right text-semibold">{{$order->code}}</span></h5></li>
+                   <li><h5>Order Status: <span class="text-right text-semibold">{{$order->level}}</span></h5></li>
                  
                   </ul>
                   <span class="text-muted">Payment Details:</span>
                   <ul class="list-condensed list-unstyled invoice-payment-details">
-                    <li><h5>Total Due: <span class="text-right text-semibold">{{$orders->price}} LE</span></h5></li>
+                    <li><h5>Total Due: <span class="text-right text-semibold">{{$order->price}} LE</span></h5></li>
                    
                  
                   </ul>
@@ -78,7 +78,7 @@
                 </div>
               </div>
             </div>
-@endforeach
+
             <div class="table-responsive">
 
                 <table class="table table-lg">
@@ -96,10 +96,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                      
                       @foreach($orderItem as $products)
                         <tr>
                        <td class="product-thumbnail">
-                        <img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{url('/upload/products/'.$products->shoppings()->first()->photo)}}">
+                        <img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{url('public/upload/products/'.$products->shoppings()->first()->photo)}}">
                        </td>
                             <td>
                               <h6 class="no-margin">{{$products->shoppings()->first()->en_title}}</h6>

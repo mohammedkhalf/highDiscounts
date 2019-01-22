@@ -73,3 +73,12 @@ if (!function_exists('v_image')) {
 }
 
 /*********validation helper function************/
+
+if (!function_exists('responses'))
+{
+    function responses($status=null, $messages=null,$data=null)
+    {
+       return ['status' => $status,  'messages' => $messages, 'data'=>$data];
+          
+    }
+}

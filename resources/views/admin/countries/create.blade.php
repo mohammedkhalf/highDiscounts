@@ -84,6 +84,20 @@
                         <i class="icon-indent-decrease text-muted"></i>
                     </div>
                 </div>
+              <div class="form-group has-feedback has-feedback-left">
+                    <input type="text" name="shipping"
+                           @if(isset($countryId))
+                           value="{{$countryId->shipping}}"
+                           @else
+                           value="{{old('shipping')}}"
+                           @endif
+
+                           class="form-control"
+                           placeholder="{{trans('admin.country_shipping')}}">
+                    <div class="form-control-feedback">
+                        <i class="icon-indent-decrease text-muted"></i>
+                    </div>
+                </div>
 
                 <div class="form-group has-feedback has-feedback-left">
                     <input type="text" name="code"

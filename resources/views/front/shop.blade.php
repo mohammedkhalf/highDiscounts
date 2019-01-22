@@ -80,7 +80,7 @@
                                     @endif</h3>
                                                         <div class="product-thumbnail">
 
-                                                            <img data-echo="{{url('upload/products/'.$product->photo)}}" src="{{url('upload/products/'.$product->photo)}}" alt="{{$product->en_title}}">
+                                                            <img data-echo="{{url('/public/upload/products/'.$product->photo)}}" src="{{url('/public/upload/products/'.$product->photo)}}" alt="{{$product->en_title}}">
 
                                                         </div>
                                                     </a>
@@ -144,7 +144,7 @@
                                 @foreach($widget as $pro)
                                 <li>
                                     <a href="{{url('/single_product/'.$pro->id)}}" title="{{$pro->en_title}}">
-                                        <img width="180" height="180" src="{{url('upload/products/'.$pro->photo)}}" class="wp-post-image" alt=""/><span class="product-title">{{$pro->en_title}}</span>
+                                        <img width="180" height="180" src="{{url('/public/upload/products/'.$pro->photo)}}" class="wp-post-image" alt=""/><span class="product-title">{{$pro->en_title}}</span>
                                     </a>
                                     <span class="electro-price"><ins><span class="amount">{{$pro->price}} LE</span></ins> 
                                 </li>

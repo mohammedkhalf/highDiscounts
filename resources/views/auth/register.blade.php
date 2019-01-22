@@ -49,7 +49,13 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="control-label">Password</label>
+                                <label for="password" >Password*
+                                        @if(lang() == 'ar')
+                                        <span  style="color:red" > ( لا يقل عن 6 حروف )</span>
+                                        @else  
+                                        <span  style="color:red"> (Not Less 6 character) </span>
+                                        @endif
+                                </label>
 
                             <div class="">
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -90,6 +96,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>
+                                 <a href="{{ url('/auth/facebook') }}" style="background-color: #4267b2;color: white" class="btn btn-facebook"><i class="fa fa-facebook"></i>  <span>Register With Facebook</span>  </a>
                             </div>
                         </div>
                     </form>
